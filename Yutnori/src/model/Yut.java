@@ -1,24 +1,26 @@
 package model;
+
 import java.util.Random;
 
-
 public class Yut {
-	
-	private boolean isBackDo;
-	private Random random = new Random();
-	
+
+	private boolean isBackDoYut;
+	private boolean isFront; // 평평한 면이 앞면
+
 	public Yut(int yutType) {
-		if(yutType == 3)
-			isBackDo = true;
+		if (yutType == 3)
+			this.isBackDoYut = true;
 		else
-			isBackDo = false;
+			this.isBackDoYut = false;
 	}
-	
-	public boolean getRes() {
-		return random.nextBoolean();
+
+	public boolean getIsFront() {
+		Random random = new Random();
+		isFront = random.nextBoolean();
+		return isFront;
 	}
-	
+
 	public boolean getIsBackDo() {
-		return isBackDo;
+		return isBackDoYut;
 	}
 }
