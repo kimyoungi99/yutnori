@@ -23,15 +23,15 @@ public class Yutnori {
 		if(this.board.boardTable[target_x][target_y].get_piece() == null) {
 	    	this.board.boardTable[target_x][target_y].put_piece(this.board.boardTable[selected_x][selected_y].get_piece());
 			this.board.boardTable[selected_x][selected_y].remove_piece();
-			catched = true;
 		}
 		else if(this.board.boardTable[target_x][target_y].get_piece().get_team() == this.board.boardTable[selected_x][selected_y].get_piece().get_team()) {
-			
+			this.board.boardTable[target_x][target_y].get_top_piece().stack_piece(board.boardTable[selected_x][selected_y].get_piece());
+			this.board.boardTable[selected_x][selected_y].remove_piece();
 		}
 		else {
-			
+			this.board.boardTable[target_x][target_y].put_piece(this.board.boardTable[selected_x][selected_y].get_piece()); // 다시 Piece 원상복귀 시키는 거 구현해야됨
+			catched = true;
 		}
-		
 		return catched;
 	}
 }
