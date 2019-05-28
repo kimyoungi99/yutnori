@@ -22,4 +22,12 @@ public class Piece {
 	public void detach_piece() {
 		this.nextPiece = null;
 	}
+	
+	public Piece get_nextPiece() {
+		return this.nextPiece;
+	}
+	
+	public int get_team() {
+		return team;
+	}
 }

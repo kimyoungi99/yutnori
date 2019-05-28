@@ -12,6 +12,10 @@ public class Tile {
 	}
 	
 	public Piece get_piece() {
-		return piece;
+		return this.piece;
+	}
+	
+	public void remove_piece() {
+		this.piece = null;
 	}
 }
