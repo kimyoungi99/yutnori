@@ -37,8 +37,11 @@ public class Yutnori {
 			this.board.boardTable[selected.x][selected.y].remove_piece();
 		}
 		else {
-			this.board.boardTable[target.x][target.y].put_piece(this.board.boardTable[selected.x][selected.y].get_piece()); // ´Ù½Ã Piece ¿ø»óº¹±Í ½ÃÅ°´Â °Å ±¸ÇöÇØ¾ßµÊ
+			this.board.boardTable[target.x][target.y].put_piece(this.board.boardTable[selected.x][selected.y].get_piece()); // ï¿½Ù½ï¿½ Piece ï¿½ï¿½ï¿½óº¹±ï¿½ ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ßµï¿½
 			catched = true;
+			// ì¡íˆë©´ ì²˜ìŒìœ¼ë¡œ ëŒì•„ê°€ëŠ”ê±° êµ¬
+			
+			
 		}
 		return catched;
 	}
