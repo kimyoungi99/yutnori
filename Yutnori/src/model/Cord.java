@@ -1,12 +1,20 @@
 package model;
 
 public class Cord {
-	public int x;
-	public int y;
+	private int x;
+	private int y;
 	
 	Cord(int x, int y) {
 		this.x = x;
 		this.y = y;
+	}
+	
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
 	}
 	
 	public boolean transform(int delta, boolean start) {

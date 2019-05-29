@@ -28,20 +28,17 @@ public class Yutnori {
 	
 	public boolean move(Cord selected, Cord target) {
 		boolean catched = false;
-		if(this.board.boardTable[target.x][target.y].get_piece() == null) {
-	    	this.board.boardTable[target.x][target.y].put_piece(this.board.boardTable[selected.x][selected.y].get_piece());
-			this.board.boardTable[selected.x][selected.y].remove_piece();
+		if(this.board.boardTable[target.getX()][target.getY()].get_piece() == null) {
+	    	this.board.boardTable[target.getX()][target.getY()].put_piece(this.board.boardTable[selected.getX()][selected.getY()].get_piece());
+			this.board.boardTable[selected.getX()][selected.getY()].remove_piece();
 		}
-		else if(this.board.boardTable[target.x][target.y].get_piece().get_team() == this.board.boardTable[selected.x][selected.y].get_piece().get_team()) {
-			this.board.boardTable[target.x][target.y].get_top_piece().stack_piece(board.boardTable[selected.x][selected.y].get_piece());
-			this.board.boardTable[selected.x][selected.y].remove_piece();
+		else if(this.board.boardTable[target.getX()][target.getY()].get_piece().get_team() == this.board.boardTable[selected.getX()][selected.getY()].get_piece().get_team()) {
+			this.board.boardTable[target.getX()][target.getY()].get_top_piece().stack_piece(board.boardTable[selected.getX()][selected.getY()].get_piece());
+			this.board.boardTable[selected.getX()][selected.getY()].remove_piece();
 		}
 		else {
-			this.board.boardTable[target.x][target.y].put_piece(this.board.boardTable[selected.x][selected.y].get_piece()); // �ٽ� Piece ���󺹱� ��Ű�� �� �����ؾߵ�
+			this.board.boardTable[target.getX()][target.getY()].put_piece(this.board.boardTable[selected.getX()][selected.getY()].get_piece());
 			catched = true;
-			// 잡히면 처음으로 돌아가는거 구
-			
-			
 		}
 		return catched;
 	}
