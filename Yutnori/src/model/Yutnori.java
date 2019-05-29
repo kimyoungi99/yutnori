@@ -5,6 +5,7 @@ public class Yutnori {
 	private int turn;
 	private int numOfPlayer;
 	private Board board;
+	private Piece[][] pieceArray = new Piece[4][4];
 	private Yut[] yutSet = new Yut[4];
 
 	public Yutnori() {
@@ -12,6 +13,10 @@ public class Yutnori {
 			this.yutSet[i] = new Yut(i); // if i == 3 then BACKDO
 		}
 		this.board = new Board();
+		
+		for (int i =0; i < 4; i++)
+			for (int j = 0; j < 4; j++)
+				this.pieceArray[i][j] = new Piece(i * 10 + j, i);
 	}
 
 	public int getTurn() {
