@@ -16,6 +16,10 @@ public class Player {
 	public void setNumOfRestPiece(int numOfPassPiece) {
 		this.numOfRestPiece -= numOfPassPiece;
 	}
+	
+	public int getNumOfRestPiece() {
+		return numOfRestPiece;
+	}
 
 	public Vector<Integer> throwYut() {
 		int numOfFront = 0;
@@ -51,10 +55,9 @@ public class Player {
 		//Tile selectTile = yutnori.getBoard().gameBoard[select.getX()][select.getY()];
 		//Tile targetTile = yutnori.getBoard().gameBoard[target.getX()][target.getY()];
 		
-		//새 말로 출발할 경우 selectTile의 piece가 yutnori.getBoard().waitingPiece[0].getTopPiece()
-		//근데 메소드 내에서 설정하는 것 보다는 애초에 함수 파라미터로 설정해서 넘겨주는게 좋을듯(일단 임시) 
+		//새 말로 출발할 경우 selectTile의 piece가 yutnori.getBoard().waitingPiece[playerID].getTopPiece()
 		if(isStart) {
-			selectTile.putPiece(yutnori.getBoard().waitingPieceBoard[0].getTopPiece());
+			targetTile.putPiece(selectTile.getTopPiece());
 		}
 		
 		boolean isCatch = false;
@@ -64,11 +67,17 @@ public class Player {
 			targetTile.getTopPiece().stackPiece(selectTile.getPiece());
 		} else {
 			targetTile.putPiece(selectTile.getPiece());
-			yutnori.getBoard().waitingPieceBoard[0].getTopPiece().stackPiece(targetTile.getPiece());
+			yutnori.getBoard().getWaitingPieceBoard()[playerID].getTopPiece().stackPiece(targetTile.getPiece());
 			isCatch = true;
 			// 윷 던지기 횟수 1회 추가 필요
 		}
-		selectTile.removePiece();
+		
+		if(isStart) {
+			//selectTile의 TopPiece만 제거
+		} 
+		else {
+			selectTile.removePiece();
+		}
 		return isCatch;
 	}
 }

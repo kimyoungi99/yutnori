@@ -1,8 +1,8 @@
 package model;
 
 public class Board {
-	public Tile[][] gameBoard = new Tile[6][5];
-	public Tile[] waitingPieceBoard = new Tile[CONSTANT.PLAYERNUM];
+	private Tile[][] gameBoard = new Tile[6][5];
+	private Tile[] waitingPieceBoard = new Tile[CONSTANT.PLAYERNUM];
 
 	public Board(Piece[][] pieceArray) {
 		for (int i = 0; i < waitingPieceBoard.length; i++) {
@@ -11,5 +11,13 @@ public class Board {
 			}
 			waitingPieceBoard[i].putPiece(pieceArray[i][3]);
 		}
+	}
+	
+	public Tile[][] getGameBoard(){
+		return gameBoard;
+	}
+	
+	public Tile[] getWaitingPieceBoard() {
+		return waitingPieceBoard;
 	}
 }
