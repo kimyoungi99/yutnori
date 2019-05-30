@@ -45,5 +45,20 @@ public class Player {
 		}
 		return numOfFrontVector;
 	}
+	
+	public boolean move(Cord selected, Cord target) {
+		boolean catched = false;
+		if (yutnori.getBoard().boardTable[target.getX()][target.getY()].getPiece() == null) {
+			yutnori.getBoard().boardTable[target.getX()][target.getY()].putPiece(yutnori.getBoard().boardTable[selected.getX()][selected.getY()].getPiece());
+			yutnori.getBoard().boardTable[selected.getX()][selected.getY()].removePiece();
+		} else if (yutnori.getBoard().boardTable[target.getX()][target.getY()].getPiece().getTeam() == yutnori.getBoard().boardTable[selected.getX()][selected.getY()].getPiece().getTeam()) {
+			yutnori.getBoard().boardTable[target.getX()][target.getY()].getTopPiece().stackPiece(getBoard().boardTable[selected.getX()][selected.getY()].getPiece());
+			yutnori.getBoard().boardTable[selected.getX()][selected.getY()].removePiece();
+		} else {
+			yutnori.getBoard().boardTable[target.getX()][target.getY()].putPiece(yutnori.getBoard().boardTable[selected.getX()][selected.getY()].getPiece());
+			catched = true;
+		}
+		return catched;
+	}
 }
 
