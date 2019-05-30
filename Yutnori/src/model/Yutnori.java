@@ -3,23 +3,23 @@ package model;
 public class Yutnori {
 
 	private int numOfPlayer;
-	private Piece[][] pieceArray = new Piece[4][4];
-	private Yut[] yutSet = new Yut[4];
+	private Piece[][] pieceArray = new Piece[CONSTANT.PLAYERNUM][CONSTANT.PIECENUM];
+	private Yut[] yutSet = new Yut[CONSTANT.YUTNUM];
 	private Board board;
 
 	public Yutnori() {
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < yutSet.length; i++) {
 			this.yutSet[i] = new Yut(i); // if i == 3 then BACKDO
 		}
-		this.board = new Board();
 
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 4; j++) {
+		for (int i = 0; i < pieceArray.length; i++) {
+			for (int j = 0; j < pieceArray[0].length; j++) {
 				this.pieceArray[i][j] = new Piece(i * 10 + j, i);
 			}
 		}
-	}
 
+		this.board = new Board(pieceArray);
+	}
 
 	public Yut[] getYutSet() {
 		return yutSet;
@@ -28,9 +28,13 @@ public class Yutnori {
 	public Board getBoard() {
 		return board;
 	}
-	
+
+	public Piece[][] getPieceArray() {
+		return pieceArray;
+	}
+
 	public void setNumOfPlayer(int numOfPlayer) {
 		this.numOfPlayer = numOfPlayer;
 	}
-	
+
 }

@@ -8,7 +8,7 @@ public class Yut {
 	private boolean isFront; // 앞면이 평평한 부분
 
 	public Yut(int yutType) {
-		if (yutType == 3)
+		if (yutType == CONSTANT.YUTNUM - 1)
 			this.isBackDoYut = true;
 		else
 			this.isBackDoYut = false;

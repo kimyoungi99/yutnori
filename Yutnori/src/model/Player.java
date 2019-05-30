@@ -6,7 +6,7 @@ public class Player {
 
 	public static Yutnori yutnori = new Yutnori();
 	private int playerID;
-	private int numOfRestPiece = 4;
+	private int numOfRestPiece = CONSTANT.PIECENUM;
 	private int numOfRestTurn;
 
 	public Player(int playerID) {
@@ -19,7 +19,7 @@ public class Player {
 
 	public Vector<Integer> throwYut() {
 		int numOfFront = 0;
-		boolean[] throwResult = new boolean[4];
+		boolean[] throwResult = new boolean[CONSTANT.YUTNUM];
 		Vector<Integer> numOfFrontVector = new Vector<Integer>();
 		numOfRestTurn = 1;
 		while (numOfRestTurn > 0) {
@@ -30,7 +30,7 @@ public class Player {
 				}
 			}
 			// 백도
-			if (numOfFront == 1 && throwResult[3]) {
+			if (numOfFront == 1 && throwResult[CONSTANT.YUTNUM - 1]) {
 				numOfFront = -1;
 			}
 
@@ -48,13 +48,13 @@ public class Player {
 	
 	public boolean movePiece(Tile selectTile, Tile targetTile, boolean isStart) {
 	//public boolean movePiece(Cord select, Cord target) {
-		//Tile selectTile = yutnori.getBoard().boardTable[select.getX()][select.getY()];
-		//Tile targetTile = yutnori.getBoard().boardTable[target.getX()][target.getY()];
+		//Tile selectTile = yutnori.getBoard().gameBoard[select.getX()][select.getY()];
+		//Tile targetTile = yutnori.getBoard().gameBoard[target.getX()][target.getY()];
 		
 		//새 말로 출발할 경우 selectTile의 piece가 yutnori.getBoard().waitingPiece[0].getTopPiece()
 		//근데 메소드 내에서 설정하는 것 보다는 애초에 함수 파라미터로 설정해서 넘겨주는게 좋을듯(일단 임시) 
 		if(isStart) {
-			selectTile.putPiece(yutnori.getBoard().waitingPiece[0].getTopPiece());
+			selectTile.putPiece(yutnori.getBoard().waitingPieceBoard[0].getTopPiece());
 		}
 		
 		boolean isCatch = false;
@@ -64,7 +64,7 @@ public class Player {
 			targetTile.getTopPiece().stackPiece(selectTile.getPiece());
 		} else {
 			targetTile.putPiece(selectTile.getPiece());
-			yutnori.getBoard().waitingPiece[0].getTopPiece().stackPiece(targetTile.getPiece());
+			yutnori.getBoard().waitingPieceBoard[0].getTopPiece().stackPiece(targetTile.getPiece());
 			isCatch = true;
 			// 윷 던지기 횟수 1회 추가 필요
 		}
