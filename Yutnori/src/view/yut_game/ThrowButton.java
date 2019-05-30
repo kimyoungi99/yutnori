@@ -1,4 +1,4 @@
-package yut_game;
+package view.yut_game;
 
 import java.awt.*;
 import java.awt.event.*;
