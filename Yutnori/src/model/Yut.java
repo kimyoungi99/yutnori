@@ -5,7 +5,7 @@ import java.util.Random;
 public class Yut {
 
 	private boolean isBackDoYut;
-	private boolean isFront; // ÆòÆòÇÑ ¸éÀÌ ¾Õ¸é
+	private boolean isFront; // ì•ë©´ì´ í‰í‰í•œ ë¶€ë¶„
 
 	public Yut(int yutType) {
 		if (yutType == 3)

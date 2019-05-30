@@ -11,23 +11,23 @@ public class Piece {
 		this.nextPiece = null;
 	}
 	
-	public int get_id() {
+	public int getID() {
 		return id;
 	}
 	
-	public void stack_piece(Piece p) {
+	public void stackPiece(Piece p) {
 		this.nextPiece = p;
 	}
 	
-	public void detach_piece() {
+	public void detachPiece() {
 		this.nextPiece = null;
 	}
 	
-	public Piece get_nextPiece() {
+	public Piece getNextPiece() {
 		return this.nextPiece;
 	}
 	
-	public int get_team() {
+	public int getTeam() {
 		return team;
 	}
 }

@@ -7,27 +7,26 @@ public class Tile {
 		this.piece = piece;
 	}
 	
-	public void put_piece(Piece piece) {
+	public void putPiece(Piece piece) {
 		this.piece = piece;
 	}
 
-	public void remove_piece() {
+	public void removePiece() {
 		this.piece = null;
 	}
 	
-	public Piece get_piece() {
+	public Piece getPiece() {
 		return this.piece;
 	}
 	
-	public Piece get_top_piece() {
-		if(this.piece == null || this.piece.get_nextPiece() == null)
+	public Piece getTopPiece() {
+		if(this.piece == null || this.piece.getNextPiece() == null)
 			return this.piece;
 		else {
 			Piece ptr = this.piece;
-			while(ptr.get_nextPiece() == null)
-				ptr = ptr.get_nextPiece();
+			while(ptr.getNextPiece() == null)
+				ptr = ptr.getNextPiece();
 			return ptr;
 		}
 	}
-	
 }
