@@ -2,7 +2,6 @@ package model;
 
 public class Yutnori {
 
-	private int turn = 0;
 	private int numOfPlayer;
 	private Piece[][] pieceArray = new Piece[4][4];
 	private Yut[] yutSet = new Yut[4];
@@ -21,9 +20,6 @@ public class Yutnori {
 		}
 	}
 
-	public int getTurn() {
-		return turn;
-	}
 
 	public Yut[] getYutSet() {
 		return yutSet;

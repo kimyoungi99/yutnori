@@ -3,10 +3,6 @@ package model;
 public class Tile {
 	private Piece piece;
 	
-	Tile(Piece piece) {
-		this.piece = piece;
-	}
-	
 	public void putPiece(Piece piece) {
 		this.piece = piece;
 	}
@@ -29,4 +25,16 @@ public class Tile {
 			return ptr;
 		}
 	}
+	
+    public int getNumOfPiece() {
+    	int num = 0;
+    	//Piece ptr = boardTable[selected.getX()][selected.getY()].getPiece();
+    	if(piece == null) 
+    		return num;
+    	while(piece != null) {
+    		num++;
+    		piece = piece.getNextPiece();
+    	}
+    	return num;
+    }
 }

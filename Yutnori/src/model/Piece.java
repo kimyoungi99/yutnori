@@ -15,19 +15,19 @@ public class Piece {
 		return id;
 	}
 	
-	public void stackPiece(Piece p) {
-		this.nextPiece = p;
-	}
-	
-	public void detachPiece() {
-		this.nextPiece = null;
+	public int getTeam() {
+		return team;
 	}
 	
 	public Piece getNextPiece() {
 		return this.nextPiece;
 	}
 	
-	public int getTeam() {
-		return team;
+	public void stackPiece(Piece piece) {
+		this.nextPiece = piece;
+	}
+	
+	public void detachPiece() {
+		this.nextPiece = null;
 	}
 }

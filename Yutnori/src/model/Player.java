@@ -46,19 +46,30 @@ public class Player {
 		return numOfFrontVector;
 	}
 	
-	public boolean move(Cord selected, Cord target) {
-		boolean catched = false;
-		if (yutnori.getBoard().boardTable[target.getX()][target.getY()].getPiece() == null) {
-			yutnori.getBoard().boardTable[target.getX()][target.getY()].putPiece(yutnori.getBoard().boardTable[selected.getX()][selected.getY()].getPiece());
-			yutnori.getBoard().boardTable[selected.getX()][selected.getY()].removePiece();
-		} else if (yutnori.getBoard().boardTable[target.getX()][target.getY()].getPiece().getTeam() == yutnori.getBoard().boardTable[selected.getX()][selected.getY()].getPiece().getTeam()) {
-			yutnori.getBoard().boardTable[target.getX()][target.getY()].getTopPiece().stackPiece(getBoard().boardTable[selected.getX()][selected.getY()].getPiece());
-			yutnori.getBoard().boardTable[selected.getX()][selected.getY()].removePiece();
-		} else {
-			yutnori.getBoard().boardTable[target.getX()][target.getY()].putPiece(yutnori.getBoard().boardTable[selected.getX()][selected.getY()].getPiece());
-			catched = true;
+	public boolean movePiece(Tile selectTile, Tile targetTile, boolean isStart) {
+	//public boolean movePiece(Cord select, Cord target) {
+		//Tile selectTile = yutnori.getBoard().boardTable[select.getX()][select.getY()];
+		//Tile targetTile = yutnori.getBoard().boardTable[target.getX()][target.getY()];
+		
+		//새 말로 출발할 경우 selectTile의 piece가 yutnori.getBoard().waitingPiece[0].getTopPiece()
+		//근데 메소드 내에서 설정하는 것 보다는 애초에 함수 파라미터로 설정해서 넘겨주는게 좋을듯(일단 임시) 
+		if(isStart) {
+			selectTile.putPiece(yutnori.getBoard().waitingPiece[0].getTopPiece());
 		}
-		return catched;
+		
+		boolean isCatch = false;
+		if (targetTile.getPiece() == null) {
+			targetTile.putPiece(selectTile.getPiece());
+		} else if (targetTile.getPiece().getTeam() == selectTile.getPiece().getTeam()) {
+			targetTile.getTopPiece().stackPiece(selectTile.getPiece());
+		} else {
+			targetTile.putPiece(selectTile.getPiece());
+			yutnori.getBoard().waitingPiece[0].getTopPiece().stackPiece(targetTile.getPiece());
+			isCatch = true;
+			// 윷 던지기 횟수 1회 추가 필요
+		}
+		selectTile.removePiece();
+		return isCatch;
 	}
 }
 
