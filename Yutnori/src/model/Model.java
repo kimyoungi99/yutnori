@@ -6,9 +6,8 @@ public class Model {
 	private Player[] player = new Player[CONSTANT.PLAYERNUM];
 	
 	public Model() {
-		for(int i=0; i<player.length; i++) {
+		for(int i = 0; i < player.length; i++)
 			player[i] = new Player(i);
-		}
 	}
 
 	public boolean getGameEnd() {

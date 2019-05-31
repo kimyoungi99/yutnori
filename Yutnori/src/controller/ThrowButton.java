@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import model.Model;
@@ -10,6 +11,12 @@ public class ThrowButton extends JButton implements ActionListener {
 	
 	private int numOfPlayer;
 	private Model model;
+	
+	private ImageIcon daoImage = new ImageIcon("src/image/Dao.jpg");
+	private ImageIcon gaeImage = new ImageIcon("src/image/Gae.jpg");
+	private ImageIcon gurlImage = new ImageIcon("src/image/Gurl.jpg");
+	private ImageIcon yutImage = new ImageIcon("src/image/Yut.jpg");
+	private ImageIcon moeImage = new ImageIcon("src/image/Moe.jpg");
 	
 	ThrowButton(String text, Model model) {
 		setText(text);
@@ -22,6 +29,11 @@ public class ThrowButton extends JButton implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		model.getTurnPlayer(this.numOfPlayer).throwYut();
+		int throwRes;
+		throwRes = model.getTurnPlayer(this.numOfPlayer).throwYut();
+		switch(throwRes) {
+		case -1:
+			
+		}
 	}
 }

@@ -12,7 +12,7 @@ public class Board {
 			}
 		}
 		*/
-		
+		System.out.printf("%d", pieceArray[0][3].getID());
 		for (int i = 0; i < waitingPieceBoard.length; i++) {
 			for (int j = CONSTANT.PIECENUM - 1; j > 0; j--) {
 				pieceArray[i][j].stackPiece(pieceArray[i][j - 1]);
