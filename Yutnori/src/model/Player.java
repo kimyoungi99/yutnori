@@ -8,7 +8,6 @@ public class Player {
 	public static Yutnori yutnori = new Yutnori();
 	private int playerID;
 	private int numOfRestPiece = CONSTANT.PIECENUM;
-	private int numOfRestTurn;
 
 	public Player(int playerID) {
 		this.playerID = playerID;
@@ -22,33 +21,20 @@ public class Player {
 		return numOfRestPiece;
 	}
 
-	public Vector<Integer> throwYut() {
+	public int throwYut() {
 		int numOfFront = 0;
 		boolean[] throwResult = new boolean[CONSTANT.YUTNUM];
 		Vector<Integer> numOfFrontVector = new Vector<Integer>();
-		numOfRestTurn = 1;
-		while (numOfRestTurn > 0) {
-			numOfFront = 0;
-			for (int i = 0; i < yutnori.getYutSet().length; i++) {
-				if (throwResult[i] = yutnori.getYutSet()[i].getIsFront()) {
-					numOfFront++;
-				}
+		numOfFront = 0;
+		for (int i = 0; i < yutnori.getYutSet().length; i++) {
+			if (throwResult[i] = yutnori.getYutSet()[i].getIsFront()) {
+				numOfFront++;
 			}
-			// 백도
-			if (numOfFront == 1 && throwResult[CONSTANT.YUTNUM - 1]) {
-				numOfFront = -1;
-			}
-
-			else if (numOfFront == 0 || numOfFront == 4) {
-				numOfRestTurn++;
-				if (numOfFront == 0) {
-					numOfFront = 5;
-				}
-			}
-			numOfFrontVector.add(numOfFront);
-			numOfRestTurn--;
 		}
-		return numOfFrontVector;
+		// 백도
+		if (numOfFront == 1 && throwResult[CONSTANT.YUTNUM - 1])
+			numOfFront = -1;
+		return numOfFront;
 	}
 
 	public boolean movePiece(Tile selectTile, Tile targetTile, boolean isStart) {
