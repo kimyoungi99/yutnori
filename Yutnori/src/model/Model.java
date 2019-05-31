@@ -26,4 +26,8 @@ public class Model {
 	public void setGameEnd() {
 		gameEnd = true;
 	}
+	
+	public Player getTurnPlayer(int numOfPlayer) {
+		return this.player[this.turn % numOfPlayer];
+	}
 }
