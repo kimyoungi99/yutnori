@@ -1,38 +1,23 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Tile {
-	private Piece piece;
-	//private int xCord;
-	//private int yCord;
+	private ArrayList<Piece> pieceList = new ArrayList<Piece>();
+		
+	public void putPiece(ArrayList<Piece> pieceList) {
+		this.pieceList.addAll(pieceList);
+	}
+	
+	public void removePiece() {
+		this.pieceList.clear();
+	}
+	
+	public ArrayList<Piece> getPieceList(){
+		return pieceList;
+	}
 	
 	/*
-	public Tile(int xCord, int yCord) {
-		this.piece = null;
-		this.xCord = xCord;
-		this.yCord = yCord;
-	}
-	
-	public int getXCord() {
-		return xCord;
-	}
-	
-	public int getYCord() {
-		return yCord;
-	}
-	*/
-	
-	public void putPiece(Piece piece) {
-		this.piece = piece;
-	}
-
-	public void removePiece() {
-		this.piece = null;
-	}
-	
-	public Piece getPiece() {
-		return this.piece;
-	}
-	
 	public Piece getTopPiece() {
 		if(this.piece == null || this.piece.getNextPiece() == null)
 			return this.piece;
@@ -55,4 +40,5 @@ public class Tile {
     	}
     	return num;
     }
+    */
 }

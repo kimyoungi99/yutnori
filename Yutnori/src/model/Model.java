@@ -6,8 +6,9 @@ public class Model {
 	private Player[] player = new Player[CONSTANT.PLAYERNUM];
 	
 	public Model() {
-		for(int i = 0; i < player.length; i++)
+		for(int i = 0; i < player.length; i++) {
 			player[i] = new Player(i);
+		}
 	}
 
 	public boolean getGameEnd() {
@@ -32,7 +33,7 @@ public class Model {
 		gameEnd = true;
 	}
 	
-	public Player getTurnPlayer(int numOfPlayer) {
-		return this.player[this.turn % numOfPlayer];
+	public Player getTurnPlayer() {
+		return this.player[turn % CONSTANT.PLAYERNUM];
 	}
 }
