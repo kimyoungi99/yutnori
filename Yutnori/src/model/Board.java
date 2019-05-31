@@ -5,6 +5,14 @@ public class Board {
 	private Tile[] waitingPieceBoard = new Tile[CONSTANT.PLAYERNUM];
 
 	public Board(Piece[][] pieceArray) {
+		/*
+		for(int i=0; i<6; i++) {
+			for(int j=0; j<5; j++) {
+				gameBoard[i][j] = new Tile(i, j);
+			}
+		}
+		*/
+		
 		for (int i = 0; i < waitingPieceBoard.length; i++) {
 			for (int j = CONSTANT.PIECENUM - 1; j > 0; j--) {
 				pieceArray[i][j].stackPiece(pieceArray[i][j - 1]);

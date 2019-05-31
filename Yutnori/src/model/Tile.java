@@ -2,6 +2,24 @@ package model;
 
 public class Tile {
 	private Piece piece;
+	//private int xCord;
+	//private int yCord;
+	
+	/*
+	public Tile(int xCord, int yCord) {
+		this.piece = null;
+		this.xCord = xCord;
+		this.yCord = yCord;
+	}
+	
+	public int getXCord() {
+		return xCord;
+	}
+	
+	public int getYCord() {
+		return yCord;
+	}
+	*/
 	
 	public void putPiece(Piece piece) {
 		this.piece = piece;

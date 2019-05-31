@@ -4,7 +4,7 @@ public class Cord {
 	private int x;
 	private int y;
 	
-	Cord(int x, int y) {
+	public void setCord(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -17,6 +17,7 @@ public class Cord {
 		return y;
 	}
 	
+	//실제로 움직일 때 도착했는지 계산해도 될듯? (return을 void로)
 	public boolean transform(int delta, boolean start) {
 		boolean is_done = false;
 		

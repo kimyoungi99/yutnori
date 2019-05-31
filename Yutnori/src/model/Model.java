@@ -4,6 +4,12 @@ public class Model {
 	private boolean gameEnd = false;
 	private int turn = 0;
 	private Player[] player = new Player[CONSTANT.PLAYERNUM];
+	
+	public Model() {
+		for(int i=0; i<player.length; i++) {
+			player[i] = new Player(i);
+		}
+	}
 
 	public boolean getGameEnd() {
 		return gameEnd;
