@@ -2,7 +2,6 @@ package model;
 
 public class Yutnori {
 
-	private int numOfPlayer;
 	private Piece[][] pieceArray = new Piece[CONSTANT.PLAYERNUM][CONSTANT.PIECENUM];
 	private Yut[] yutSet = new Yut[CONSTANT.YUTNUM];
 	private Board board;
@@ -32,9 +31,4 @@ public class Yutnori {
 	public Piece[][] getPieceArray() {
 		return pieceArray;
 	}
-
-	public void setNumOfPlayer(int numOfPlayer) {
-		this.numOfPlayer = numOfPlayer;
-	}
-
 }
