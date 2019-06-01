@@ -1,6 +1,5 @@
 package view;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 import controller.Controller;
