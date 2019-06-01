@@ -4,12 +4,38 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Vector;
 
-public class Player {
+import view.Observer;
+
+//public class Player implements Observable{
+public class Player implements Observable{
 
 	public static Yutnori yutnori = new Yutnori();
 	private int playerID;
 	private int numOfRestPiece = CONSTANT.PIECENUM;
-
+	private int throwYutResult;
+	private ArrayList<Observer> observers = new ArrayList<Observer>();
+	
+	@Override
+	public void addObserver(Observer o) {
+		observers.add(o);
+	}
+	
+	@Override
+	public void deleteObserver(Observer o) {
+        int i = observers.indexOf(o);                
+        if(i>=0){
+            observers.remove(i);
+        }
+	}
+	
+	@Override
+	public void notifyObserver() {
+        for(int i=0; i<observers.size(); i++){
+            Observer observer = (Observer)observers.get(i);
+            observer.updateYutResultPanel(this);
+        }
+	}
+	
 	public Player(int playerID) {
 		this.playerID = playerID;
 	}
@@ -20,6 +46,10 @@ public class Player {
 
 	public int getNumOfRestPiece() {
 		return numOfRestPiece;
+	}
+	
+	public int getthrowYutResult() {
+		return throwYutResult;
 	}
 
 	public int throwYut() {
@@ -34,6 +64,10 @@ public class Player {
 		// 백도
 		if (numOfFront == 1 && throwResult[CONSTANT.YUTNUM - 1])
 			numOfFront = -1;
+		
+		throwYutResult = numOfFront;
+		System.out.println(throwYutResult);
+		notifyObserver();
 		return numOfFront;
 	}
 	
@@ -91,5 +125,4 @@ public class Player {
 		}
 		return canGoCordVectorforEveryDistance;
 	}
-	
 }

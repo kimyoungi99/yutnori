@@ -1,14 +1,40 @@
 package model;
 
-public class Model {
+import java.util.ArrayList;
+
+import view.Observer;
+
+public class Model implements Observable{
 	private boolean gameEnd = false;
 	private int turn = 0;
 	private Player[] player = new Player[CONSTANT.PLAYERNUM];
+	private ArrayList<Observer> observers = new ArrayList<Observer>();
 	
 	public Model() {
 		for(int i = 0; i < player.length; i++) {
 			player[i] = new Player(i);
 		}
+	}
+	
+	@Override
+	public void addObserver(Observer o) {
+		observers.add(o);
+	}
+	
+	@Override
+	public void deleteObserver(Observer o) {
+        int i = observers.indexOf(o);                
+        if(i>=0){
+            observers.remove(i);
+        }
+	}
+	
+	@Override
+	public void notifyObserver() {
+        for(int i=0; i<observers.size(); i++){
+            Observer observer = (Observer)observers.get(i);
+            observer.updateYutResultPanel(this);
+        }
 	}
 
 	public boolean getGameEnd() {

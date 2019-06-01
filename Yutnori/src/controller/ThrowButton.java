@@ -9,31 +9,24 @@ import model.Model;
 
 public class ThrowButton extends JButton implements ActionListener {
 	
-	private int numOfPlayer;
+	private int throwButtonID;
 	private Model model;
 	
-	private ImageIcon daoImage = new ImageIcon("src/image/Dao.jpg");
-	private ImageIcon gaeImage = new ImageIcon("src/image/Gae.jpg");
-	private ImageIcon gurlImage = new ImageIcon("src/image/Gurl.jpg");
-	private ImageIcon yutImage = new ImageIcon("src/image/Yut.jpg");
-	private ImageIcon moeImage = new ImageIcon("src/image/Moe.jpg");
+	private ImageIcon backDoeImage = new ImageIcon("src/view/image/BackDoe.jpg");
+	private ImageIcon daoImage = new ImageIcon("src/view/image/Dao.jpg");
+	private ImageIcon gaeImage = new ImageIcon("src/view/image/Gae.jpg");
+	private ImageIcon gurlImage = new ImageIcon("src/view/image/Gurl.jpg");
+	private ImageIcon yutImage = new ImageIcon("src/view/image/Yut.jpg");
+	private ImageIcon moeImage = new ImageIcon("src/view/image/Moe.jpg");
 	
-	ThrowButton(String text, Model model) {
+	ThrowButton(Model model, String text) {
+		this.model = model;
 		setText(text);
 		addActionListener(this);
-		this.model = model;
 	}
-	
-	public void initGame(int numOfPlayer) {
-		this.numOfPlayer = numOfPlayer;
-	}
-	
+
 	public void actionPerformed(ActionEvent e) {
-		int throwRes;
-		throwRes = model.getTurnPlayer(this.numOfPlayer).throwYut();
-		switch(throwRes) {
-		case -1:
-			
-		}
+		int throwResult;
+		throwResult = model.getTurnPlayer().throwYut();
 	}
 }
