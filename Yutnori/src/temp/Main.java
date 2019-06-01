@@ -1,10 +1,11 @@
 package temp;
 
-import view.Frame;
+import controller.Controller;
 
 public class Main {
-	public static void main(String[] args) {
-		Frame frame = new Frame();
-		frame.setVisible(true);
+	public static void main(String[] args) {		
+		Controller controller = new Controller();
+		controller.init();
+		controller.setVisible(true);
 	}
 }
