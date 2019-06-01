@@ -16,7 +16,7 @@ public class View implements Observer {
 	private ImageIcon GurlImage = new ImageIcon("src/view/img/Gurl.jpg");
 	private ImageIcon YutImage = new ImageIcon("src/view/img/Yut.jpg");
 	private ImageIcon MoeImage = new ImageIcon("src/view/img/Moe.jpg");
-	private ImageIcon BackDaoImage = new ImageIcon("src/view/img/BackDaoImage.jpg");
+	private ImageIcon BackDaoImage = new ImageIcon("src/view/img/BackDao.jpg");
 	private Controller controller;
 
 	@Override
@@ -32,19 +32,19 @@ public class View implements Observer {
 			this.controller.getThrowResultLable().setIcon(this.BackDaoImage);
 			break;
 		case 0:
-			this.controller.getThrowResultLable().setIcon(this.DaoImage);
+			this.controller.getThrowResultLable().setIcon(this.MoeImage);
 			break;
 		case 1:
-			this.controller.getThrowResultLable().setIcon(this.GaeImage);
+			this.controller.getThrowResultLable().setIcon(this.DaoImage);
 			break;
 		case 2:
-			this.controller.getThrowResultLable().setIcon(this.GurlImage);
+			this.controller.getThrowResultLable().setIcon(this.GaeImage);
 			break;
 		case 3:
-			this.controller.getThrowResultLable().setIcon(this.YutImage);
+			this.controller.getThrowResultLable().setIcon(this.GurlImage);
 			break;
 		case 4:
-			this.controller.getThrowResultLable().setIcon(this.MoeImage);
+			this.controller.getThrowResultLable().setIcon(this.YutImage);
 			
 		}
 	}

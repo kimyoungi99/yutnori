@@ -52,20 +52,35 @@ public class Player implements Observable{
 		return throwYutResult;
 	}
 
-	public int throwYut() {
+	public int throwYut(int type) {
 		int numOfFront = 0;
-		boolean[] throwResult = new boolean[CONSTANT.YUTNUM];
-		numOfFront = 0;
-		for (int i = 0; i < yutnori.getYutSet().length; i++) {
-			if (throwResult[i] = yutnori.getYutSet()[i].getIsFront()) {
-				numOfFront++;
+		if(type == 0) {
+			boolean[] throwResult = new boolean[CONSTANT.YUTNUM];
+			numOfFront = 0;
+			for (int i = 0; i < yutnori.getYutSet().length; i++) {
+				if (throwResult[i] = yutnori.getYutSet()[i].getIsFront()) {
+					numOfFront++;
+				}
 			}
+			// 백도
+			if (numOfFront == 1 && throwResult[CONSTANT.YUTNUM - 1])
+				numOfFront = -1;
+			
+			throwYutResult = numOfFront;
 		}
-		// 백도
-		if (numOfFront == 1 && throwResult[CONSTANT.YUTNUM - 1])
-			numOfFront = -1;
-		
-		throwYutResult = numOfFront;
+		if(type == 1) // 도 개 걸 윷 모 백도 순
+			throwYutResult = 1;
+		if(type == 2)
+			throwYutResult = 2;
+		if(type == 3)
+			throwYutResult = 3; 
+		if(type == 4)
+			throwYutResult = 4;
+		if(type == 5)
+			throwYutResult = 0;
+		if(type == 6)
+			throwYutResult = -1;
+			
 		notifyObserver();
 		return numOfFront;
 	}

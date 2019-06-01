@@ -28,6 +28,6 @@ public class ThrowButton extends JButton implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		int throwResult;
-		throwResult = model.getTurnPlayer().throwYut();
+		throwResult = model.getTurnPlayer().throwYut(this.throwButtonID);
 	}
 }
