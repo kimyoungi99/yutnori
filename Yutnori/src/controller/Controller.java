@@ -17,7 +17,7 @@ import view.View;
 public class Controller extends JFrame {
 	private Model model = new Model();
 	private View view;
-	private JPanel gameBoardPanel = new JPanel();
+	private GameBoardPanel gameBoardPanel = new GameBoardPanel(model);
 	private JPanel throwButtonPanel = new JPanel();
 	private JPanel restPiecePanel = new JPanel();
 	private JPanel throwResultPanel = new JPanel();
@@ -52,8 +52,8 @@ public class Controller extends JFrame {
 				restPieceButton[i][j].setIcon(defaultIcon);
 				restPiecePanel.add(restPieceButton[i][j]);
 			}
-
 		}
+		
 		restPiecePanel.setBounds(700, 10, 220, 220);
 
 		throwResultLabel.setIcon(moeImage);
@@ -73,8 +73,6 @@ public class Controller extends JFrame {
 		this.add(restPiecePanel);
 		this.add(throwResultPanel);
 		this.add(throwButtonPanel);
-		
-		//model.addObserver(view);
 	}
 
 	public Model getModel() {
