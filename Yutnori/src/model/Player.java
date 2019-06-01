@@ -11,7 +11,7 @@ public class Player implements Observable{
 
 	public static Yutnori yutnori = new Yutnori();
 	private int playerID;
-	private int numOfRestPiece = CONSTANT.PIECENUM;
+	private int numOfRestPiece = 5;
 	private int throwYutResult;
 	private ArrayList<Observer> observers = new ArrayList<Observer>();
 	
@@ -36,9 +36,16 @@ public class Player implements Observable{
         }
 	}
 	
+	public void notifyResObserver() {
+        for(int i=0; i<observers.size(); i++){
+            Observer observer = (Observer)observers.get(i);
+            observer.updateRestBoard(this);
+        }
+	}
+	
 	public Player(int playerID) {
 		this.playerID = playerID;
-	}
+		}
 
 	public void setNumOfRestPiece(int numOfPassPiece) {
 		this.numOfRestPiece -= numOfPassPiece;
@@ -101,9 +108,7 @@ public class Player implements Observable{
 			targetTile.removePiece();
 			isCatch = true;
 		}
-		if(!isStart)
-			targetTile.putPiece(selectTile.getPieceList());
-		else
+		if(!isStart)			targetTile.putPiece(selectTile.getPieceList());		else
 			targetTile.putPiece(startPiece);
 		if(!isStart)
 			selectTile.removePiece();
@@ -138,5 +143,15 @@ public class Player implements Observable{
 			canGoCordVectorforEveryDistance.add(canGoCordVector);
 		}
 		return canGoCordVectorforEveryDistance;
+	}
+	
+	public void decreaseNumOfRestPiece() {
+		this.numOfRestPiece--;
+		System.out.println(this.numOfRestPiece);
+		this.notifyResObserver();
+	}
+	
+	public int getPlayerId() {
+		return this.playerID;
 	}
 }

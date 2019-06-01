@@ -16,6 +16,7 @@ public class View implements Observer {
 	private ImageIcon YutImage = new ImageIcon("src/view/img/Yut.jpg");
 	private ImageIcon MoeImage = new ImageIcon("src/view/img/Moe.jpg");
 	private ImageIcon BackDaoImage = new ImageIcon("src/view/img/BackDao.jpg");
+	private ImageIcon P1Image = new ImageIcon("src/view/img/P1_Piece.png");
 	private Controller controller;
 
 	@Override
@@ -48,6 +49,14 @@ public class View implements Observer {
 		}
 	}
 	
+	@Override
+	public void updateRestBoard(Player player) {
+		for(int i = 0; i < 5; i++) {
+			this.controller.getRestPieceButton()[player.getPlayerId()][i].setIcon(null);
+		}
+		for(int i = 0; i < this.controller.getModel().getPlayer()[player.getPlayerId()].getNumOfRestPiece(); i++)
+			this.controller.getRestPieceButton()[player.getPlayerId()][i].setIcon(P1Image);
+	}	
 	/*
 	public View(Model model) {
 		this.model = model;
