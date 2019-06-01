@@ -29,22 +29,22 @@ public class View implements Observer {
 		int throwRes = player.getthrowYutResult();
 		switch(throwRes) {
 		case -1:
-			this.controller.getThrowResultLable().setIcon(this.BackDaoImage);
+			this.controller.getThrowResultLabel().setIcon(this.BackDaoImage);
 			break;
 		case 0:
-			this.controller.getThrowResultLable().setIcon(this.MoeImage);
+			this.controller.getThrowResultLabel().setIcon(this.MoeImage);
 			break;
 		case 1:
-			this.controller.getThrowResultLable().setIcon(this.DaoImage);
+			this.controller.getThrowResultLabel().setIcon(this.DaoImage);
 			break;
 		case 2:
-			this.controller.getThrowResultLable().setIcon(this.GaeImage);
+			this.controller.getThrowResultLabel().setIcon(this.GaeImage);
 			break;
 		case 3:
-			this.controller.getThrowResultLable().setIcon(this.GurlImage);
+			this.controller.getThrowResultLabel().setIcon(this.GurlImage);
 			break;
 		case 4:
-			this.controller.getThrowResultLable().setIcon(this.YutImage);
+			this.controller.getThrowResultLabel().setIcon(this.YutImage);
 			
 		}
 	}

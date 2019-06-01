@@ -79,7 +79,7 @@ public class Controller extends JFrame {
 		return model;
 	}
 	
-	public JLabel getThrowResultLable() {
+	public JLabel getThrowResultLabel() {
 		return throwResultLabel;
 	}
 	
