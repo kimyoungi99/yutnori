@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import model.Model;
 import model.Player;
+import model.Tile;
 import view.View;
 
 public class Controller extends JFrame {
@@ -20,7 +21,7 @@ public class Controller extends JFrame {
 	private JPanel throwButtonPanel = new JPanel();
 	private JPanel restPiecePanel = new JPanel();
 	private JPanel throwResultPanel = new JPanel();
-	private JButton[][] restPieceButton = new JButton[4][4];
+	private RestPieceButton[][] restPieceButton = new RestPieceButton[4][4];
 	private ThrowButton[] throwButton = new ThrowButton[7];
 	private JLabel throwResultLabel = new JLabel();
 	private ImageIcon moeImage = new ImageIcon("src/view/img/Moe.jpg");
@@ -47,7 +48,8 @@ public class Controller extends JFrame {
 		restPiecePanel.setLayout(restPiecePanelLayout);
 		for (int i = 0; i < restPieceButton.length; i++) {
 			for (int j = 0; j < restPieceButton[0].length; j++) {
-				restPieceButton[i][j] = new JButton();
+				restPieceButton[i][j] = new RestPieceButton(i, j);
+				restPieceButton[i][j].setIcon(defaultIcon);
 				restPiecePanel.add(restPieceButton[i][j]);
 			}
 
