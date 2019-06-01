@@ -14,7 +14,7 @@ public class GameBoardPanel extends JPanel{
 		this.setLayout(null);
 		for(int i=0; i<tileButton.length; i++) {
 			for(int j=0; j<tileButton[0].length; j++) {
-				tileButton[i][j] = new TileButton(model);
+				tileButton[i][j] = new TileButton(model, i, j);
 				this.add(tileButton[i][j]);
 			}
 		}
