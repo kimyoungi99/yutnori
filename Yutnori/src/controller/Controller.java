@@ -61,7 +61,7 @@ public class Controller extends JFrame {
 		GridLayout throwYutButtonPanelLayout = new GridLayout(2, 4);
 		throwButtonPanel.setLayout(throwYutButtonPanelLayout);
 		for (int i = 0; i < throwButton.length; i++) {
-			throwButton[i] = new ThrowButton(i, model, "TB");
+			throwButton[i] = new ThrowButton(i, model);
 			throwButton[i].setSize(20, 20);
 			throwButtonPanel.add(throwButton[i]);
 		}

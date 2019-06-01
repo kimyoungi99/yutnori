@@ -11,18 +11,25 @@ public class ThrowButton extends JButton implements ActionListener {
 	
 	private int throwButtonID;
 	private Model model;
+
 	
-	private ImageIcon backDoeImage = new ImageIcon("src/view/image/BackDoe.jpg");
-	private ImageIcon daoImage = new ImageIcon("src/view/image/Dao.jpg");
-	private ImageIcon gaeImage = new ImageIcon("src/view/image/Gae.jpg");
-	private ImageIcon gurlImage = new ImageIcon("src/view/image/Gurl.jpg");
-	private ImageIcon yutImage = new ImageIcon("src/view/image/Yut.jpg");
-	private ImageIcon moeImage = new ImageIcon("src/view/image/Moe.jpg");
-	
-	public ThrowButton(int i, Model model, String text) {
+	public ThrowButton(int i, Model model) {
 		this.model = model;
 		this.throwButtonID = i;
-		setText(text);
+		if(i==0)
+			this.setText("RD");
+		if(i==1)
+			this.setText("도");
+		if(i==2)
+			this.setText("개");
+		if(i==3)
+			this.setText("걸");
+		if(i==4)
+			this.setText("윷");
+		if(i==5)
+			this.setText("모");
+		if(i==6)
+			this.setText("백");
 		addActionListener(this);
 	}
 
