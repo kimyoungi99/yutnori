@@ -66,7 +66,6 @@ public class Player implements Observable{
 			numOfFront = -1;
 		
 		throwYutResult = numOfFront;
-		System.out.println(throwYutResult);
 		notifyObserver();
 		return numOfFront;
 	}

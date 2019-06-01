@@ -21,7 +21,7 @@ public class Controller extends JFrame {
 	private JPanel restPiecePanel = new JPanel();
 	private JPanel throwResultPanel = new JPanel();
 	private JButton[][] restPieceButton = new JButton[4][4];
-	private JButton[] throwButton = new JButton[7];
+	private ThrowButton[] throwButton = new ThrowButton[7];
 	private JLabel throwResultLabel = new JLabel();
 	private ImageIcon moeImage = new ImageIcon("src/view/img/Moe.jpg");
 	private Player player = new Player(1);
@@ -34,12 +34,9 @@ public class Controller extends JFrame {
 		// this.setVisible(true);
 		view = new View();
 		view.setController(this);
-		player.throwYut();
-		player.throwYut();
-		player.throwYut();
-		player.throwYut();
-		player.throwYut();
-		player.throwYut();
+		for (int i = 0; i < 4; i++) {
+			model.getPlayer()[i].addObserver(view);	
+		}
 	}
 
 	public void init() {
@@ -64,7 +61,7 @@ public class Controller extends JFrame {
 		GridLayout throwYutButtonPanelLayout = new GridLayout(2, 4);
 		throwButtonPanel.setLayout(throwYutButtonPanelLayout);
 		for (int i = 0; i < throwButton.length; i++) {
-			throwButton[i] = new JButton();
+			throwButton[i] = new ThrowButton(i, model, "TB");
 			throwButton[i].setSize(20, 20);
 			throwButtonPanel.add(throwButton[i]);
 		}
@@ -76,13 +73,15 @@ public class Controller extends JFrame {
 		this.add(throwButtonPanel);
 		
 		//model.addObserver(view);
-		player.addObserver(view);
 	}
 
 	public Model getModel() {
 		return model;
 	}
 	
+	public JLabel getThrowResultLable() {
+		return throwResultLabel;
+	}
 	
 	public JPanel getThorwResultPanel() {
 		return throwResultPanel;

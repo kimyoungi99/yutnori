@@ -15,7 +15,6 @@ public class Frame extends JFrame{
 	{	
 		Container c = getContentPane();
 		c.setLayout(new BorderLayout());
-		c.add(view, BorderLayout.CENTER);
 		c.setBackground(Color.WHITE);
 		
 		setTitle("Yot No Ri");

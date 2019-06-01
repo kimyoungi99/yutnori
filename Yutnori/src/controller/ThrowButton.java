@@ -19,8 +19,9 @@ public class ThrowButton extends JButton implements ActionListener {
 	private ImageIcon yutImage = new ImageIcon("src/view/image/Yut.jpg");
 	private ImageIcon moeImage = new ImageIcon("src/view/image/Moe.jpg");
 	
-	ThrowButton(Model model, String text) {
+	public ThrowButton(int i, Model model, String text) {
 		this.model = model;
+		this.throwButtonID = i;
 		setText(text);
 		addActionListener(this);
 	}

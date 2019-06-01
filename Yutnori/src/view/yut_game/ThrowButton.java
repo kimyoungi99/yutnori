@@ -6,7 +6,7 @@ import java.util.Random;
 import javax.swing.*;
 
 
-public class ThrowButton extends JButton implements ActionListener
+public class ThrowButton extends JButton implements ActionLi stener
 {	
 	ViewBoard VB = new ViewBoard();
 	
