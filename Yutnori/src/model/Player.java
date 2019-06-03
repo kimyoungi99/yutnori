@@ -11,7 +11,7 @@ public class Player implements Observable{
 
 	public static Yutnori yutnori = new Yutnori();
 	private int playerID;
-	private int numOfRestPiece = 5;
+	private int numOfRestPiece = CONSTANT.PIECENUM;
 	private int throwYutResult;
 	private ArrayList<Observer> observers = new ArrayList<Observer>();
 	
@@ -29,23 +29,24 @@ public class Player implements Observable{
 	}
 	
 	@Override
-	public void notifyObserver() {
+	public void notifyYutResultObserver() {
         for(int i=0; i<observers.size(); i++){
             Observer observer = (Observer)observers.get(i);
             observer.updateYutResultPanel(this);
         }
 	}
 	
-	public void notifyResObserver() {
+	@Override
+	public void notifyRestPieceObserver() {
         for(int i=0; i<observers.size(); i++){
             Observer observer = (Observer)observers.get(i);
-            observer.updateRestBoard(this);
+            observer.updateRestPiecePanel(this);
         }
 	}
 	
 	public Player(int playerID) {
 		this.playerID = playerID;
-		}
+	}
 
 	public void setNumOfRestPiece(int numOfPassPiece) {
 		this.numOfRestPiece -= numOfPassPiece;
@@ -88,7 +89,7 @@ public class Player implements Observable{
 		if(type == 6)
 			throwYutResult = -1;
 			
-		notifyObserver();
+		notifyYutResultObserver();
 		return numOfFront;
 	}
 	
@@ -108,7 +109,9 @@ public class Player implements Observable{
 			targetTile.removePiece();
 			isCatch = true;
 		}
-		if(!isStart)			targetTile.putPiece(selectTile.getPieceList());		else
+		if(!isStart)
+			targetTile.putPiece(selectTile.getPieceList());		
+		else
 			targetTile.putPiece(startPiece);
 		if(!isStart)
 			selectTile.removePiece();
@@ -148,7 +151,7 @@ public class Player implements Observable{
 	public void decreaseNumOfRestPiece() {
 		this.numOfRestPiece--;
 		System.out.println(this.numOfRestPiece);
-		this.notifyResObserver();
+		this.notifyRestPieceObserver();
 	}
 	
 	public int getPlayerId() {

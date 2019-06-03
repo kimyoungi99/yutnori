@@ -5,5 +5,6 @@ import view.Observer;
 public interface Observable {
 	public void addObserver(Observer o);
 	public void deleteObserver(Observer o);
-	public void notifyObserver();
+	public void notifyYutResultObserver();
+	public void notifyRestPieceObserver();
 }

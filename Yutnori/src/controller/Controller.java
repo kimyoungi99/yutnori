@@ -25,11 +25,11 @@ public class Controller extends JFrame {
 	private ThrowButton[] throwButton = new ThrowButton[7];
 	private JLabel throwResultLabel = new JLabel();
 	private ImageIcon moeImage = new ImageIcon("src/view/img/Moe.jpg");
-	private Player player = new Player(1);
-	private ImageIcon P1Image = new ImageIcon("src/view/img/P1_Piece.png");
+	private ImageIcon defaultImage[] = new ImageIcon[4];
 
 	public Controller() {
-		this.setTitle("Yut No Ri");		this.setBounds(100, 100, 1000, 700);
+		this.setTitle("Yut No Ri");
+		this.setBounds(100, 100, 1000, 700);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);
 		// this.setVisible(true);
@@ -37,6 +37,11 @@ public class Controller extends JFrame {
 		view.setController(this);
 		for (int i = 0; i < 4; i++) {
 			model.getPlayer()[i].addObserver(view);	
+		}
+		for(int i=0; i<defaultImage.length; i++) {
+			String address = "src/view/img/";
+			address = address + Integer.toString(i+1) + "-1.png";
+			defaultImage[i] = new ImageIcon(address);
 		}
 	}
 
@@ -48,17 +53,17 @@ public class Controller extends JFrame {
 		restPiecePanel.setLayout(restPiecePanelLayout);
 		for (int i = 0; i < restPieceButton.length; i++) {
 			for (int j = 0; j < restPieceButton[0].length; j++) {
-				restPieceButton[i][j] = new RestPieceButton(i, j, model);
-				restPieceButton[i][j].setIcon(P1Image);
+				restPieceButton[i][j] = new RestPieceButton(model);
+				restPieceButton[i][j].setIcon(defaultImage[i]);
 				restPiecePanel.add(restPieceButton[i][j]);
 			}
 		}
 
-		restPiecePanel.setBounds(700, 10, 275, 220);
+		restPiecePanel.setBounds(670, 25, 270, 216);
 
 		throwResultLabel.setIcon(moeImage);
 		throwResultPanel.add(throwResultLabel);
-		throwResultPanel.setBounds(700, 250, 275, 220);
+		throwResultPanel.setBounds(695, 265, 220, 220);
 
 		GridLayout throwYutButtonPanelLayout = new GridLayout(2, 4);
 		throwButtonPanel.setLayout(throwYutButtonPanelLayout);
@@ -67,7 +72,7 @@ public class Controller extends JFrame {
 			throwButton[i].setSize(20, 20);
 			throwButtonPanel.add(throwButton[i]);
 		}
-		throwButtonPanel.setBounds(700, 500, 275, 110);
+		throwButtonPanel.setBounds(670, 515, 270, 110);
 
 		this.add(gameBoardPanel);
 		this.add(restPiecePanel);
@@ -87,7 +92,7 @@ public class Controller extends JFrame {
 		return throwResultPanel;
 	}
 	
-	public JButton[][] getRestPieceButton() {
+	public RestPieceButton[][] getRestPieceButton() {
 		return this.restPieceButton;
 	}
 }

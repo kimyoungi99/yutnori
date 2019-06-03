@@ -6,9 +6,8 @@ import model.Model;
 
 public class GameBoardPanel extends JPanel{
 	
-	private static final int TILESIZE = 54;
 	TileButton[][] tileButton = new TileButton[6][5];
-	
+	private static final int TILESIZE = 54;
 
 	public GameBoardPanel(Model model) {
 		this.setLayout(null);

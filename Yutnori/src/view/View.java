@@ -3,6 +3,7 @@ package view;
 import javax.swing.ImageIcon;
 
 import controller.Controller;
+import model.CONSTANT;
 import model.Model;
 import model.Player;
 
@@ -16,12 +17,21 @@ public class View implements Observer {
 	private ImageIcon YutImage = new ImageIcon("src/view/img/Yut.jpg");
 	private ImageIcon MoeImage = new ImageIcon("src/view/img/Moe.jpg");
 	private ImageIcon BackDaoImage = new ImageIcon("src/view/img/BackDao.jpg");
-	private ImageIcon P1Image = new ImageIcon("src/view/img/P1_Piece.png");
+	private ImageIcon pieceImage[][] = new ImageIcon[4][5];
 	private Controller controller;
+	
+	public View() {
+		for(int i=0; i<pieceImage.length; i++) {
+			for(int j=0; j<pieceImage[0].length; j++) {
+				String address = "src/view/img/";
+				address = address + Integer.toString(i+1) + "-" + Integer.toString(j+1) + ".png";
+				pieceImage[i][j] = new ImageIcon(address);
+			}
+		}
+	}
 
 	@Override
 	public void updateYutResultPanel(Model model) {
-		
 	}
 	
 	@Override
@@ -50,13 +60,14 @@ public class View implements Observer {
 	}
 	
 	@Override
-	public void updateRestBoard(Player player) {
-		for(int i = 0; i < 5; i++) {
+	public void updateRestPiecePanel(Player player) {
+		for(int i = 0; i < CONSTANT.PIECENUM; i++) {
 			this.controller.getRestPieceButton()[player.getPlayerId()][i].setIcon(null);
 		}
 		for(int i = 0; i < this.controller.getModel().getPlayer()[player.getPlayerId()].getNumOfRestPiece(); i++)
-			this.controller.getRestPieceButton()[player.getPlayerId()][i].setIcon(P1Image);
-	}	
+			this.controller.getRestPieceButton()[player.getPlayerId()][i].setIcon(pieceImage[player.getPlayerId()][0]);
+	}
+	
 	/*
 	public View(Model model) {
 		this.model = model;
