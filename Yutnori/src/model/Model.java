@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 import view.Observer;
 
@@ -34,6 +35,9 @@ public class Model implements Observable{
 	
 	@Override
 	public void notifyRestPieceObserver() {}
+	
+	@Override
+	public void notifyHighlightObserver(Vector<Cord> highlightCord) {}
 
 	public boolean getGameEnd() {
 		return gameEnd;
@@ -48,6 +52,7 @@ public class Model implements Observable{
 	}
 	
 	public void nextTurn() {
+		player[turn].getthrowYutResultVector().clear();
 		turn++;
 		if(turn == 4)
 			turn = 0;

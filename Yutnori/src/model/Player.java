@@ -15,6 +15,7 @@ public class Player implements Observable{
 	//private int numOfOnBoardPiece = 0;
 	private int numOfPassPiece = 0;
 	private int throwYutResult;
+	private Vector<Integer> throwYutResultVector = new Vector<Integer>();
 	private ArrayList<Observer> observers = new ArrayList<Observer>();
 	
 	public Player(int playerID) {
@@ -50,6 +51,14 @@ public class Player implements Observable{
         }
 	}
 	
+	@Override
+	public void notifyHighlightObserver(Vector<Cord> highlightCord) {
+        for(int i=0; i<observers.size(); i++){
+            Observer observer = (Observer)observers.get(i);
+            observer.highlightCanGoTile(highlightCord);
+        }
+	}
+	
 	public void setNumOfPassPiece(int numOfPassPiece) {
 		this.numOfPassPiece += numOfPassPiece;
 	}
@@ -60,6 +69,10 @@ public class Player implements Observable{
 	
 	public int getPlayerId() {
 		return playerID;
+	}
+	
+	public Vector<Integer> getthrowYutResultVector(){
+		return throwYutResultVector;
 	}
 	
 	public int getthrowYutResult() {
@@ -79,6 +92,8 @@ public class Player implements Observable{
 			// 백도
 			if (numOfFront == 1 && throwResult[CONSTANT.YUTNUM - 1])
 				numOfFront = -1;
+			if (numOfFront == 0)
+				numOfFront = 5;
 			
 			throwYutResult = numOfFront;
 		}
@@ -91,10 +106,11 @@ public class Player implements Observable{
 		if(type == 4)
 			throwYutResult = 4;
 		if(type == 5)
-			throwYutResult = 0;
+			throwYutResult = 5;
 		if(type == 6)
 			throwYutResult = -1;
-			
+		
+		throwYutResultVector.add(throwYutResult);
 		notifyYutResultObserver();
 		return numOfFront;
 	}
@@ -142,23 +158,27 @@ public class Player implements Observable{
 		return returnArray;
 	}
 
-	public Vector<Cord> getCanGoTile(Tile selectTile, Vector<Integer> result) {
+	//public Vector<Cord> getCanGoTile(Tile selectTile, Vector<Integer> result) {
+	public Vector<Cord> getCanGoTile(Tile selectTile) {
 		int distance;
 		Vector<Cord> canGoCordVector = new Vector<Cord>();
 		//Vector<Vector<Cord>> canGoCordVectorforEveryDistance = new Vector<Vector<Cord>>();
 		//Tile[][] gameBoard = yutnori.getBoard().getGameBoard();
-		Iterator<Integer> distanceIterator = result.iterator();
+		Iterator<Integer> distanceIterator = throwYutResultVector.iterator();
 		Cord currentCord = new Cord();
 		Cord canGoCord = new Cord();
 		boolean isStart = false;
-		
-		while(distanceIterator.hasNext()) {
-			distance = distanceIterator.next();
 
+		while(distanceIterator.hasNext()) {
+			isStart = false;
+			distance = distanceIterator.next();
+			if(selectTile.getX() == 0 && selectTile.getY() == 0)
+				isStart = true;
 			if(!selectTile.getPieceList().isEmpty() && selectTile.getPieceList().get(0).getTeam() == playerID) {
 				currentCord.setCord(selectTile.getX(), selectTile.getY());
 				currentCord.transform(distance, isStart);
 				canGoCord.setCord(currentCord.getX(), currentCord.getY());
+				System.out.println(currentCord.getX() + "," + currentCord.getY());
 				canGoCordVector.add(canGoCord);
 			}
 			/*
@@ -176,12 +196,14 @@ public class Player implements Observable{
 			canGoCordVectorforEveryDistance.add(canGoCordVector);
 			*/
 		}
+		
+		notifyHighlightObserver(canGoCordVector);
 		return canGoCordVector;
 	}
 	
 	public void decreaseNumOfRestPiece() {
 		this.numOfRestPiece--;
 		// 좀 더 생각
-		this.notifyRestPieceObserver();
+		//this.notifyRestPieceObserver();
 	}
 }

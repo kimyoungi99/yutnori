@@ -20,11 +20,11 @@ public class Tile {
 	}
 	
 	public void putPiece(ArrayList<Piece> pieceList) {
-		pieceList.addAll(pieceList);
+		this.pieceList.addAll(pieceList);
 	}
 	
 	public void removePiece() {
-		pieceList.clear();
+		this.pieceList.clear();
 	}
 	
 	public ArrayList<Piece> getPieceList(){

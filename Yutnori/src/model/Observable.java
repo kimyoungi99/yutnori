@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Vector;
+
 import view.Observer;
 
 public interface Observable {
@@ -7,4 +9,5 @@ public interface Observable {
 	public void deleteObserver(Observer o);
 	public void notifyYutResultObserver();
 	public void notifyRestPieceObserver();
+	public void notifyHighlightObserver(Vector<Cord> highlightCord);
 }
