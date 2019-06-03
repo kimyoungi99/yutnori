@@ -1,9 +1,13 @@
 package view;
 
+import java.util.Iterator;
+import java.util.Vector;
+
 import javax.swing.ImageIcon;
 
 import controller.Controller;
 import model.CONSTANT;
+import model.Cord;
 import model.Model;
 import model.Player;
 
@@ -17,6 +21,7 @@ public class View implements Observer {
 	private ImageIcon YutImage = new ImageIcon("src/view/img/Yut.jpg");
 	private ImageIcon MoeImage = new ImageIcon("src/view/img/Moe.jpg");
 	private ImageIcon BackDaoImage = new ImageIcon("src/view/img/BackDao.jpg");
+	private ImageIcon highlightImage = new ImageIcon("src/view/img/highlight.png");
 	private ImageIcon pieceImage[][] = new ImageIcon[4][5];
 	private Controller controller;
 	
@@ -41,7 +46,7 @@ public class View implements Observer {
 		case -1:
 			this.controller.getThrowResultLabel().setIcon(this.BackDaoImage);
 			break;
-		case 0:
+		case 5:
 			this.controller.getThrowResultLabel().setIcon(this.MoeImage);
 			break;
 		case 1:
@@ -66,6 +71,17 @@ public class View implements Observer {
 		}
 		for(int i = 0; i < this.controller.getModel().getPlayer()[player.getPlayerId()].getNumOfRestPiece(); i++)
 			this.controller.getRestPieceButton()[player.getPlayerId()][i].setIcon(pieceImage[player.getPlayerId()][0]);
+	}
+	
+	@Override
+	public void highlightCanGoTile(Vector<Cord> highlightCord) {
+		Cord cord = new Cord();
+		//System.out.println(cord.getX() + "," + cord.getY());
+		Iterator<Cord> cordIterator = highlightCord.iterator();
+		while(cordIterator.hasNext()) {
+			cord = cordIterator.next();
+			controller.getGameBoardPanel().getTileButton()[cord.getX()][cord.getY()].setIcon(highlightImage);
+		}
 	}
 	
 	/*

@@ -49,4 +49,8 @@ public class GameBoardPanel extends JPanel{
 		tileButton[5][3].setBounds(196, 362, TILESIZE, TILESIZE);
 		tileButton[5][4].setBounds(113, 445, TILESIZE, TILESIZE);
 	}
+	
+	public TileButton[][] getTileButton() {
+		return tileButton;
+	}
 }

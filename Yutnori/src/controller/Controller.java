@@ -53,7 +53,7 @@ public class Controller extends JFrame {
 		restPiecePanel.setLayout(restPiecePanelLayout);
 		for (int i = 0; i < restPieceButton.length; i++) {
 			for (int j = 0; j < restPieceButton[0].length; j++) {
-				restPieceButton[i][j] = new RestPieceButton(model);
+				restPieceButton[i][j] = new RestPieceButton(i, j, model);
 				restPieceButton[i][j].setIcon(defaultImage[i]);
 				restPiecePanel.add(restPieceButton[i][j]);
 			}
@@ -90,6 +90,10 @@ public class Controller extends JFrame {
 	
 	public JPanel getThorwResultPanel() {
 		return throwResultPanel;
+	}
+	
+	public GameBoardPanel getGameBoardPanel() {
+		return gameBoardPanel;
 	}
 	
 	public RestPieceButton[][] getRestPieceButton() {
