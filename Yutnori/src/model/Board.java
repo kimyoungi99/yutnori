@@ -16,7 +16,7 @@ public class Board {
 		ArrayList<Piece> pieceList = new ArrayList<Piece>();
 		for(int i=0; i<waitingPieceBoard.length; i++) {
 			for(int j=0; j<waitingPieceBoard[0].length; j++) {
-				waitingPieceBoard[i][j] = new Tile(i, j);
+				waitingPieceBoard[i][j] = new Tile(0, 0);
 				pieceList.add(pieceArray[i][j]);
 				waitingPieceBoard[i][j].putPiece(pieceList);
 			}
