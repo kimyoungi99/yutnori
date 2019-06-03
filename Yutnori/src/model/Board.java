@@ -4,22 +4,22 @@ import java.util.ArrayList;
 
 public class Board {
 	private Tile[][] gameBoard = new Tile[6][5];
-	private Tile[] waitingPieceBoard = new Tile[CONSTANT.PLAYERNUM];
+	private Tile[][] waitingPieceBoard = new Tile[CONSTANT.PLAYERNUM][CONSTANT.PIECENUM];
 
 	public Board(Piece[][] pieceArray) {
-		ArrayList<Piece> pieceList = new ArrayList<Piece>();
 		for(int i=0; i<gameBoard.length; i++) {
 			for(int j=0; j<gameBoard[0].length; j++) {
-				gameBoard[i][j] = new Tile();
+				gameBoard[i][j] = new Tile(i, j);
 			}
 		}
-
+		
+		ArrayList<Piece> pieceList = new ArrayList<Piece>();
 		for(int i=0; i<waitingPieceBoard.length; i++) {
-			waitingPieceBoard[i] = new Tile();
-			for(int j=0; j<CONSTANT.PIECENUM; j++) {
+			for(int j=0; j<waitingPieceBoard[0].length; j++) {
+				waitingPieceBoard[i][j] = new Tile(i, j);
 				pieceList.add(pieceArray[i][j]);
+				waitingPieceBoard[i][j].putPiece(pieceList);
 			}
-			waitingPieceBoard[i].putPiece(pieceList);
 			pieceList.clear();
 		}
 	}
@@ -28,7 +28,7 @@ public class Board {
 		return gameBoard;
 	}
 
-	public Tile[] getWaitingPieceBoard() {
+	public Tile[][] getWaitingPieceBoard() {
 		return waitingPieceBoard;
 	}
 }
