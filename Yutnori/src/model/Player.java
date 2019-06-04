@@ -166,10 +166,11 @@ public class Player implements Observable{
 		//Tile[][] gameBoard = yutnori.getBoard().getGameBoard();
 		Iterator<Integer> distanceIterator = throwYutResultVector.iterator();
 		Cord currentCord = new Cord();
-		Cord canGoCord = new Cord();
+		Cord canGoCord;
 		boolean isStart = false;
 
 		while(distanceIterator.hasNext()) {
+			canGoCord = new Cord();
 			isStart = false;
 			distance = distanceIterator.next();
 			if(selectTile.getX() == 0 && selectTile.getY() == 0)
@@ -178,8 +179,7 @@ public class Player implements Observable{
 				currentCord.setCord(selectTile.getX(), selectTile.getY());
 				currentCord.transform(distance, isStart);
 				canGoCord.setCord(currentCord.getX(), currentCord.getY());
-				System.out.println(currentCord.getX() + "," + currentCord.getY());
-				canGoCordVector.add(canGoCord);
+				canGoCordVector.addElement(canGoCord);
 			}
 			/*
 			for(int i=0; i<6; i++) {
@@ -196,7 +196,6 @@ public class Player implements Observable{
 			canGoCordVectorforEveryDistance.add(canGoCordVector);
 			*/
 		}
-		
 		notifyHighlightObserver(canGoCordVector);
 		return canGoCordVector;
 	}
