@@ -10,4 +10,5 @@ public interface Observable {
 	public void notifyYutResultObserver();
 	public void notifyRestPieceObserver();
 	public void notifyHighlightObserver(Vector<Cord> highlightCord);
+	public void notifyBoardObserver(Board board);
 }

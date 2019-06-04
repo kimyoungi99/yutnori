@@ -19,8 +19,8 @@ public class Board {
 				waitingPieceBoard[i][j] = new Tile(0, 0);
 				pieceList.add(pieceArray[i][j]);
 				waitingPieceBoard[i][j].putPiece(pieceList);
+				pieceList.clear();
 			}
-			pieceList.clear();
 		}
 	}
 

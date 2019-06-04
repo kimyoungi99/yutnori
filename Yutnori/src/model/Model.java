@@ -10,6 +10,8 @@ public class Model implements Observable{
 	private int turn = 0;
 	private Player[] player = new Player[CONSTANT.PLAYERNUM];
 	private ArrayList<Observer> observers = new ArrayList<Observer>();
+	private int status = 0;		//0: 윷을 던진 상태, 1: 말을 선택해 하이라이팅 된 상태
+	private int selectX = 0, selectY = 0;
 	
 	public Model() {
 		for(int i = 0; i < player.length; i++) {
@@ -38,6 +40,9 @@ public class Model implements Observable{
 	
 	@Override
 	public void notifyHighlightObserver(Vector<Cord> highlightCord) {}
+	
+	@Override
+	public void notifyBoardObserver(Board board) {}
 
 	public boolean getGameEnd() {
 		return gameEnd;
@@ -64,5 +69,29 @@ public class Model implements Observable{
 	
 	public Player getTurnPlayer() {
 		return this.player[turn % CONSTANT.PLAYERNUM];
+	}
+	
+	public int getStatus() {
+		return status;
+	}
+	
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	
+	public int getSelectX() {
+		return selectX;
+	}
+	
+	public int getSelectY() {
+		return selectY;
+	}
+	
+	public void setSelectX(int selectX) {
+		this.selectX = selectX;
+	}
+	
+	public void setSelectY(int selectY) {
+		this.selectY = selectY;
 	}
 }

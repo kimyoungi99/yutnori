@@ -16,7 +16,9 @@ public class Player implements Observable{
 	private int numOfPassPiece = 0;
 	private int throwYutResult;
 	private Vector<Integer> throwYutResultVector = new Vector<Integer>();
+	private Vector<Cord> canGoCordVector = new Vector<Cord>();
 	private ArrayList<Observer> observers = new ArrayList<Observer>();
+
 	
 	public Player(int playerID) {
 		this.playerID = playerID;
@@ -59,6 +61,14 @@ public class Player implements Observable{
         }
 	}
 	
+	@Override
+	public void notifyBoardObserver(Board board) {
+        for(int i=0; i<observers.size(); i++){
+            Observer observer = (Observer)observers.get(i);
+            observer.updateBoard(board);
+        }
+	}
+	
 	public void setNumOfPassPiece(int numOfPassPiece) {
 		this.numOfPassPiece += numOfPassPiece;
 	}
@@ -78,8 +88,16 @@ public class Player implements Observable{
 	public int getthrowYutResult() {
 		return throwYutResult;
 	}
+	
+	public Vector<Cord> getCanGoCordVector() {
+		return canGoCordVector;
+	}
+	
+	public void clearCanGoCordVector() {
+		canGoCordVector.clear();
+	}
 
-	public int throwYut(int type) {
+	public void throwYut(int type) {
 		int numOfFront = 0;
 		if(type == 0) {
 			boolean[] throwResult = new boolean[CONSTANT.YUTNUM];
@@ -112,7 +130,7 @@ public class Player implements Observable{
 		
 		throwYutResultVector.add(throwYutResult);
 		notifyYutResultObserver();
-		return numOfFront;
+		//return numOfFront;
 	}
 	
 	public int[] movePiece(Tile selectTile, Tile targetTile) {
@@ -146,7 +164,8 @@ public class Player implements Observable{
 			targetTile.removePiece();
 		}
 		//if(!isStart)
-		targetTile.putPiece(selectTile.getPieceList());		
+		targetTile.putPiece(selectTile.getPieceList());
+
 		//else
 			//targetTile.putPiece(startPiece);
 		//if(!isStart)
@@ -155,13 +174,13 @@ public class Player implements Observable{
 			//selectTile.getPieceList().remove(selectTile.getPieceList().size()-1);
 		returnArray[0] = catchedTeam;
 		returnArray[1] = numOfCatchedPiece;
+		notifyBoardObserver(this.yutnori.getBoard());
 		return returnArray;
 	}
 
 	//public Vector<Cord> getCanGoTile(Tile selectTile, Vector<Integer> result) {
-	public Vector<Cord> getCanGoTile(Tile selectTile) {
+	public void getCanGoTile(Tile selectTile) {
 		int distance;
-		Vector<Cord> canGoCordVector = new Vector<Cord>();
 		//Vector<Vector<Cord>> canGoCordVectorforEveryDistance = new Vector<Vector<Cord>>();
 		//Tile[][] gameBoard = yutnori.getBoard().getGameBoard();
 		Iterator<Integer> distanceIterator = throwYutResultVector.iterator();
@@ -197,7 +216,7 @@ public class Player implements Observable{
 			*/
 		}
 		notifyHighlightObserver(canGoCordVector);
-		return canGoCordVector;
+		//return canGoCordVector;
 	}
 	
 	public void decreaseNumOfRestPiece() {

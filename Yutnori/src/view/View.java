@@ -1,15 +1,19 @@
 package view;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
 
 import controller.Controller;
+import model.Board;
 import model.CONSTANT;
 import model.Cord;
 import model.Model;
+import model.Piece;
 import model.Player;
+import model.Tile;
 
 public class View implements Observer {
 
@@ -22,6 +26,7 @@ public class View implements Observer {
 	private ImageIcon MoeImage = new ImageIcon("src/view/img/Moe.jpg");
 	private ImageIcon BackDaoImage = new ImageIcon("src/view/img/BackDao.jpg");
 	private ImageIcon highlightImage = new ImageIcon("src/view/img/highlight.png");
+	private ImageIcon noneImage = new ImageIcon("src/view/img/none.png");
 	private ImageIcon pieceImage[][] = new ImageIcon[4][5];
 	private Controller controller;
 	
@@ -81,6 +86,34 @@ public class View implements Observer {
 		while(cordIterator.hasNext()) {
 			cord = cordIterator.next();
 			controller.getGameBoardPanel().getTileButton()[cord.getX()][cord.getY()].setIcon(highlightImage);
+		}
+	}
+	
+	@Override
+	public void updateBoard(Board board) {
+		Tile[][] gameBoard = new Tile[6][5];
+		Tile[][] restPieceBoard = new Tile[CONSTANT.PLAYERNUM][CONSTANT.PIECENUM];
+		for(int i=0; i<gameBoard.length; i++) {
+			for(int j=0; j<gameBoard[0].length; j++) {
+				gameBoard[i][j] = board.getGameBoard()[i][j];
+				if(gameBoard[i][j].getPieceList().isEmpty()) {
+					controller.getGameBoardPanel().getTileButton()[i][j].setIcon(noneImage);
+				}
+				else{
+					controller.getGameBoardPanel().getTileButton()[i][j].setIcon(pieceImage[gameBoard[i][j].getPieceList().get(0).getTeam()][gameBoard[i][j].getPieceList().size() - 1]);
+				}
+			}
+		}
+		for(int i=0; i<restPieceBoard.length; i++) {
+			for(int j=0; j<restPieceBoard[0].length; j++) {
+				restPieceBoard[i][j] = board.getWaitingPieceBoard()[i][j];
+				if(restPieceBoard[i][j].getPieceList().isEmpty()) {
+					controller.getRestPieceButton()[i][j].setIcon(noneImage);
+				}
+				else{
+					controller.getRestPieceButton()[i][j].setIcon(pieceImage[restPieceBoard[i][j].getPieceList().get(0).getTeam()][0]);
+				}
+			}
 		}
 	}
 	
