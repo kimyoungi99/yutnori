@@ -22,6 +22,10 @@ public class RestPieceButton extends JButton implements ActionListener {
 	public RestPieceButton(int x, int y, Model model) {
 		this.x = x;
 		this.y = y;
+        this.setBorderPainted(false); 
+        this.setContentAreaFilled(false); 
+        this.setFocusPainted(false); 
+        this.setOpaque(false);
 		this.model = model;
 		addActionListener(this);
 	}
