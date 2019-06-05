@@ -29,6 +29,7 @@ public class TileButton extends JButton implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		boolean isMove = false;
 		Tile[][] restPieceBoard = new Tile[CONSTANT.PLAYERNUM][CONSTANT.PIECENUM];
+		int[] catchInfo = new int[2];
 		Iterator<Cord> cordIterator = model.getTurnPlayer().getCanGoCordVector().iterator();
 		Cord cord = new Cord();
 		Cord beforeCord = new Cord();
@@ -57,13 +58,13 @@ public class TileButton extends JButton implements ActionListener {
 					// deleteY = y;
 					isMove = true;
 					if (model.getStatus() == 2) {
-						model.getTurnPlayer().movePiece(restPieceBoard[model.getSelectX()][model.getSelectY()],
+						catchInfo = model.getTurnPlayer().movePiece(restPieceBoard[model.getSelectX()][model.getSelectY()],
 								gameBoard[x][y]);
 						tempX = 0;
 						tempY = 0;
 					}
 					if (model.getStatus() == 3) {
-						model.getTurnPlayer().movePiece(gameBoard[model.getSelectX()][model.getSelectY()],
+						catchInfo = model.getTurnPlayer().movePiece(gameBoard[model.getSelectX()][model.getSelectY()],
 								gameBoard[x][y]);
 						tempX = model.getSelectX();
 						tempY = model.getSelectY();
@@ -79,6 +80,9 @@ public class TileButton extends JButton implements ActionListener {
 				model.getTurnPlayer().deleteDistance(distance);
 				model.setStatus(1);
 				model.getTurnPlayer().getCanGoCordVector().clear();
+				if(catchInfo[1] > 0) {
+					model.getTurnPlayer().addNumOfThrowChance();
+				}
 				if(model.getTurnPlayer().getNumOfThrowChance() == 0 && model.getTurnPlayer().getthrowYutResultVector().isEmpty()) {
 					model.nextTurn();
 				}

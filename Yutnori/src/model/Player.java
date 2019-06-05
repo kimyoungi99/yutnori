@@ -105,19 +105,6 @@ public class Player implements Observable {
 		return numOfThrowChance;
 	}
 
-	/*
-	public void deleteCanGoCordVector(int deleteX, int deleteY) {
-		Cord cord = new Cord();
-		Iterator<Cord> cordIterator = canGoCordVector.iterator();
-		while (cordIterator.hasNext()) {
-			cord = cordIterator.next();
-			if (cord.getX() == deleteX && cord.getY() == deleteY) {
-				cordIterator.remove();
-			}
-		}
-	}
-	*/
-
 	public void clearCanGoCordVector() {
 		canGoCordVector.clear();
 	}
@@ -163,7 +150,7 @@ public class Player implements Observable {
 		// Tile selectTile = yutnori.getBoard().gameBoard[select.getX()][select.getY()];
 		// Tile targetTile = yutnori.getBoard().gameBoard[target.getX()][target.getY()];
 		int[] returnArray = new int[2];
-		int catchedTeam = 0;
+		int catchedTeam = -1;
 		int numOfCatchedPiece = 0;
 		ArrayList<Piece> pieceList = new ArrayList<Piece>();
 		/*
