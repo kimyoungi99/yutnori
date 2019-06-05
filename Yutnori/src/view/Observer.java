@@ -8,9 +8,9 @@ import model.Model;
 import model.Player;
 
 public interface Observer {
-	void updateYutResultPanel(Model model);
-	void updateYutResultPanel(Player player);
-	void updateRestPiecePanel(Player player);
-	void updateBoard(Board board);
-	void highlightCanGoTile(Vector<Cord> highlightCord);
+	public void updateYutResultPanel(Model model);
+	public void updateYutResultPanel(Player player);
+	public void updateRestPiecePanel(Player player);
+	public void updateBoard(Board board);
+	public void highlightCanGoTile(Vector<Cord> highlightCord);
 }

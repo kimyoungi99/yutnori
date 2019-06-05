@@ -36,49 +36,64 @@ public class TileButton extends JButton implements ActionListener {
 		 * 
 		 * } else{ status = 1; }
 		 */
-		//Vector<Cord> cordVector = new Vector<Cord>();
+		// Vector<Cord> cordVector = new Vector<Cord>();
+		boolean isMove = false;
+		// int deleteX = 0, deleteY = 0;
 		Tile[][] restPieceBoard = new Tile[CONSTANT.PLAYERNUM][CONSTANT.PIECENUM];
 		Iterator<Cord> cordIterator = model.getTurnPlayer().getCanGoCordVector().iterator();
 		Cord cord = new Cord();
+		Cord tempCord = new Cord();
 		ArrayList<Piece> pieceList = new ArrayList<Piece>();
 		gameBoard = model.getTurnPlayer().yutnori.getBoard().getGameBoard();
 		restPieceBoard = model.getTurnPlayer().yutnori.getBoard().getWaitingPieceBoard();
 		pieceList = gameBoard[x][y].getPieceList();
-		if (model.getStatus() == 0) {
+		if (model.getStatus() == 1) {
 			if (pieceList.isEmpty()) {
 
 			} else if (pieceList.get(0).getTeam() != model.getTurn()) {
 
 			} else {
-				model.setStatus(1);
+				model.setStatus(3);
 				model.setSelectX(x);
 				model.setSelectY(y);
 				model.getTurnPlayer().getCanGoTile(gameBoard[x][y]);
 			}
-		} else if (model.getStatus() == 1 || model.getStatus() == 2) {
+		} else if (model.getStatus() == 2 || model.getStatus() == 3) {
 			while (cordIterator.hasNext()) {
 				cord = cordIterator.next();
 				if (cord.getX() == x && cord.getY() == y) {
+					// deleteX = x;
+					// deleteY = y;
 					System.out.println("Move OK");
-					if(model.getStatus() == 1)
-						model.getTurnPlayer().movePiece(gameBoard[model.getSelectX()][model.getSelectY()], gameBoard[x][y]);
-					if(model.getStatus() == 2)
-						model.getTurnPlayer().movePiece(restPieceBoard[model.getSelectX()][model.getSelectY()], gameBoard[x][y]);
-					//canGoCordVector에서 움직인 칸(x, y) 제외, 새로 하이라이트
+					isMove = true;
+					if (model.getStatus() == 2)
+						model.getTurnPlayer().movePiece(restPieceBoard[model.getSelectX()][model.getSelectY()],
+								gameBoard[x][y]);
+					if (model.getStatus() == 3)
+						model.getTurnPlayer().movePiece(gameBoard[model.getSelectX()][model.getSelectY()],
+								gameBoard[x][y]);
+					// canGoCordVector에서 움직인 칸(x, y) 제외, 새로 하이라이트
 				}
-				else if(!pieceList.isEmpty() && pieceList.get(0).getTeam() == model.getTurn()) {
-					model.setSelectX(x);
-					model.setSelectY(y);
-					model.getTurnPlayer().clearCanGoCordVector();
-					model.getTurnPlayer().getCanGoTile(gameBoard[x][y]);
-				}
-				else {
-					model.setStatus(0);
-					model.setSelectX(0);
-					model.setSelectY(0);
-					model.getTurnPlayer().clearCanGoCordVector();
-					//하이라이트 취소
-				}
+			}
+			if (isMove) {
+				int distance;
+				tempCord.setCord(model.getSelectX(), model.getSelectY());
+				distance = tempCord.distance(x, y);
+				model.getTurnPlayer().deleteDistance(distance);
+				model.setStatus(1);
+				model.getTurnPlayer().getCanGoCordVector().clear();
+			} else if (pieceList.isEmpty() && pieceList.get(0).getTeam() == model.getTurn()) {
+				model.setStatus(3);
+				model.setSelectX(x);
+				model.setSelectY(y);
+				model.getTurnPlayer().clearCanGoCordVector();
+				model.getTurnPlayer().getCanGoTile(gameBoard[x][y]);
+			} else if (!pieceList.isEmpty() && pieceList.get(0).getTeam() != model.getTurn()) {
+				model.setStatus(1);
+				model.setSelectX(0);
+				model.setSelectY(0);
+				model.getTurnPlayer().clearCanGoCordVector();
+				model.getTurnPlayer().cancelHighlight();
 			}
 		}
 	}

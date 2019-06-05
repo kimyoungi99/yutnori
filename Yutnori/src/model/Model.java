@@ -10,7 +10,8 @@ public class Model implements Observable{
 	private int turn = 0;
 	private Player[] player = new Player[CONSTANT.PLAYERNUM];
 	private ArrayList<Observer> observers = new ArrayList<Observer>();
-	private int status = 0;		//0: 윷을 던진 상태, 1: 말을 선택해 하이라이팅 된 상태
+	private int status = 0;		
+	//0: 윷 던지기 전, 1: 윷 던지고 움직일 말 선택전, 2: 움직일 말로 출발 말 선택, 3: 움직일 말로 기존 판 위의 말 선택
 	private int selectX = 0, selectY = 0;
 	
 	public Model() {

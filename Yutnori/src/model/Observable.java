@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashMap;
 import java.util.Vector;
 
 import view.Observer;
