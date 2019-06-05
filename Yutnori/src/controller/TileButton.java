@@ -43,6 +43,7 @@ public class TileButton extends JButton implements ActionListener {
 		Iterator<Cord> cordIterator = model.getTurnPlayer().getCanGoCordVector().iterator();
 		Cord cord = new Cord();
 		Cord tempCord = new Cord();
+		Cord temptempCord = new Cord();
 		ArrayList<Piece> pieceList = new ArrayList<Piece>();
 		gameBoard = model.getTurnPlayer().yutnori.getBoard().getGameBoard();
 		restPieceBoard = model.getTurnPlayer().yutnori.getBoard().getWaitingPieceBoard();
@@ -78,7 +79,8 @@ public class TileButton extends JButton implements ActionListener {
 			if (isMove) {
 				int distance;
 				tempCord.setCord(model.getSelectX(), model.getSelectY());
-				distance = tempCord.distance(x, y);
+				temptempCord.setCord(x, y);
+				distance = tempCord.distance(temptempCord);
 				model.getTurnPlayer().deleteDistance(distance);
 				model.setStatus(1);
 				model.getTurnPlayer().getCanGoCordVector().clear();

@@ -197,14 +197,14 @@ public class Player implements Observable {
 		Iterator<Integer> distanceIterator = throwYutResultVector.iterator();
 		Cord currentCord = new Cord();
 		Cord canGoCord;
-		boolean isStart = false;
+		boolean isStart = true;
 
 		while(distanceIterator.hasNext()) {
 			canGoCord = new Cord();
-			isStart = false;
+			isStart = true;
 			distance = distanceIterator.next();
 			if(selectTile.getX() == 0 && selectTile.getY() == 0)
-				isStart = true;
+				isStart = false;
 			if(!selectTile.getPieceList().isEmpty() && selectTile.getPieceList().get(0).getTeam() == playerID) {
 				System.out.println(selectTile.getX() + ","+ selectTile.getY());
 				currentCord.setCord(selectTile.getX(), selectTile.getY());
