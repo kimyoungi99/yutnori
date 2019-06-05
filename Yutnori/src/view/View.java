@@ -17,14 +17,16 @@ public class View implements Observer {
 
 	//private Model model = new Model();
 	//private Model model;
-	private ImageIcon DaoImage = new ImageIcon("src/view/img/Dao.jpg");
-	private ImageIcon GaeImage = new ImageIcon("src/view/img/Gae.jpg");
-	private ImageIcon GurlImage = new ImageIcon("src/view/img/Gurl.jpg");
-	private ImageIcon YutImage = new ImageIcon("src/view/img/Yut.jpg");
-	private ImageIcon MoeImage = new ImageIcon("src/view/img/Moe.jpg");
-	private ImageIcon BackDaoImage = new ImageIcon("src/view/img/BackDao.jpg");
+	private ImageIcon DaoImage = new ImageIcon("src/view/img/Dao.png");
+	private ImageIcon GaeImage = new ImageIcon("src/view/img/Gae.png");
+	private ImageIcon GurlImage = new ImageIcon("src/view/img/Gurl.png");
+	private ImageIcon YutImage = new ImageIcon("src/view/img/Yut.png");
+	private ImageIcon MoeImage = new ImageIcon("src/view/img/Moe.png");
+	private ImageIcon BackDaoImage = new ImageIcon("src/view/img/BackDao.png");
 	private ImageIcon highlightImage = new ImageIcon("src/view/img/highlight.png");
 	private ImageIcon noneImage = new ImageIcon("src/view/img/none.png");
+	private ImageIcon exitButtonImage = new ImageIcon("src/view/img/End.png");
+	private ImageIcon exitButtonHighlightImage = new ImageIcon("src/view/img/End_highlight.png");
 	private ImageIcon pieceImage[][] = new ImageIcon[4][5];
 	private Controller controller;
 	
@@ -84,7 +86,7 @@ public class View implements Observer {
 		while(cordIterator.hasNext()) {
 			cord = cordIterator.next();
 			if(cord.getX() == 999)
-				controller.getGameBoardPanel().getExitButton().setIcon(highlightImage);
+				controller.getGameBoardPanel().getExitButton().setIcon(this.exitButtonHighlightImage);
 			else
 				controller.getGameBoardPanel().getTileButton()[cord.getX()][cord.getY()].setIcon(highlightImage);
 		}
@@ -116,7 +118,7 @@ public class View implements Observer {
 				}
 			}
 		}
-		controller.getGameBoardPanel().getExitButton().setIcon(noneImage);
+		controller.getGameBoardPanel().getExitButton().setIcon(this.exitButtonImage);
 	}
 	
 	/*

@@ -23,6 +23,10 @@ public class TileButton extends JButton implements ActionListener {
 		this.model = model;
 		this.x = x;
 		this.y = y;
+        this.setBorderPainted(false); 
+        this.setContentAreaFilled(false); 
+        this.setFocusPainted(false); 
+        this.setOpaque(false);
 		addActionListener(this);
 	}
 

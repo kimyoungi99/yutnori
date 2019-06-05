@@ -17,8 +17,11 @@ public class ExitButton extends JButton implements ActionListener {
 	private Model model;
 	
 	public ExitButton(Model model) {
-		this.setText("exit");
 		this.model = model;
+        this.setBorderPainted(false); 
+        this.setContentAreaFilled(false); 
+        this.setFocusPainted(false); 
+        this.setOpaque(false);
 		addActionListener(this);
 	}
 	
@@ -27,15 +30,10 @@ public class ExitButton extends JButton implements ActionListener {
 		Tile[][] gameBoard = new Tile[6][5];
 		Tile temp = new Tile(999, 999);
 		boolean isMove = false;
-		Tile[][] restPieceBoard = new Tile[CONSTANT.PLAYERNUM][CONSTANT.PIECENUM];
 		Iterator<Cord> cordIterator = model.getTurnPlayer().getCanGoCordVector().iterator();
 		Cord cord = new Cord();
-		Cord beforeCord = new Cord();
-		Cord afterCord = new Cord();
-		int tempX = 0, tempY = 0;
 		ArrayList<Piece> pieceList = new ArrayList<Piece>();
 		gameBoard = model.getTurnPlayer().yutnori.getBoard().getGameBoard();
-		restPieceBoard = model.getTurnPlayer().yutnori.getBoard().getWaitingPieceBoard();
 		System.out.println(model.getStatus());
 		if (model.getStatus() == 3) {
 			while (cordIterator.hasNext()) {

@@ -25,7 +25,7 @@ public class Controller extends JFrame {
 	private RestPieceButton[][] restPieceButton = new RestPieceButton[4][5];
 	private ThrowButton[] throwButton = new ThrowButton[7];
 	private JLabel throwResultLabel = new JLabel();
-	private ImageIcon moeImage = new ImageIcon("src/view/img/Moe.jpg");
+	private ImageIcon moeImage = new ImageIcon("src/view/img/First.png");
 	private ImageIcon defaultImage[] = new ImageIcon[4];
 
 	public Controller(int playerNum, int PieceNum) {
@@ -81,6 +81,8 @@ public class Controller extends JFrame {
 		this.add(restPiecePanel);
 		this.add(throwResultPanel);
 		this.add(throwButtonPanel);
+		
+		view.updateBoard(model.getPlayer()[0].yutnori.getBoard());
 	}
 
 	public Model getModel() {
