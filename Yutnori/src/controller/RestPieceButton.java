@@ -17,7 +17,6 @@ import model.Tile;
 public class RestPieceButton extends JButton implements ActionListener {
 	private int x, y;
 	private Model model;
-	private Tile[][] restPieceBoard = new Tile[CONSTANT.PLAYERNUM][CONSTANT.PIECENUM];
 
 	public RestPieceButton(int x, int y, Model model) {
 		this.x = x;
@@ -31,6 +30,7 @@ public class RestPieceButton extends JButton implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		Tile[][] restPieceBoard = new Tile[CONSTANT.PLAYERNUM][CONSTANT.PIECENUM];
 		// model.getTurnPlayer().decreaseNumOfRestPiece();
 		Iterator<Cord> cordIterator = model.getTurnPlayer().getCanGoCordVector().iterator();
 		Cord cord = new Cord();

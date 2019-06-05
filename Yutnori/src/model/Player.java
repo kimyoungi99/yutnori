@@ -140,7 +140,9 @@ public class Player implements Observable {
 		if (type == 6)
 			throwYutResult = -1;
 		throwYutResultVector.add(throwYutResult);
+		System.out.println("ThrowResult: " + throwYutResult);
 		notifyYutResultObserver();
+		System.out.println("Chance: " + numOfThrowChance);
 		return throwYutResult;
 	}
 
@@ -181,6 +183,8 @@ public class Player implements Observable {
 					}
 				}
 				targetTile.removePiece();
+				this.numOfThrowChance++;
+				System.out.println("EAT");
 			}
 		}
 
@@ -207,14 +211,12 @@ public class Player implements Observable {
 			canGoCord = new Cord();
 			//isStart = true;
 			isStart = selectTile.getPieceList().get(0).getIsStart();
-			System.out.println(isStart);
 			distance = distanceIterator.next();
 			/*
 			if(selectTile.getX() == 0 && selectTile.getY() == 0)
 				isStart = false;
 			*/
 			if(!selectTile.getPieceList().isEmpty() && selectTile.getPieceList().get(0).getTeam() == playerID) {
-				System.out.println(selectTile.getX() + ","+ selectTile.getY());
 				currentCord.setCord(selectTile.getX(), selectTile.getY());
 				currentCord.transform(distance, isStart);
 				canGoCord.setCord(currentCord.getX(), currentCord.getY());

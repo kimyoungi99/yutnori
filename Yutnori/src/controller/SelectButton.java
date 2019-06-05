@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 
 import model.Model;
@@ -35,7 +36,8 @@ public class SelectButton extends JButton implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		if(this.type == 2) {
-			model.getTurnPlayer().deleteDistance(type);
+			model.getTurnPlayer().deleteDistance(data);
+			//model.getTurnPlayer().deleteDistance(type);
 			frame.dispose();
 		}
 		else if(this.type == 0) {

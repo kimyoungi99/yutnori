@@ -17,7 +17,6 @@ import model.Tile;
 public class TileButton extends JButton implements ActionListener {
 	private Model model;
 	int x, y;
-	private Tile[][] gameBoard = new Tile[6][5];
 
 	public TileButton(Model model, int x, int y) {
 		this.model = model;
@@ -31,6 +30,7 @@ public class TileButton extends JButton implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		Tile[][] gameBoard = new Tile[6][5];
 		boolean isMove = false;
 		Tile[][] restPieceBoard = new Tile[CONSTANT.PLAYERNUM][CONSTANT.PIECENUM];
 		int catchNum = 0;
@@ -84,9 +84,11 @@ public class TileButton extends JButton implements ActionListener {
 				model.getTurnPlayer().deleteDistance(distance);
 				model.setStatus(1);
 				model.getTurnPlayer().getCanGoCordVector().clear();
+				/*
 				if(catchNum > 0) {
 					model.getTurnPlayer().addNumOfThrowChance();
 				}
+				*/
 				if(model.getTurnPlayer().getNumOfThrowChance() == 0 && model.getTurnPlayer().getthrowYutResultVector().isEmpty()) {
 					model.nextTurn();
 				}

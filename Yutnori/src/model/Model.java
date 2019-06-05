@@ -63,6 +63,7 @@ public class Model implements Observable{
 		if(turn == CONSTANT.PLAYERNUM)
 			turn = 0;
 		this.getTurnPlayer().addNumOfThrowChance();
+		System.out.println("Turn" + turn);
 		status = 0;
 	}
 	
