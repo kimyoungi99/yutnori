@@ -176,9 +176,9 @@ public class Player implements Observable {
 				catchedTeam = targetTile.getPieceList().get(0).getTeam();
 				for (int i = 0; i < targetTile.getPieceList().size(); i++) {
 					for (int j = 0; j < CONSTANT.PIECENUM; j++) {
-						if (yutnori.getBoard().getWaitingPieceBoard()[playerID][j].getPieceList().isEmpty()) {
+						if (yutnori.getBoard().getWaitingPieceBoard()[catchedTeam][j].getPieceList().isEmpty()) {
 							pieceList.add(targetTile.getPieceList().get(i));
-							yutnori.getBoard().getWaitingPieceBoard()[playerID][j].putPiece(pieceList);
+							yutnori.getBoard().getWaitingPieceBoard()[catchedTeam][j].putPiece(pieceList);
 							pieceList.clear();
 						}
 					}

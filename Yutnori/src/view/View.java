@@ -1,6 +1,5 @@
 package view;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -11,7 +10,6 @@ import model.Board;
 import model.CONSTANT;
 import model.Cord;
 import model.Model;
-import model.Piece;
 import model.Player;
 import model.Tile;
 
