@@ -12,6 +12,8 @@ public class SelectButton extends JButton implements ActionListener{
 	private int data;
 	private SelectPopUpFrame popupFrame;
 	private StartFrame startFrame;
+	//private Controller controller;
+	private FinalFrame finalFrame;
 	private Model model;
 	
 	
@@ -32,6 +34,9 @@ public class SelectButton extends JButton implements ActionListener{
 		this.model = model;
 	}
 	
+	public void setFinalFrame(FinalFrame finalFrame) {
+		this.finalFrame = finalFrame;
+	}
 	
 	public void setStartFrame(StartFrame startFrame) {
 		this.startFrame = startFrame;
@@ -56,6 +61,13 @@ public class SelectButton extends JButton implements ActionListener{
 		}
 		else if(this.type == 3) {
 			startFrame.startGame();
+		}
+		else if(this.type == 4) {
+			finalFrame.dispose();
+			//startFrame.getController().dispose();
+		}
+		else if(this.type == 5) {
+			System.exit(0);
 		}
 
 	}

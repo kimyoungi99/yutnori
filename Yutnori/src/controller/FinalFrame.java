@@ -9,8 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class FinalFrame extends JFrame{
-	private SelectButton restartButton = new SelectButton(3);
-	private SelectButton exitButton = new SelectButton(4);
+	private SelectButton restartButton = new SelectButton(4);
+	private SelectButton exitButton = new SelectButton(5);
 	private ImageIcon defaultImage[] = new ImageIcon[4];
 	
 	public FinalFrame(int winner) {
@@ -43,23 +43,18 @@ public class FinalFrame extends JFrame{
 
 		restartButton.setText("Restart");
 		exitButton.setText("Exit");
+		
+		restartButton.setFinalFrame(this);
 		//startButton.setStartFrame(this);
 		selectionPanel.add(restartButton);
 		selectionPanel.add(exitButton);
 	}
 	
-	
-	public void setNumOfPlayer(int numOfPlayer) {
-		this.numOfPlayer = numOfPlayer;
+	public void restartGame() {
+
 	}
 	
-	public void setNumOfPiece(int numOfPiece) {
-		this.numOfPiece = numOfPiece;
-	}
-	
-	public void startGame() {
-		Controller controller = new Controller(numOfPlayer, numOfPiece);
-		controller.init();
-		controller.setVisible(true);
+	public void exitGame() {
+		System.exit(0);
 	}
 }
