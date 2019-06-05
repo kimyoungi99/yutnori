@@ -50,7 +50,15 @@ public class ExitButton extends JButton implements ActionListener {
 			}
 		}
 		if (isMove) {
+			model.setStatus(1);
 			model.getTurnPlayer().setNumOfPassPiece(model.getTurnPlayer().getNumOfPassPiece() - 1);
+			model.getTurnPlayer().getCanGoCordVector().clear();
+			SelectPopUp spu = new SelectPopUp(model.getSelectX(), model.getSelectY(), model);
+			spu.setVisible(true);
+			if(model.getTurnPlayer().getNumOfThrowChance() == 0 && model.getTurnPlayer().getthrowYutResultVector().isEmpty()) {
+				model.nextTurn();
+			}
+			// if(odel.getTurnPlayer().getNumOfPassPiece() == 0) 승리!!!!
 		}
 		else if (!pieceList.isEmpty() && pieceList.get(0).getTeam() == model.getTurn()) {
 				
