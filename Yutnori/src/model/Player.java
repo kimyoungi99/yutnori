@@ -156,6 +156,7 @@ public class Player implements Observable {
 		if (!targetTile.getPieceList().isEmpty() && !selectTile.getPieceList().isEmpty()) {
 			if (targetTile.getPieceList().get(0).getTeam() != selectTile.getPieceList().get(0).getTeam()) {
 				catchedTeam = targetTile.getPieceList().get(0).getTeam();
+				/*
 				for (int i = 0; i < targetTile.getPieceList().size(); i++) {
 					for (int j = 0; j < CONSTANT.PIECENUM; j++) {
 						if (yutnori.getBoard().getWaitingPieceBoard()[catchedTeam][j].getPieceList().isEmpty()) {
@@ -166,6 +167,18 @@ public class Player implements Observable {
 						}
 					}
 					numOfCatchedPiece++;
+				}
+				*/
+				for (int i=0; i<CONSTANT.PIECENUM; i++) {
+					if (yutnori.getBoard().getWaitingPieceBoard()[catchedTeam][i].getPieceList().isEmpty()) {
+						if(numOfCatchedPiece < targetTile.getPieceList().size()) {
+							targetTile.getPieceList().get(numOfCatchedPiece).setIsStartFalse();
+							pieceList.add(targetTile.getPieceList().get(numOfCatchedPiece));
+							yutnori.getBoard().getWaitingPieceBoard()[catchedTeam][i].putPiece(pieceList);
+							pieceList.clear();
+							numOfCatchedPiece++;
+						}
+					}
 				}
 				targetTile.removePiece();
 			}
