@@ -22,7 +22,7 @@ public class Controller extends JFrame {
 	private JPanel throwButtonPanel = new JPanel();
 	private JPanel restPiecePanel = new JPanel();
 	private JPanel throwResultPanel = new JPanel();
-	private RestPieceButton[][] restPieceButton = new RestPieceButton[4][5];
+	private RestPieceButton[][] restPieceButton = new RestPieceButton[CONSTANT.PLAYERNUM][CONSTANT.PIECENUM];
 	private ThrowButton[] throwButton = new ThrowButton[7];
 	private JLabel throwResultLabel = new JLabel();
 	private ImageIcon moeImage = new ImageIcon("src/view/img/Moe.jpg");
@@ -52,7 +52,7 @@ public class Controller extends JFrame {
 		gameBoardPanel.setBackground(Color.WHITE);
 		gameBoardPanel.setBounds(25, 25, 610, 610);
 
-		GridLayout restPiecePanelLayout = new GridLayout(4, 5);
+		GridLayout restPiecePanelLayout = new GridLayout(CONSTANT.PLAYERNUM, CONSTANT.PIECENUM);
 		restPiecePanel.setLayout(restPiecePanelLayout);
 		for (int i = 0; i < CONSTANT.PLAYERNUM; i++) {
 			for (int j = 0; j < CONSTANT.PIECENUM; j++) {
@@ -62,7 +62,7 @@ public class Controller extends JFrame {
 			}
 		}
 
-		restPiecePanel.setBounds(670, 25, 270, 216);
+		restPiecePanel.setBounds(670, 25, 54*CONSTANT.PIECENUM, 54*CONSTANT.PLAYERNUM);
 
 		throwResultLabel.setIcon(moeImage);
 		throwResultPanel.add(throwResultLabel);
