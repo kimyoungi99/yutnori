@@ -7,6 +7,7 @@ import model.Model;
 public class GameBoardPanel extends JPanel{
 	
 	TileButton[][] tileButton = new TileButton[6][5];
+	ExitButton exitButton = new ExitButton();
 	private static final int TILESIZE = 54;
 
 	public GameBoardPanel(Model model) {
@@ -17,6 +18,7 @@ public class GameBoardPanel extends JPanel{
 				this.add(tileButton[i][j]);
 			}
 		}
+		this.add(exitButton);
 			
 		tileButton[0][0].setBounds(530, 530, TILESIZE, TILESIZE);
 		tileButton[0][1].setBounds(530, 430, TILESIZE, TILESIZE);
@@ -47,9 +49,14 @@ public class GameBoardPanel extends JPanel{
 		tileButton[4][1].setBounds(362, 196, TILESIZE, TILESIZE);
 		tileButton[4][3].setBounds(196, 362, TILESIZE, TILESIZE);
 		tileButton[4][4].setBounds(113, 445, TILESIZE, TILESIZE);
+		exitButton.setBounds(280, 445, TILESIZE, TILESIZE);
 	}
 	
 	public TileButton[][] getTileButton() {
 		return tileButton;
+	}
+	
+	public ExitButton getExitButton() {
+		return exitButton;
 	}
 }

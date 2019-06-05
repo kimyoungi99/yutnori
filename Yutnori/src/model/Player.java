@@ -159,7 +159,7 @@ public class Player implements Observable {
 		 * startPiece.add(selectTile.getPieceList().get(0)); }
 		 */
 
-		if (!targetTile.getPieceList().isEmpty() && !selectTile.getPieceList().isEmpty())
+		if (!targetTile.getPieceList().isEmpty() && !selectTile.getPieceList().isEmpty()) {
 			if (targetTile.getPieceList().get(0).getTeam() != selectTile.getPieceList().get(0).getTeam()) {
 				catchedTeam = targetTile.getPieceList().get(0).getTeam();
 				for (int i = 0; i < targetTile.getPieceList().size(); i++) {
@@ -174,6 +174,7 @@ public class Player implements Observable {
 				}
 				targetTile.removePiece();
 			}
+		}
 		// if(!isStart)
 		targetTile.putPiece(selectTile.getPieceList());
 

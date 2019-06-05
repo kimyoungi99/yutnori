@@ -85,7 +85,10 @@ public class View implements Observer {
 		Iterator<Cord> cordIterator = highlightCord.iterator();
 		while(cordIterator.hasNext()) {
 			cord = cordIterator.next();
-			controller.getGameBoardPanel().getTileButton()[cord.getX()][cord.getY()].setIcon(highlightImage);
+			if(cord.getX() == 999)
+				controller.getGameBoardPanel().getExitButton().setIcon(highlightImage);
+			else
+				controller.getGameBoardPanel().getTileButton()[cord.getX()][cord.getY()].setIcon(highlightImage);
 		}
 	}
 	
