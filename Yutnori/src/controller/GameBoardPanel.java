@@ -6,12 +6,15 @@ import model.Model;
 
 public class GameBoardPanel extends JPanel{
 	
-	TileButton[][] tileButton = new TileButton[6][5];
-	ExitButton exitButton = new ExitButton();
+	private Model model = new Model();
+	private TileButton[][] tileButton = new TileButton[6][5];
+	private ExitButton exitButton;
 	private static final int TILESIZE = 54;
 
 	public GameBoardPanel(Model model) {
 		this.setLayout(null);
+		this.model = model;
+		exitButton = new ExitButton(model);
 		for(int i=0; i<tileButton.length; i++) {
 			for(int j=0; j<tileButton[0].length; j++) {
 				tileButton[i][j] = new TileButton(model, i, j);

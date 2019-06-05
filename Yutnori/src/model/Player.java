@@ -267,4 +267,8 @@ public class Player implements Observable {
 			}
 		}
 	}
+	
+	public int getNumOfPassPiece() {
+		return this.numOfPassPiece;
+	}
 }
