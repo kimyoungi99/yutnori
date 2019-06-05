@@ -8,7 +8,7 @@ import model.Cord;
 import model.Model;
 
 public class SelectPopUpFrame extends JFrame{
-	SelectButton[] select = new SelectButton[5];
+	private SelectButton[] select = new SelectButton[5];
 	
 	public SelectPopUpFrame(int x, int y, Model model) {
 		int minDis = 0;

@@ -48,11 +48,16 @@ public class ExitButton extends JButton implements ActionListener {
 			model.setStatus(1);
 			model.getTurnPlayer().setNumOfPassPiece(size);
 			model.getTurnPlayer().getCanGoCordVector().clear();
-			SelectPopUpFrame spu = new SelectPopUpFrame(model.getSelectX(), model.getSelectY(), model);
-			spu.setVisible(true);
+
 			System.out.println("Player" + model.getTurn() + ": " + model.getTurnPlayer().getNumOfPassPiece());
 			if(model.getTurnPlayer().getNumOfPassPiece() == CONSTANT.PIECENUM) {
+				FinalFrame finalFrame = new FinalFrame(model.getTurn());
+				finalFrame.setVisible(true);
 				System.out.println("Player" + model.getTurn() + " Win");
+			}
+			else {
+				SelectPopUpFrame spu = new SelectPopUpFrame(model.getSelectX(), model.getSelectY(), model);
+				spu.setVisible(true);
 			}
 			if(model.getTurnPlayer().getNumOfThrowChance() == 0 && model.getTurnPlayer().getthrowYutResultVector().isEmpty()) {
 				model.nextTurn();

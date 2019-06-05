@@ -7,9 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class StartFrame extends JFrame {
-	SelectButton[] playerSelectButton = new SelectButton[3];
-	SelectButton[] pieceSelectButton = new SelectButton[4];
-	SelectButton startButton = new SelectButton(3);
+	private SelectButton[] playerSelectButton = new SelectButton[3];
+	private SelectButton[] pieceSelectButton = new SelectButton[4];
+	private SelectButton startButton = new SelectButton(3);
 	private int numOfPlayer = 4;
 	private int numOfPiece = 4;
 	
@@ -44,6 +44,8 @@ public class StartFrame extends JFrame {
 	public static void main(String[] args) {
 		StartFrame start = new StartFrame();
 		start.setVisible(true);
+		//FinalFrame finalframe = new FinalFrame(0);
+		//finalframe.setVisible(true);
 	}
 	
 	public void setNumOfPlayer(int numOfPlayer) {
