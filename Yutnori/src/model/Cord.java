@@ -36,12 +36,12 @@ public class Cord {
 			}
 		}
 		else {
-			if(this.y == 0 && this.x == 0 && !start) {
+			if(this.y == 0 && this.x == 0 && start) {
 				this.x = 999;
 				this.y = 999;
 				is_done = true;
 			}
-			else if(this.y == 0 && (this.x == 1 || this.y == 2)) {
+			else if(this.y == 0 && (this.x == 1 || this.x == 2)) {
 				this.x += 3;
 				this.y = delta - 1;
 			}
@@ -69,6 +69,9 @@ public class Cord {
 				}
 			}
 		}
+		if(this.x == 4 && this.y == 2)
+			this.x = 5;
+		
 		
 		return is_done;
 	}
