@@ -7,33 +7,44 @@ import javax.swing.JButton;
 import model.Model;
 
 public class ThrowButton extends JButton implements ActionListener {
-	
+
 	private int throwButtonID;
 	private Model model;
 
-	
 	public ThrowButton(int i, Model model) {
 		this.model = model;
 		this.throwButtonID = i;
-		if(i==0)
+		if (i == 0)
 			this.setText("RD");
-		if(i==1)
+		if (i == 1)
 			this.setText("도");
-		if(i==2)
+		if (i == 2)
 			this.setText("개");
-		if(i==3)
+		if (i == 3)
 			this.setText("걸");
-		if(i==4)
+		if (i == 4)
 			this.setText("윷");
-		if(i==5)
+		if (i == 5)
 			this.setText("모");
-		if(i==6)
+		if (i == 6)
 			this.setText("백");
 		addActionListener(this);
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		model.getTurnPlayer().throwYut(this.throwButtonID);
-		model.setStatus(1);
+		int throwResult = 0;
+		if (model.getTurnPlayer().getNumOfThrowChance() > 0) {
+			throwResult = model.getTurnPlayer().throwYut(this.throwButtonID);
+			if (throwResult == 4 || throwResult == 5) {
+				model.getTurnPlayer().addNumOfThrowChance();
+				System.out.println("ADD");
+			}
+			model.getTurnPlayer().subNumOfThrowChance();
+			model.setStatus(1);
+			System.out.println("횟수 :" + model.getTurnPlayer().getNumOfThrowChance());
+		}
+		else {
+			System.out.println("더 이상 던질 수 없습니다.");
+		}
 	}
 }

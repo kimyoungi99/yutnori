@@ -82,6 +82,10 @@ public class TileButton extends JButton implements ActionListener {
 				model.getTurnPlayer().deleteDistance(distance);
 				model.setStatus(1);
 				model.getTurnPlayer().getCanGoCordVector().clear();
+				if(model.getTurnPlayer().getNumOfThrowChance() == 0 && model.getTurnPlayer().getthrowYutResultVector().isEmpty()) {
+					model.nextTurn();
+					System.out.println("Turn Change");
+				}
 			} else if (pieceList.isEmpty() && pieceList.get(0).getTeam() == model.getTurn()) {
 				model.setStatus(3);
 				model.setSelectX(x);

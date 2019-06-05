@@ -46,6 +46,7 @@ public class Controller extends JFrame {
 	}
 
 	public void init() {
+		model.getTurnPlayer().addNumOfThrowChance();
 		gameBoardPanel.setBackground(Color.WHITE);
 		gameBoardPanel.setBounds(25, 25, 610, 610);
 

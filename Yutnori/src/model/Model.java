@@ -62,6 +62,8 @@ public class Model implements Observable{
 		turn++;
 		if(turn == 4)
 			turn = 0;
+		this.getTurnPlayer().addNumOfThrowChance();
+		status = 0;
 	}
 	
 	public void setGameEnd() {
