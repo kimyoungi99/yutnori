@@ -144,19 +144,14 @@ public class Player implements Observable {
 		return throwYutResult;
 	}
 
-	public int[] movePiece(Tile selectTile, Tile targetTile) {
+	public int movePiece(Tile selectTile, Tile targetTile) {
 		// public boolean movePiece(Tile selectTile, Tile targetTile, boolean isStart) {
 		// public boolean movePiece(Cord select, Cord target) {
 		// Tile selectTile = yutnori.getBoard().gameBoard[select.getX()][select.getY()];
 		// Tile targetTile = yutnori.getBoard().gameBoard[target.getX()][target.getY()];
-		int[] returnArray = new int[2];
 		int catchedTeam = -1;
 		int numOfCatchedPiece = 0;
 		ArrayList<Piece> pieceList = new ArrayList<Piece>();
-		/*
-		 * ArrayList<Piece> startPiece = new ArrayList<Piece>(); if(isStart) {
-		 * startPiece.add(selectTile.getPieceList().get(0)); }
-		 */
 
 		if (!targetTile.getPieceList().isEmpty() && !selectTile.getPieceList().isEmpty()) {
 			if (targetTile.getPieceList().get(0).getTeam() != selectTile.getPieceList().get(0).getTeam()) {
@@ -164,6 +159,7 @@ public class Player implements Observable {
 				for (int i = 0; i < targetTile.getPieceList().size(); i++) {
 					for (int j = 0; j < CONSTANT.PIECENUM; j++) {
 						if (yutnori.getBoard().getWaitingPieceBoard()[catchedTeam][j].getPieceList().isEmpty()) {
+							targetTile.getPieceList().get(i).setIsStartFalse();
 							pieceList.add(targetTile.getPieceList().get(i));
 							yutnori.getBoard().getWaitingPieceBoard()[catchedTeam][j].putPiece(pieceList);
 							pieceList.clear();
@@ -174,38 +170,36 @@ public class Player implements Observable {
 				targetTile.removePiece();
 			}
 		}
-		// if(!isStart)
-		targetTile.putPiece(selectTile.getPieceList());
 
-		// else
-		// targetTile.putPiece(startPiece);
-		// if(!isStart)
+		targetTile.putPiece(selectTile.getPieceList());
+		
+		for(int i=0; i<selectTile.getPieceList().size(); i++) {
+			selectTile.getPieceList().get(i).setIsStartTrue();
+		}
 		selectTile.removePiece();
-		// else
-		// selectTile.getPieceList().remove(selectTile.getPieceList().size()-1);
-		returnArray[0] = catchedTeam;
-		returnArray[1] = numOfCatchedPiece;
+		
 		notifyBoardObserver(this.yutnori.getBoard());
-		return returnArray;
+		return numOfCatchedPiece;
 	}
 
 	// public Vector<Cord> getCanGoTile(Tile selectTile, Vector<Integer> result) {
 	public void getCanGoTile(Tile selectTile) {
 		int distance;
-		//Vector<Vector<Cord>> canGoCordVectorforEveryDistance = new Vector<Vector<Cord>>();
-		//Tile[][] gameBoard = yutnori.getBoard().getGameBoard();
 		Iterator<Integer> distanceIterator = throwYutResultVector.iterator();
 		Cord currentCord = new Cord();
 		Cord canGoCord;
-		boolean isStart = true;
+		boolean isStart;
 
 		while(distanceIterator.hasNext()) {
 			canGoCord = new Cord();
-			isStart = true;
+			//isStart = true;
+			isStart = selectTile.getPieceList().get(0).getIsStart();
+			System.out.println(isStart);
 			distance = distanceIterator.next();
-			//System.out.println("Distance" + distance);
+			/*
 			if(selectTile.getX() == 0 && selectTile.getY() == 0)
 				isStart = false;
+			*/
 			if(!selectTile.getPieceList().isEmpty() && selectTile.getPieceList().get(0).getTeam() == playerID) {
 				System.out.println(selectTile.getX() + ","+ selectTile.getY());
 				currentCord.setCord(selectTile.getX(), selectTile.getY());
@@ -213,20 +207,6 @@ public class Player implements Observable {
 				canGoCord.setCord(currentCord.getX(), currentCord.getY());
 				canGoCordVector.addElement(canGoCord);
 			}
-			/*
-			for(int i=0; i<6; i++) {
-				for(int j=0; j<5; i++) {
-					if(!gameBoard[i][j].getPieceList().isEmpty() && gameBoard[i][j].getPieceList().get(0).getTeam() == playerID) {
-						currentCord.setCord(i, j);
-						currentCord.transform(distance, isStart);
-						canGoCord.setCord(currentCord.getX(), currentCord.getY());
-						canGoCordVector.add(canGoCord);
-					}
-				}
-			}
-			
-			canGoCordVectorforEveryDistance.add(canGoCordVector);
-			*/
 		}
 
 		notifyHighlightObserver(canGoCordVector);

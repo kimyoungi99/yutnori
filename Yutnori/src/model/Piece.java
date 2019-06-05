@@ -3,6 +3,7 @@ package model;
 public class Piece {
 	private int id;
 	private int team;
+	private boolean isStart = false;
 	
 	public Piece(int id, int team) {
 		this.id = id;
@@ -16,6 +17,19 @@ public class Piece {
 	public int getTeam() {
 		return team;
 	}
+	
+	public boolean getIsStart() {
+		return isStart;
+	}
+	
+	public void setIsStartTrue() {
+		isStart = true;
+	}
+	
+	public void setIsStartFalse() {
+		isStart = false;
+	}
+	
 	
 	/*
 	public Piece getNextPiece() {
