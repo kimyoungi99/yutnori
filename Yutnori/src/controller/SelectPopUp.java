@@ -14,7 +14,7 @@ public class SelectPopUp extends JFrame{
 		int minDis = 0;
 		//this.model = model;
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setBounds(300, 300, 300, 300);
+		this.setBounds(300, 300, 300, 100);
 		this.setLayout(new GridLayout(0, 5));
 		Cord temp = new Cord();
 		//Cord temptemp = new Cord();
