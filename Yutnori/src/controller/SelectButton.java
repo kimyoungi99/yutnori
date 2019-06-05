@@ -10,7 +10,7 @@ import model.Model;
 public class SelectButton extends JButton implements ActionListener{
 	private int type;
 	private int data;
-	private SelectPopUp popupFrame;
+	private SelectPopUpFrame popupFrame;
 	private StartFrame startFrame;
 	private Model model;
 	
@@ -27,7 +27,7 @@ public class SelectButton extends JButton implements ActionListener{
 		this.addActionListener(this);
 	}
 	
-	public void setButton(SelectPopUp popupFrame, Model model) {
+	public void setButton(SelectPopUpFrame popupFrame, Model model) {
 		this.popupFrame = popupFrame;
 		this.model = model;
 	}

@@ -7,10 +7,10 @@ import javax.swing.JFrame;
 import model.Cord;
 import model.Model;
 
-public class SelectPopUp extends JFrame{
+public class SelectPopUpFrame extends JFrame{
 	SelectButton[] select = new SelectButton[5];
 	
-	public SelectPopUp(int x, int y, Model model) {
+	public SelectPopUpFrame(int x, int y, Model model) {
 		int minDis = 0;
 		//this.model = model;
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
