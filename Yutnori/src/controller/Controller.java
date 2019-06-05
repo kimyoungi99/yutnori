@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import model.CONSTANT;
 import model.Model;
 import model.Player;
 import model.Tile;
@@ -27,7 +28,8 @@ public class Controller extends JFrame {
 	private ImageIcon moeImage = new ImageIcon("src/view/img/Moe.jpg");
 	private ImageIcon defaultImage[] = new ImageIcon[4];
 
-	public Controller() {
+	public Controller(int playerNum, int PieceNum) {
+		CONSTANT c = new CONSTANT(playerNum, PieceNum);
 		this.setTitle("Yut No Ri");
 		this.setBounds(100, 100, 1000, 700);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,7 +37,7 @@ public class Controller extends JFrame {
 		// this.setVisible(true);
 		view = new View();
 		view.setController(this);
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < CONSTANT.PLAYERNUM; i++) {
 			model.getPlayer()[i].addObserver(view);	
 		}
 		for(int i=0; i<defaultImage.length; i++) {
@@ -50,10 +52,10 @@ public class Controller extends JFrame {
 		gameBoardPanel.setBackground(Color.WHITE);
 		gameBoardPanel.setBounds(25, 25, 610, 610);
 
-		GridLayout restPiecePanelLayout = new GridLayout(4, 4);
+		GridLayout restPiecePanelLayout = new GridLayout(4, 5);
 		restPiecePanel.setLayout(restPiecePanelLayout);
-		for (int i = 0; i < restPieceButton.length; i++) {
-			for (int j = 0; j < restPieceButton[0].length; j++) {
+		for (int i = 0; i < CONSTANT.PLAYERNUM; i++) {
+			for (int j = 0; j < CONSTANT.PIECENUM; j++) {
 				restPieceButton[i][j] = new RestPieceButton(i, j, model);
 				restPieceButton[i][j].setIcon(defaultImage[i]);
 				restPiecePanel.add(restPieceButton[i][j]);
