@@ -87,7 +87,7 @@ public class Cord {
 			res = 5 - target.y + this.y;
 		else if(this.x == target.x || this.x == 5 && target.x == 4)
 			res = this.y - target.y;
-		else if(this.x == 3 && target.y == 0)
+		else if(this.x == 3 && target.x == 0)
 			res = -1;
 		else if(this.x != target.x)
 			res = this.y - target.y + 1;

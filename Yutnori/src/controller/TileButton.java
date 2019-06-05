@@ -27,23 +27,13 @@ public class TileButton extends JButton implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		/*
-		 * int status = 0; ArrayList<Piece> pieceList = new ArrayList<Piece>();
-		 * gameBoard = model.getTurnPlayer().yutnori.getBoard().getGameBoard();
-		 * pieceList = gameBoard[x][y].getPieceList(); if(pieceList.isEmpty()) {
-		 * 
-		 * } else if(pieceList.get(0).getTeam() != model.getTurn()) {
-		 * 
-		 * } else{ status = 1; }
-		 */
-		// Vector<Cord> cordVector = new Vector<Cord>();
 		boolean isMove = false;
-		// int deleteX = 0, deleteY = 0;
 		Tile[][] restPieceBoard = new Tile[CONSTANT.PLAYERNUM][CONSTANT.PIECENUM];
 		Iterator<Cord> cordIterator = model.getTurnPlayer().getCanGoCordVector().iterator();
 		Cord cord = new Cord();
-		Cord tempCord = new Cord();
-		Cord temptempCord = new Cord();
+		Cord beforeCord = new Cord();
+		Cord afterCord = new Cord();
+		int tempX = 0, tempY = 0;
 		ArrayList<Piece> pieceList = new ArrayList<Piece>();
 		gameBoard = model.getTurnPlayer().yutnori.getBoard().getGameBoard();
 		restPieceBoard = model.getTurnPlayer().yutnori.getBoard().getWaitingPieceBoard();
@@ -65,22 +55,30 @@ public class TileButton extends JButton implements ActionListener {
 				if (cord.getX() == x && cord.getY() == y) {
 					// deleteX = x;
 					// deleteY = y;
-					System.out.println("Move OK");
 					isMove = true;
-					if (model.getStatus() == 2)
+					if (model.getStatus() == 2) {
 						model.getTurnPlayer().movePiece(restPieceBoard[model.getSelectX()][model.getSelectY()],
 								gameBoard[x][y]);
-					if (model.getStatus() == 3)
+						tempX = 0;
+						tempY = 0;
+					}
+					if (model.getStatus() == 3) {
 						model.getTurnPlayer().movePiece(gameBoard[model.getSelectX()][model.getSelectY()],
 								gameBoard[x][y]);
+						tempX = model.getSelectX();
+						tempY = model.getSelectY();
 					// canGoCordVector에서 움직인 칸(x, y) 제외, 새로 하이라이트
+					}
 				}
 			}
 			if (isMove) {
 				int distance;
-				tempCord.setCord(model.getSelectX(), model.getSelectY());
-				temptempCord.setCord(x, y);
-				distance = tempCord.distance(temptempCord);
+				beforeCord.setCord(tempX, tempY);
+				afterCord.setCord(x, y);
+				System.out.println("Before" + beforeCord.getX() + "," + beforeCord.getY());
+				System.out.println("After" + afterCord.getX() + "," + afterCord.getY());
+				distance = afterCord.distance(beforeCord);
+				System.out.println("Distance: " + distance);
 				model.getTurnPlayer().deleteDistance(distance);
 				model.setStatus(1);
 				model.getTurnPlayer().getCanGoCordVector().clear();

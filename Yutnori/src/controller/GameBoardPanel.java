@@ -38,16 +38,15 @@ public class GameBoardPanel extends JPanel{
 		tileButton[3][2].setBounds(230, 530, TILESIZE, TILESIZE);
 		tileButton[3][3].setBounds(330, 530, TILESIZE, TILESIZE);
 		tileButton[3][4].setBounds(430, 530, TILESIZE, TILESIZE);
-		tileButton[4][0].setBounds(113, 113, TILESIZE, TILESIZE);
-		tileButton[4][1].setBounds(196, 196, TILESIZE, TILESIZE);
-		tileButton[4][2].setBounds(279, 279, TILESIZE, TILESIZE);
-		tileButton[4][3].setBounds(362, 362, TILESIZE, TILESIZE);
-		tileButton[4][4].setBounds(445, 445, TILESIZE, TILESIZE);
-		tileButton[5][0].setBounds(445, 113, TILESIZE, TILESIZE);
-		tileButton[5][1].setBounds(362, 196, TILESIZE, TILESIZE);
+		tileButton[5][0].setBounds(113, 113, TILESIZE, TILESIZE);
+		tileButton[5][1].setBounds(196, 196, TILESIZE, TILESIZE);
 		tileButton[5][2].setBounds(279, 279, TILESIZE, TILESIZE);
-		tileButton[5][3].setBounds(196, 362, TILESIZE, TILESIZE);
-		tileButton[5][4].setBounds(113, 445, TILESIZE, TILESIZE);
+		tileButton[5][3].setBounds(362, 362, TILESIZE, TILESIZE);
+		tileButton[5][4].setBounds(445, 445, TILESIZE, TILESIZE);
+		tileButton[4][0].setBounds(445, 113, TILESIZE, TILESIZE);
+		tileButton[4][1].setBounds(362, 196, TILESIZE, TILESIZE);
+		tileButton[4][3].setBounds(196, 362, TILESIZE, TILESIZE);
+		tileButton[4][4].setBounds(113, 445, TILESIZE, TILESIZE);
 	}
 	
 	public TileButton[][] getTileButton() {

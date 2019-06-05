@@ -203,6 +203,7 @@ public class Player implements Observable {
 			canGoCord = new Cord();
 			isStart = true;
 			distance = distanceIterator.next();
+			//System.out.println("Distance" + distance);
 			if(selectTile.getX() == 0 && selectTile.getY() == 0)
 				isStart = false;
 			if(!selectTile.getPieceList().isEmpty() && selectTile.getPieceList().get(0).getTeam() == playerID) {
