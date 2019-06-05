@@ -116,6 +116,7 @@ public class View implements Observer {
 				}
 			}
 		}
+		controller.getGameBoardPanel().getExitButton().setIcon(noneImage);
 	}
 	
 	/*

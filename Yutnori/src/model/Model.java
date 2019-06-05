@@ -60,7 +60,7 @@ public class Model implements Observable{
 	public void nextTurn() {
 		player[turn].getthrowYutResultVector().clear();
 		turn++;
-		if(turn == 4)
+		if(turn == CONSTANT.PLAYERNUM)
 			turn = 0;
 		this.getTurnPlayer().addNumOfThrowChance();
 		status = 0;

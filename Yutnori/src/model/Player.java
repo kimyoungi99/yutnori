@@ -238,4 +238,12 @@ public class Player implements Observable {
 	public int getNumOfPassPiece() {
 		return this.numOfPassPiece;
 	}
+	
+	public boolean isDistance(int dis) {
+		for(int i = 0; i < this.throwYutResultVector.size(); i++)
+			if(dis == this.throwYutResultVector.get(i)) {
+				return true;
+			}
+		return false;
+	}
 }
