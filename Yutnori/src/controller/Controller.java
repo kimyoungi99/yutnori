@@ -18,7 +18,7 @@ import view.View;
 public class Controller extends JFrame {
 	private Model model = new Model();
 	private View view;
-	private GameBoardPanel gameBoardPanel = new GameBoardPanel(model);
+	private GameBoardPanel gameBoardPanel;
 	private GameInfoPanel gameInfoPanel = new GameInfoPanel(model);
 	private JPanel throwButtonPanel = new JPanel();
 	private JPanel restPiecePanel = new JPanel();
@@ -29,8 +29,9 @@ public class Controller extends JFrame {
 	private ImageIcon moeImage = new ImageIcon("src/view/img/First.png");
 	private ImageIcon defaultImage[] = new ImageIcon[4];
 
-	public Controller(int playerNum, int PieceNum) {
+	public Controller(int playerNum, int PieceNum, StartFrame sf) {
 		CONSTANT c = new CONSTANT(playerNum, PieceNum);
+		gameBoardPanel = new GameBoardPanel(model, sf);
 		this.setTitle("Yut No Ri");
 		this.setBounds(300, 30, 990, 750);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -11,10 +11,10 @@ public class GameBoardPanel extends JPanel{
 	private ExitButton exitButton;
 	private static final int TILESIZE = 54;
 
-	public GameBoardPanel(Model model) {
+	public GameBoardPanel(Model model, StartFrame sf) {
 		this.setLayout(null);
 		this.model = model;
-		exitButton = new ExitButton(model);
+		exitButton = new ExitButton(model, sf);
 		for(int i=0; i<tileButton.length; i++) {
 			for(int j=0; j<tileButton[0].length; j++) {
 				tileButton[i][j] = new TileButton(model, i, j);

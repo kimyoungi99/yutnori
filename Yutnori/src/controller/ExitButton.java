@@ -9,9 +9,11 @@ import model.Model;
 import model.Tile;
 
 public class ExitButton extends GameBoardButton {
+	private StartFrame sf;
 
-	public ExitButton(Model model) {
+	public ExitButton(Model model, StartFrame sf) {
 		super(model);
+		this.sf = sf;
 	}
 
 	@Override
@@ -45,7 +47,7 @@ public class ExitButton extends GameBoardButton {
 
 			System.out.println("Player" + model.getTurn() + ": " + model.getTurnPlayer().getNumOfPassPiece());
 			if (model.getTurnPlayer().getNumOfPassPiece() == CONSTANT.PIECENUM) {
-				FinalFrame finalFrame = new FinalFrame(model.getTurn());
+				FinalFrame finalFrame = new FinalFrame(model.getTurn(), sf);
 				finalFrame.setVisible(true);
 				System.out.println("Player" + model.getTurn() + " Win");
 			} else {

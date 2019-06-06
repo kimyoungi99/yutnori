@@ -13,7 +13,7 @@ public class FinalFrame extends JFrame{
 	private SelectButton exitButton = new SelectButton(5);
 	private ImageIcon defaultImage[] = new ImageIcon[4];
 	
-	public FinalFrame(int winner) {
+	public FinalFrame(int winner, StartFrame startFrame) {
 		for(int i=0; i<defaultImage.length; i++) {
 			String address = "src/view/img/";
 			address = address + Integer.toString(i+1) + "-1.png";
@@ -45,6 +45,7 @@ public class FinalFrame extends JFrame{
 		exitButton.setText("Exit");
 		
 		restartButton.setFinalFrame(this);
+		restartButton.setStartFrame(startFrame);
 		//startButton.setStartFrame(this);
 		selectionPanel.add(restartButton);
 		selectionPanel.add(exitButton);

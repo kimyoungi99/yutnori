@@ -13,6 +13,7 @@ public class StartFrame extends JFrame {
 	//private Controller controller;
 	private int numOfPlayer = 4;
 	private int numOfPiece = 4;
+	private Controller controller;
 	
 	public StartFrame() {
 		JPanel playerSelectionPanel = new JPanel();
@@ -64,8 +65,12 @@ public class StartFrame extends JFrame {
 	*/
 	
 	public void startGame() {
-		Controller controller = new Controller(numOfPlayer, numOfPiece);
+		controller = new Controller(numOfPlayer, numOfPiece, this);
 		controller.init();
 		controller.setVisible(true);
+	}
+	
+	public Controller getController() {
+		return this.controller;
 	}
 }
