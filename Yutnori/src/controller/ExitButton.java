@@ -53,9 +53,6 @@ public class ExitButton extends GameBoardButton{
 				SelectPopUpFrame spu = new SelectPopUpFrame(model.getSelectX(), model.getSelectY(), model);
 				spu.setVisible(true);
 			}
-			if(model.getTurnPlayer().getNumOfThrowChance() == 0 && model.getTurnPlayer().getthrowYutResultVector().isEmpty()) {
-				model.nextTurn();
-			}
 
 		}
 		/*

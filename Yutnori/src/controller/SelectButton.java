@@ -58,6 +58,9 @@ public class SelectButton extends JButton implements ActionListener{
 			model.getTurnPlayer().deleteDistance(data);
 			//model.getTurnPlayer().deleteDistance(type);
 			popupFrame.dispose();
+			if(model.getTurnPlayer().getNumOfThrowChance() == 0 && model.getTurnPlayer().getthrowYutResultVector().isEmpty()) {
+				model.nextTurn();
+			}
 		}
 		else if(this.type == 3) {
 			startFrame.startGame();
