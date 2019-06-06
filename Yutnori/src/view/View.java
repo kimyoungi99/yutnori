@@ -39,14 +39,10 @@ public class View implements Observer {
 			}
 		}
 	}
-
-	@Override
-	public void updateYutResultPanel(Model model) {
-	}
 	
 	@Override
-	public void updateYutResultPanel(Player player) {
-		int throwRes = player.getthrowYutResult();
+	public void updateYutResultPanel(int result) {
+		int throwRes = result;
 		switch(throwRes) {
 		case -1:
 			this.controller.getThrowResultLabel().setIcon(this.BackDaoImage);

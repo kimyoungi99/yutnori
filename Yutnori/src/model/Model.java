@@ -5,7 +5,7 @@ import java.util.Vector;
 
 import view.Observer;
 
-public class Model implements Observable{
+public class Model{
 	private boolean gameEnd = false;
 	private int turn = 0;
 	private Player[] player = new Player[CONSTANT.PLAYERNUM];
@@ -19,31 +19,6 @@ public class Model implements Observable{
 			player[i] = new Player(i);
 		}
 	}
-	
-	@Override
-	public void addObserver(Observer o) {
-		observers.add(o);
-	}
-	
-	@Override
-	public void deleteObserver(Observer o) {
-        int i = observers.indexOf(o);                
-        if(i>=0){
-            observers.remove(i);
-        }
-	}
-	
-	@Override
-	public void notifyYutResultObserver() {}
-	
-	@Override
-	public void notifyRestPieceObserver() {}
-	
-	@Override
-	public void notifyHighlightObserver(Vector<Cord> highlightCord) {}
-	
-	@Override
-	public void notifyBoardObserver(Board board) {}
 
 	public boolean getGameEnd() {
 		return gameEnd;

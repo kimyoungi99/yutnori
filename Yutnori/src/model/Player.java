@@ -38,10 +38,10 @@ public class Player implements Observable {
 	}
 
 	@Override
-	public void notifyYutResultObserver() {
+	public void notifyYutResultObserver(int result) {
 		for (int i = 0; i < observers.size(); i++) {
 			Observer observer = (Observer) observers.get(i);
-			observer.updateYutResultPanel(this);
+			observer.updateYutResultPanel(result);
 		}
 	}
 
@@ -141,7 +141,7 @@ public class Player implements Observable {
 			throwYutResult = -1;
 		throwYutResultVector.add(throwYutResult);
 		System.out.println("ThrowResult: " + throwYutResult);
-		notifyYutResultObserver();
+		notifyYutResultObserver(throwYutResult);
 		System.out.println("Chance: " + numOfThrowChance);
 		return throwYutResult;
 	}
@@ -184,7 +184,6 @@ public class Player implements Observable {
 				}
 				targetTile.removePiece();
 				this.numOfThrowChance++;
-				System.out.println("EAT");
 			}
 		}
 
