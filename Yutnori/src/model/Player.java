@@ -151,7 +151,7 @@ public class Player implements Observable {
 		notifyYutResultObserver(numOfFront);
 	}
 
-	public int movePiece(Tile selectTile, Tile targetTile) {
+	public void movePiece(Tile selectTile, Tile targetTile) {
 		int catchedTeam = -1;
 		int numOfCatchedPiece = 0;
 		ArrayList<Piece> pieceList = new ArrayList<Piece>();
@@ -183,9 +183,7 @@ public class Player implements Observable {
 			selectTile.getPieceList().get(i).setIsStartTrue();
 		}
 		selectTile.removePiece();
-		
 		notifyBoardObserver(this.yutnori.getBoard());
-		return numOfCatchedPiece;
 	}
 
 	public void getCanGoTile(Tile selectTile) {
@@ -212,7 +210,28 @@ public class Player implements Observable {
 	}
 	
 	public void cancelHighlight() {
+		canGoCordVector.clear();
 		notifyBoardObserver(this.yutnori.getBoard());
+	}
+	
+	public void deleteDistance(Tile selectTile, Tile targetTile) {
+		int distance;
+		Cord beforeCord = new Cord();
+		Cord afterCord = new Cord();
+		beforeCord.setCord(selectTile.getX(), selectTile.getY());
+		afterCord.setCord(targetTile.getX(), targetTile.getY());
+		distance = afterCord.distance(beforeCord);
+
+		int result = 0;
+		Iterator<Integer> distanceIterator = throwYutResultVector.iterator();
+		while (distanceIterator.hasNext()) {
+			result = distanceIterator.next();
+			if (result == distance) {
+				distanceIterator.remove();
+				break;
+			}
+		}
+		canGoCordVector.clear();
 	}
 	
 	public void deleteDistance(int distance) {
@@ -225,6 +244,7 @@ public class Player implements Observable {
 				break;
 			}
 		}
+		canGoCordVector.clear();
 	}
 	
 	public int getNumOfPassPiece() {

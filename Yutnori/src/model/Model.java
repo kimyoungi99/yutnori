@@ -42,6 +42,12 @@ public class Model{
 		status = 0;
 	}
 	
+	public void turnCheck() {
+		if(this.getTurnPlayer().getNumOfThrowChance() == 0 && this.getTurnPlayer().getthrowYutResultVector().isEmpty()) {
+			nextTurn();
+		}
+	}
+	
 	public void setGameEnd() {
 		gameEnd = true;
 	}
