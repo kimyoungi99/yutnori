@@ -105,6 +105,17 @@ public class View implements Observer {
 		controller.getGameBoardPanel().getExitButton().setIcon(this.exitButtonImage);
 	}
 	
+	@Override
+	public void updateThrowChanceLabel(int chance) {
+		controller.getGameInfoPanel().getThrowChanceLabel().setText(Integer.toString(chance));
+	}
+	
+	@Override
+	public void updateTurnLabel(int turn) {
+		controller.getGameInfoPanel().getThrowChanceLabel().setText("1");
+		controller.getGameInfoPanel().getTurnLabel().setIcon(pieceImage[turn][0]);
+	}
+	
 	public void setController(Controller controller) {
 		this.controller = controller;
 	}

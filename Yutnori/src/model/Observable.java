@@ -11,4 +11,6 @@ public interface Observable {
 	public void notifyYutResultObserver(int result);
 	public void notifyHighlightObserver(Vector<Cord> highlightCord);
 	public void notifyBoardObserver(Board board);
+	public void notifyThrowChanceObserver(int chance);
+	public void notifyTurnObserver(int turn);
 }

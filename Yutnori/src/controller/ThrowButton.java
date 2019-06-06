@@ -32,13 +32,8 @@ public class ThrowButton extends JButton implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		int throwResult = 0;
 		if (model.getTurnPlayer().getNumOfThrowChance() > 0) {
-			throwResult = model.getTurnPlayer().throwYut(this.throwButtonID);
-			if (throwResult == 4 || throwResult == 5) {
-				model.getTurnPlayer().addNumOfThrowChance();
-			}
-			model.getTurnPlayer().subNumOfThrowChance();
+			model.getTurnPlayer().throwYut(this.throwButtonID);
 			model.setStatus(1);
 		}
 		else {

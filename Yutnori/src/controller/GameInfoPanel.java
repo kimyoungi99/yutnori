@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 import model.Model;
 
 public class GameInfoPanel extends JPanel{
-	private Model model = new Model();
 	private JLabel turnLabel = new JLabel();
 	private JLabel throwChanceLabel = new JLabel();
 	private JLabel textLabel = new JLabel();
@@ -18,7 +17,6 @@ public class GameInfoPanel extends JPanel{
 	public GameInfoPanel(Model model) {
 		int startPixel = 140;
 		this.setLayout(null);
-		this.model = model;
 		for(int i=0; i<defaultImage.length; i++) {
 			String address = "src/view/img/";
 			address = address + Integer.toString(i+1) + "-1.png";
@@ -38,6 +36,13 @@ public class GameInfoPanel extends JPanel{
 		this.add(turnLabel);
 		this.add(textLabel);
 		this.add(throwChanceLabel);
-		
+	}
+	
+	public JLabel getThrowChanceLabel() {
+		return throwChanceLabel;
+	}
+	
+	public JLabel getTurnLabel() {
+		return turnLabel;
 	}
 }

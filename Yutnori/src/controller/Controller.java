@@ -97,15 +97,21 @@ public class Controller extends JFrame {
 		return throwResultLabel;
 	}
 	
+	/*
 	public JPanel getThorwResultPanel() {
 		return throwResultPanel;
 	}
+	*/
 	
 	public GameBoardPanel getGameBoardPanel() {
 		return gameBoardPanel;
 	}
 	
 	public RestPieceButton[][] getRestPieceButton() {
-		return this.restPieceButton;
+		return restPieceButton;
+	}
+	
+	public GameInfoPanel getGameInfoPanel() {
+		return gameInfoPanel;
 	}
 }
