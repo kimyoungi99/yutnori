@@ -60,10 +60,12 @@ public class SelectButton extends JButton implements ActionListener{
 			startFrame.setNumOfPiece(this.data + 1);
 		}
 		else if(this.type == 2) {
-			deleteDistance = data;
 			//System.out.println("Delete: " + data);
-			//model.getTurnPlayer().deleteDistance(data);
+			model.getTurnPlayer().deleteDistance(data);
 			//model.getTurnPlayer().deleteDistance(type);
+			if (model.getTurnPlayer().getNumOfThrowChance() == 0 && model.getTurnPlayer().getthrowYutResultVector().isEmpty()) {
+				model.nextTurn();
+			}
 			popupFrame.dispose();
 		}
 		else if(this.type == 3) {

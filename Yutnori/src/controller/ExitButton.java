@@ -73,10 +73,6 @@ public class ExitButton extends PieceButton {
 			*/
 			
 			System.out.println(model.getTurnPlayer().getthrowYutResultVector().get(0));
-			if (model.getTurnPlayer().getNumOfThrowChance() == 0
-					&& model.getTurnPlayer().getthrowYutResultVector().isEmpty()) {
-				model.nextTurn();
-			}
 		}
 	}
 }
