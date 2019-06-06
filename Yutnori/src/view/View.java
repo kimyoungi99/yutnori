@@ -15,8 +15,6 @@ import model.Tile;
 
 public class View implements Observer {
 
-	//private Model model = new Model();
-	//private Model model;
 	private ImageIcon DaoImage = new ImageIcon("src/view/img/Dao.png");
 	private ImageIcon GaeImage = new ImageIcon("src/view/img/Gae.png");
 	private ImageIcon GurlImage = new ImageIcon("src/view/img/Gurl.png");
@@ -68,7 +66,6 @@ public class View implements Observer {
 	@Override
 	public void updateHighlightCanGoTile(Vector<Cord> highlightCord) {
 		Cord cord = new Cord();
-		//System.out.println(cord.getX() + "," + cord.getY());
 		Iterator<Cord> cordIterator = highlightCord.iterator();
 		while(cordIterator.hasNext()) {
 			cord = cordIterator.next();
@@ -108,16 +105,7 @@ public class View implements Observer {
 		controller.getGameBoardPanel().getExitButton().setIcon(this.exitButtonImage);
 	}
 	
-	/*
-	public View(Model model) {
-		this.model = model;
-	}
-	*/
-	
 	public void setController(Controller controller) {
 		this.controller = controller;
-	}
-
-	public void paint() {
 	}
 }
