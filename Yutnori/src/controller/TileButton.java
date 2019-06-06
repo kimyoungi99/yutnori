@@ -33,43 +33,39 @@ public class TileButton extends PieceButton{
 		ArrayList<Piece> pieceList = new ArrayList<Piece>();
 		pieceList = gameBoard[x][y].getPieceList();
 		
-		if (model.getStatus() == 1) {
+		if (model.getClickData().getStatus() == 1) {
 			if (pieceList.isEmpty()) {
 
 			} else if (pieceList.get(0).getTeam() != model.getTurn()) {
 
 			} else {
-				model.setStatus(3);
-				model.setSelectX(x);
-				model.setSelectY(y);
+				model.getClickData().setClickData(3, x, y);
 				model.getTurnPlayer().getCanGoTile(gameBoard[x][y]);
 			}
-		} else if (model.getStatus() == 2 || model.getStatus() == 3) {
+		} else if (model.getClickData().getStatus() == 2 || model.getClickData().getStatus() == 3) {
 			while (cordIterator.hasNext()) {
 				cord = cordIterator.next();
 				if (cord.getX() == x && cord.getY() == y) {
 					isMove = true;
 					targetTile = gameBoard[x][y];
-					if (model.getStatus() == 2)
-						selectTile = restPieceBoard[model.getSelectX()][model.getSelectY()];
-					if (model.getStatus() == 3)
-						selectTile = gameBoard[model.getSelectX()][model.getSelectY()];
+					if (model.getClickData().getStatus() == 2)
+						selectTile = restPieceBoard[model.getClickData().getSelectedX()][model.getClickData().getSelectedY()];
+					if (model.getClickData().getStatus() == 3)
+						selectTile = gameBoard[model.getClickData().getSelectedX()][model.getClickData().getSelectedY()];
 					model.getTurnPlayer().movePiece(selectTile, targetTile);
 				}
 			}
 			if (isMove) {
 				model.getTurnPlayer().deleteDistance(selectTile, targetTile);
-				model.setStatus(1);
+				model.getClickData().setStatus(1);
 				model.turnCheck();
 			} else if (!pieceList.isEmpty() && pieceList.get(0).getTeam() == model.getTurn()) {
-				model.setStatus(3);
-				model.setSelectX(x);
-				model.setSelectY(y);
+				model.getClickData().setClickData(3, x, y);
 				model.getTurnPlayer().cancelHighlight();
 				model.getTurnPlayer().getCanGoTile(gameBoard[x][y]);
 			} 
 			else if (pieceList.isEmpty() || pieceList.get(0).getTeam() != model.getTurn()) {
-				model.setStatus(1);
+				model.getClickData().setStatus(1);
 				model.getTurnPlayer().cancelHighlight();
 			}
 		}

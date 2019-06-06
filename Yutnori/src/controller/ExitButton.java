@@ -24,12 +24,12 @@ public class ExitButton extends PieceButton {
 		Iterator<Cord> cordIterator = model.getTurnPlayer().getCanGoCordVector().iterator();
 		Cord cord = new Cord();
 		gameBoard = model.getTurnPlayer().yutnori.getBoard().getGameBoard();
-		if (model.getStatus() == 3) {
+		if (model.getClickData().getStatus() == 3) {
 			while (cordIterator.hasNext()) {
 				cord = cordIterator.next();
 				if (cord.getX() == 999 && cord.getY() == 999) {
 					isMove = true;
-					selectTile = gameBoard[model.getSelectX()][model.getSelectY()];
+					selectTile = gameBoard[model.getClickData().getSelectedX()][model.getClickData().getSelectedY()];
 					size = selectTile.getPieceList().size();
 					model.getTurnPlayer().movePiece(selectTile, finish);
 					break;
@@ -37,9 +37,9 @@ public class ExitButton extends PieceButton {
 			}
 		}
 		if (isMove) {
-			SelectPopUpFrame selectPopUpFrame = new SelectPopUpFrame(model.getSelectX(), model.getSelectY(), model);
+			SelectPopUpFrame selectPopUpFrame = new SelectPopUpFrame(model.getClickData().getSelectedX(), model.getClickData().getSelectedX(), model);
 			boolean isClicked = false;
-			model.setStatus(1);
+			model.getClickData().setStatus(1);
 			model.getTurnPlayer().setNumOfPassPiece(size);
 			model.getTurnPlayer().getCanGoCordVector().clear();
 

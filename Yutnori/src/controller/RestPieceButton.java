@@ -28,13 +28,11 @@ public class RestPieceButton extends PieceButton {
 		ArrayList<Piece> pieceList = new ArrayList<Piece>();
 		restPieceBoard = model.getTurnPlayer().yutnori.getBoard().getWaitingPieceBoard();
 		pieceList = restPieceBoard[x][y].getPieceList();
-		if (model.getStatus() != 0) {
+		if (model.getClickData().getStatus() != 0) {
 			if (pieceList.isEmpty() || pieceList.get(0).getTeam() != model.getTurn()) {
 				model.getTurnPlayer().cancelHighlight();
 			} else {
-				model.setStatus(2);
-				model.setSelectX(x);
-				model.setSelectY(y);
+				model.getClickData().setClickData(2, x, y);
 				model.getTurnPlayer().cancelHighlight();
 				model.getTurnPlayer().getCanGoTile(restPieceBoard[x][y]);
 			}
