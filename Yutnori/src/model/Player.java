@@ -13,7 +13,6 @@ public class Player implements Observable {
 	private int playerID;
 	private int numOfThrowChance = 0;
 	private int numOfRestPiece = CONSTANT.PIECENUM;
-	// private int numOfOnBoardPiece = 0;
 	private int numOfPassPiece = 0;
 	private int throwYutResult;
 	private Vector<Integer> throwYutResultVector = new Vector<Integer>();
@@ -46,18 +45,10 @@ public class Player implements Observable {
 	}
 
 	@Override
-	public void notifyRestPieceObserver() {
-		for (int i = 0; i < observers.size(); i++) {
-			Observer observer = (Observer) observers.get(i);
-			observer.updateRestPiecePanel(this);
-		}
-	}
-
-	@Override
 	public void notifyHighlightObserver(Vector<Cord> highlightCord) {
 		for (int i = 0; i < observers.size(); i++) {
 			Observer observer = (Observer) observers.get(i);
-			observer.highlightCanGoTile(highlightCord);
+			observer.updateHighlightCanGoTile(highlightCord);
 		}
 	}
 

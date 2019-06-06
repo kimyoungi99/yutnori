@@ -9,7 +9,6 @@ import model.Player;
 
 public interface Observer {
 	public void updateYutResultPanel(int result);
-	public void updateRestPiecePanel(Player player);
 	public void updateBoard(Board board);
-	public void highlightCanGoTile(Vector<Cord> highlightCord);
+	public void updateHighlightCanGoTile(Vector<Cord> highlightCord);
 }

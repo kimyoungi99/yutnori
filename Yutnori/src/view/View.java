@@ -66,16 +66,7 @@ public class View implements Observer {
 	}
 	
 	@Override
-	public void updateRestPiecePanel(Player player) {
-		for(int i = 0; i < CONSTANT.PIECENUM; i++) {
-			this.controller.getRestPieceButton()[player.getPlayerId()][i].setIcon(null);
-		}
-		for(int i = 0; i < this.controller.getModel().getPlayer()[player.getPlayerId()].getNumOfRestPiece(); i++)
-			this.controller.getRestPieceButton()[player.getPlayerId()][i].setIcon(pieceImage[player.getPlayerId()][0]);
-	}
-	
-	@Override
-	public void highlightCanGoTile(Vector<Cord> highlightCord) {
+	public void updateHighlightCanGoTile(Vector<Cord> highlightCord) {
 		Cord cord = new Cord();
 		//System.out.println(cord.getX() + "," + cord.getY());
 		Iterator<Cord> cordIterator = highlightCord.iterator();
