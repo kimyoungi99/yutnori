@@ -151,7 +151,7 @@ public class Player implements Observable {
 		notifyYutResultObserver(numOfFront);
 	}
 
-	public int movePiece(Tile selectTile, Tile targetTile) {
+	public void movePiece(Tile selectTile, Tile targetTile) {
 		int catchedTeam = -1;
 		int numOfCatchedPiece = 0;
 		ArrayList<Piece> pieceList = new ArrayList<Piece>();
@@ -185,7 +185,6 @@ public class Player implements Observable {
 		selectTile.removePiece();
 		
 		notifyBoardObserver(this.yutnori.getBoard());
-		return numOfCatchedPiece;
 	}
 
 	public void getCanGoTile(Tile selectTile) {

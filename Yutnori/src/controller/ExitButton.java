@@ -25,7 +25,6 @@ public class ExitButton extends GameBoardButton{
 		int size = 0;
 		Iterator<Cord> cordIterator = model.getTurnPlayer().getCanGoCordVector().iterator();
 		Cord cord = new Cord();
-		//ArrayList<Piece> pieceList = new ArrayList<Piece>();
 		gameBoard = model.getTurnPlayer().yutnori.getBoard().getGameBoard();
 		if (model.getStatus() == 3) {
 			while (cordIterator.hasNext()) {
@@ -56,17 +55,6 @@ public class ExitButton extends GameBoardButton{
 			if(model.getTurnPlayer().getNumOfThrowChance() == 0 && model.getTurnPlayer().getthrowYutResultVector().isEmpty()) {
 				model.nextTurn();
 			}
-
 		}
-		/*
-		else if (!pieceList.isEmpty() && pieceList.get(0).getTeam() == model.getTurn()) {
-
-		} 
-		else if (pieceList.isEmpty() || pieceList.get(0).getTeam() != model.getTurn()) {
-			model.setStatus(1);
-			model.getTurnPlayer().clearCanGoCordVector();
-			model.getTurnPlayer().cancelHighlight();
-		}
-		*/
 	}
 }
