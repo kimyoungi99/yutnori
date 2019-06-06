@@ -86,7 +86,7 @@ public class Controller extends JFrame {
 		this.add(throwResultPanel);
 		this.add(throwButtonPanel);
 		
-		view.updateBoard(model.getPlayer()[0].yutnori.getBoard());
+		view.updateBoard(model.getPlayer()[0].getYutnori().getBoard());
 	}
 
 	public Model getModel() {
