@@ -30,13 +30,13 @@ public class TileButton extends GameBoardButton{
 		boolean isMove = false;
 		Iterator<Cord> cordIterator = model.getTurnPlayer().getCanGoCordVector().iterator();
 		Cord cord = new Cord();
-		Cord beforeCord = new Cord();
-		Cord afterCord = new Cord();
-		int beforeX = 0, beforeY = 0;
-		ArrayList<Piece> pieceList = new ArrayList<Piece>();
+		Tile selectTile = new Tile(0, 0);
+		Tile targetTile = new Tile(0, 0);
 		gameBoard = model.getTurnPlayer().yutnori.getBoard().getGameBoard();
 		restPieceBoard = model.getTurnPlayer().yutnori.getBoard().getWaitingPieceBoard();
+		ArrayList<Piece> pieceList = new ArrayList<Piece>();
 		pieceList = gameBoard[x][y].getPieceList();
+		
 		if (model.getStatus() == 1) {
 			if (pieceList.isEmpty()) {
 
@@ -53,42 +53,27 @@ public class TileButton extends GameBoardButton{
 				cord = cordIterator.next();
 				if (cord.getX() == x && cord.getY() == y) {
 					isMove = true;
-					if (model.getStatus() == 2) {
-						model.getTurnPlayer().movePiece(restPieceBoard[model.getSelectX()][model.getSelectY()],
-								gameBoard[x][y]);
-						beforeX = 0;
-						beforeY = 0;
-					}
-					if (model.getStatus() == 3) {
-						model.getTurnPlayer().movePiece(gameBoard[model.getSelectX()][model.getSelectY()],
-								gameBoard[x][y]);
-						beforeX = model.getSelectX();
-						beforeY = model.getSelectY();
-					}
+					targetTile = gameBoard[x][y];
+					if (model.getStatus() == 2)
+						selectTile = restPieceBoard[model.getSelectX()][model.getSelectY()];
+					if (model.getStatus() == 3)
+						selectTile = gameBoard[model.getSelectX()][model.getSelectY()];
+					model.getTurnPlayer().movePiece(selectTile, targetTile);
 				}
 			}
 			if (isMove) {
-				int distance;
-				beforeCord.setCord(beforeX, beforeY);
-				afterCord.setCord(x, y);
-				distance = afterCord.distance(beforeCord);
-				model.getTurnPlayer().deleteDistance(distance);
+				model.getTurnPlayer().deleteDistance(selectTile, targetTile);
 				model.setStatus(1);
-				model.getTurnPlayer().getCanGoCordVector().clear();
-				if(model.getTurnPlayer().getNumOfThrowChance() == 0 && model.getTurnPlayer().getthrowYutResultVector().isEmpty()) {
-					model.nextTurn();
-				}
+				model.turnCheck();
 			} else if (!pieceList.isEmpty() && pieceList.get(0).getTeam() == model.getTurn()) {
 				model.setStatus(3);
 				model.setSelectX(x);
 				model.setSelectY(y);
-				model.getTurnPlayer().clearCanGoCordVector();
 				model.getTurnPlayer().cancelHighlight();
 				model.getTurnPlayer().getCanGoTile(gameBoard[x][y]);
 			} 
 			else if (pieceList.isEmpty() || pieceList.get(0).getTeam() != model.getTurn()) {
 				model.setStatus(1);
-				model.getTurnPlayer().clearCanGoCordVector();
 				model.getTurnPlayer().cancelHighlight();
 			}
 		}
