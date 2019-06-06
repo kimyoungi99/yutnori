@@ -14,21 +14,16 @@ import model.Model;
 import model.Piece;
 import model.Tile;
 
-public class TileButton extends JButton implements ActionListener {
-	private Model model;
+public class TileButton extends GameBoardButton{
 	int x, y;
 
 	public TileButton(Model model, int x, int y) {
-		this.model = model;
+		super(model);
 		this.x = x;
 		this.y = y;
-        this.setBorderPainted(false); 
-        this.setContentAreaFilled(false); 
-        this.setFocusPainted(false); 
-        this.setOpaque(false);
-		addActionListener(this);
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		Tile[][] gameBoard = new Tile[6][5];
 		boolean isMove = false;

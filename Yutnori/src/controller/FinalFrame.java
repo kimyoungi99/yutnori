@@ -24,7 +24,7 @@ public class FinalFrame extends JFrame{
 		JPanel selectionPanel = new JPanel();
 		JLabel winnerLabel = new JLabel();
 		JLabel winnerText = new JLabel();
-		this.setBounds(150, 100, 300, 185);
+		this.setBounds(300, 500, 300, 185);
 		this.setLayout(new GridLayout(2, 0));
 		winnerPanel.setBounds(0, 0, 250, 160);
 		selectionPanel.setBounds(180, 0, 250, 25);
@@ -37,9 +37,9 @@ public class FinalFrame extends JFrame{
 		winnerPanel.add(winnerLabel);
 		winnerPanel.add(winnerText);
 		
-		winnerLabel.setBounds(80, 15, 100, 54);
-		//winnerText.setFont(new Font("Serif", Font.PLAIN, 14));
-		winnerText.setBounds(140, 20, 54, 54);
+		winnerLabel.setBounds(60, 15, 100, 54);
+		winnerText.setFont(new Font("Helvetica", Font.BOLD, 20));
+		winnerText.setBounds(120, 20, 100, 54);
 
 		restartButton.setText("Restart");
 		exitButton.setText("Exit");

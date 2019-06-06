@@ -11,19 +11,13 @@ import model.Cord;
 import model.Model;
 import model.Tile;
 
-public class ExitButton extends JButton implements ActionListener {
-	private Model model;
+public class ExitButton extends GameBoardButton{
 	
 	public ExitButton(Model model) {
-		this.model = model;
-        this.setBorderPainted(false); 
-        this.setContentAreaFilled(false); 
-        this.setFocusPainted(false); 
-        this.setOpaque(false);
-		addActionListener(this);
+		super(model);
 	}
 	
-	//0: 윷 던지기 전, 1: 윷 던지고 움직일 말 선택전, 2: 움직일 말로 출발 말 선택, 3: 움직일 말로 기존 판 위의 말 선택
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		Tile[][] gameBoard = new Tile[6][5];
 		Tile temp = new Tile(999, 999);
