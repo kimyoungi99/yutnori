@@ -1,15 +1,9 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Vector;
-
-import view.Observer;
-
 public class Model{
 	private boolean gameEnd = false;
 	private int turn = 0;
 	private Player[] player = new Player[CONSTANT.PLAYERNUM];
-	private ArrayList<Observer> observers = new ArrayList<Observer>();
 	private int status = 0;		
 	//0: 윷 던지기 전, 1: 윷 던지고 움직일 말 선택전, 2: 움직일 말로 출발 말 선택, 3: 움직일 말로 기존 판 위의 말 선택
 	private int selectX = 0, selectY = 0;
@@ -64,6 +58,7 @@ public class Model{
 		this.status = status;
 	}
 	
+	
 	public int getSelectX() {
 		return selectX;
 	}
@@ -79,4 +74,5 @@ public class Model{
 	public void setSelectY(int selectY) {
 		this.selectY = selectY;
 	}
+	
 }

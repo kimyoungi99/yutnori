@@ -33,8 +33,4 @@ public class SelectPopUpFrame extends JFrame{
 			}
 		}
 	}
-	
-	public SelectButton[] getSelectButton() {
-		return select;
-	}
 }

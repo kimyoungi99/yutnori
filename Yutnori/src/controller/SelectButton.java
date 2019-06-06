@@ -10,7 +10,6 @@ import model.Model;
 public class SelectButton extends JButton implements ActionListener{
 	private int type;
 	private int data;
-	private int deleteDistance = -2;
 	private SelectPopUpFrame popupFrame;
 	private StartFrame startFrame;
 	//private Controller controller;
@@ -48,10 +47,6 @@ public class SelectButton extends JButton implements ActionListener{
 		return this.type;
 	}
 	
-	public int getDeleteDistance() {
-		return this.deleteDistance;
-	}
-	
 	public void actionPerformed(ActionEvent e) {
 		if(this.type == 0) {
 			startFrame.setNumOfPlayer(this.data + 1);
@@ -60,12 +55,8 @@ public class SelectButton extends JButton implements ActionListener{
 			startFrame.setNumOfPiece(this.data + 1);
 		}
 		else if(this.type == 2) {
-			//System.out.println("Delete: " + data);
 			model.getTurnPlayer().deleteDistance(data);
-			//model.getTurnPlayer().deleteDistance(type);
-			if (model.getTurnPlayer().getNumOfThrowChance() == 0 && model.getTurnPlayer().getthrowYutResultVector().isEmpty()) {
-				model.nextTurn();
-			}
+			model.turnCheck();
 			popupFrame.dispose();
 		}
 		else if(this.type == 3) {

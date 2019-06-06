@@ -41,9 +41,8 @@ public class ExitButton extends PieceButton {
 			boolean isClicked = false;
 			model.setStatus(1);
 			model.getTurnPlayer().setNumOfPassPiece(size);
-			// model.getTurnPlayer().getCanGoCordVector().clear();
+			model.getTurnPlayer().getCanGoCordVector().clear();
 
-			System.out.println("Player" + model.getTurn() + ": " + model.getTurnPlayer().getNumOfPassPiece());
 			if (model.getTurnPlayer().getNumOfPassPiece() == CONSTANT.PIECENUM) {
 				FinalFrame finalFrame = new FinalFrame(model.getTurn());
 				finalFrame.setVisible(true);
@@ -51,28 +50,6 @@ public class ExitButton extends PieceButton {
 			} else {
 				selectPopUpFrame.setVisible(true);
 			}
-			
-			/*
-			while (true) {
-				for (int i = 0; i < selectPopUpFrame.getSelectButton().length; i++) {
-					System.out.println(i);
-					if (selectPopUpFrame.getSelectButton()[i].getDeleteDistance() != -2) {
-						isClicked = true;
-					}
-				}
-				if(isClicked)
-					break;
-				else {
-					try {
-		                Thread.sleep(1000);
-		            } catch (InterruptedException e1) {
-		                e1.printStackTrace();
-		            }
-				}
-			}
-			*/
-			
-			System.out.println(model.getTurnPlayer().getthrowYutResultVector().get(0));
 		}
 	}
 }
