@@ -19,6 +19,7 @@ public class Controller extends JFrame {
 	private Model model = new Model();
 	private View view;
 	private GameBoardPanel gameBoardPanel = new GameBoardPanel(model);
+	private GameInfoPanel gameInfoPanel = new GameInfoPanel(model);
 	private JPanel throwButtonPanel = new JPanel();
 	private JPanel restPiecePanel = new JPanel();
 	private JPanel throwResultPanel = new JPanel();
@@ -31,7 +32,7 @@ public class Controller extends JFrame {
 	public Controller(int playerNum, int PieceNum) {
 		CONSTANT c = new CONSTANT(playerNum, PieceNum);
 		this.setTitle("Yut No Ri");
-		this.setBounds(100, 100, 1000, 700);
+		this.setBounds(300, 30, 990, 750);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);
 		// this.setVisible(true);
@@ -50,7 +51,9 @@ public class Controller extends JFrame {
 	public void init() {
 		model.getTurnPlayer().addNumOfThrowChance();
 		gameBoardPanel.setBackground(Color.WHITE);
-		gameBoardPanel.setBounds(25, 25, 610, 610);
+		gameBoardPanel.setBounds(25, 75, 610, 610);
+		
+		gameInfoPanel.setBounds(25, 5, 610, 65);
 
 		GridLayout restPiecePanelLayout = new GridLayout(CONSTANT.PLAYERNUM, CONSTANT.PIECENUM);
 		restPiecePanel.setLayout(restPiecePanelLayout);
@@ -62,11 +65,11 @@ public class Controller extends JFrame {
 			}
 		}
 
-		restPiecePanel.setBounds(670, 25, 54*CONSTANT.PIECENUM, 54*CONSTANT.PLAYERNUM);
+		restPiecePanel.setBounds(670, 75, 54*CONSTANT.PIECENUM, 54*CONSTANT.PLAYERNUM);
 
 		throwResultLabel.setIcon(moeImage);
 		throwResultPanel.add(throwResultLabel);
-		throwResultPanel.setBounds(695, 265, 220, 220);
+		throwResultPanel.setBounds(695, 315, 220, 220);
 
 		GridLayout throwYutButtonPanelLayout = new GridLayout(2, 4);
 		throwButtonPanel.setLayout(throwYutButtonPanelLayout);
@@ -75,9 +78,10 @@ public class Controller extends JFrame {
 			throwButton[i].setSize(20, 20);
 			throwButtonPanel.add(throwButton[i]);
 		}
-		throwButtonPanel.setBounds(670, 515, 270, 110);
+		throwButtonPanel.setBounds(670, 565, 270, 110);
 
 		this.add(gameBoardPanel);
+		this.add(gameInfoPanel);
 		this.add(restPiecePanel);
 		this.add(throwResultPanel);
 		this.add(throwButtonPanel);
