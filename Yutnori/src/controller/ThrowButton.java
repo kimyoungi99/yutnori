@@ -34,7 +34,7 @@ public class ThrowButton extends JButton implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (model.getTurnPlayer().getNumOfThrowChance() > 0) {
 			model.getTurnPlayer().throwYut(this.throwButtonID);
-			model.setStatus(1);
+			model.getClickData().setStatus(1);;
 		}
 		else {
 			System.out.println("더 이상 던질 수 없습니다.");

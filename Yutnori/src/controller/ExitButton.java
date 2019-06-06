@@ -8,9 +8,8 @@ import model.Cord;
 import model.Model;
 import model.Tile;
 
-public class ExitButton extends GameBoardButton {
+public class ExitButton extends PieceButton {
 	private StartFrame sf;
-
 	public ExitButton(Model model, StartFrame sf) {
 		super(model);
 		this.sf = sf;
@@ -26,12 +25,12 @@ public class ExitButton extends GameBoardButton {
 		Iterator<Cord> cordIterator = model.getTurnPlayer().getCanGoCordVector().iterator();
 		Cord cord = new Cord();
 		gameBoard = model.getTurnPlayer().yutnori.getBoard().getGameBoard();
-		if (model.getStatus() == 3) {
+		if (model.getClickData().getStatus() == 3) {
 			while (cordIterator.hasNext()) {
 				cord = cordIterator.next();
 				if (cord.getX() == 999 && cord.getY() == 999) {
 					isMove = true;
-					selectTile = gameBoard[model.getSelectX()][model.getSelectY()];
+					selectTile = gameBoard[model.getClickData().getSelectedX()][model.getClickData().getSelectedY()];
 					size = selectTile.getPieceList().size();
 					model.getTurnPlayer().movePiece(selectTile, finish);
 					break;
@@ -39,13 +38,12 @@ public class ExitButton extends GameBoardButton {
 			}
 		}
 		if (isMove) {
-			SelectPopUpFrame selectPopUpFrame = new SelectPopUpFrame(model.getSelectX(), model.getSelectY(), model);
+			SelectPopUpFrame selectPopUpFrame = new SelectPopUpFrame(model.getClickData().getSelectedX(), model.getClickData().getSelectedX(), model);
 			boolean isClicked = false;
-			model.setStatus(1);
+			model.getClickData().setStatus(1);
 			model.getTurnPlayer().setNumOfPassPiece(size);
-			// model.getTurnPlayer().getCanGoCordVector().clear();
+			model.getTurnPlayer().getCanGoCordVector().clear();
 
-			System.out.println("Player" + model.getTurn() + ": " + model.getTurnPlayer().getNumOfPassPiece());
 			if (model.getTurnPlayer().getNumOfPassPiece() == CONSTANT.PIECENUM) {
 				FinalFrame finalFrame = new FinalFrame(model.getTurn(), sf);
 				finalFrame.setVisible(true);
@@ -53,28 +51,6 @@ public class ExitButton extends GameBoardButton {
 			} else {
 				selectPopUpFrame.setVisible(true);
 			}
-			
-			/*
-			while (true) {
-				for (int i = 0; i < selectPopUpFrame.getSelectButton().length; i++) {
-					System.out.println(i);
-					if (selectPopUpFrame.getSelectButton()[i].getDeleteDistance() != -2) {
-						isClicked = true;
-					}
-				}
-				if(isClicked)
-					break;
-				else {
-					try {
-		                Thread.sleep(1000);
-		            } catch (InterruptedException e1) {
-		                e1.printStackTrace();
-		            }
-				}
-			}
-			*/
-			
-			System.out.println(model.getTurnPlayer().getthrowYutResultVector().get(0));
 		}
 	}
 }

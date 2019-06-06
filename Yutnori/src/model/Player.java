@@ -85,6 +85,10 @@ public class Player implements Observable {
 	public int getPlayerId() {
 		return playerID;
 	}
+	
+	public int getNumOfPassPiece() {
+		return this.numOfPassPiece;
+	}
 
 	public Vector<Integer> getthrowYutResultVector() {
 		return throwYutResultVector;
@@ -99,18 +103,9 @@ public class Player implements Observable {
 		numOfThrowChance ++;
 		notifyTurnObserver(playerID);
 	}
-	
-	
-	public void subNumOfThrowChance() {
-		numOfThrowChance --;
-	}
-	
+
 	public int getNumOfThrowChance() {
 		return numOfThrowChance;
-	}
-
-	public void clearCanGoCordVector() {
-		canGoCordVector.clear();
 	}
 
 	public void throwYut(int type) {
@@ -245,10 +240,6 @@ public class Player implements Observable {
 			}
 		}
 		canGoCordVector.clear();
-	}
-	
-	public int getNumOfPassPiece() {
-		return this.numOfPassPiece;
 	}
 	
 	public boolean isDistance(int dis) {
