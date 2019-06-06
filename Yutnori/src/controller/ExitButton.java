@@ -8,7 +8,7 @@ import model.Cord;
 import model.Model;
 import model.Tile;
 
-public class ExitButton extends GameBoardButton {
+public class ExitButton extends PieceButton {
 
 	public ExitButton(Model model) {
 		super(model);

@@ -7,10 +7,10 @@ import javax.swing.JButton;
 
 import model.Model;
 
-public class GameBoardButton extends JButton implements ActionListener {
+public class PieceButton extends JButton implements ActionListener {
 	protected Model model;
 	
-	public GameBoardButton(Model model) {
+	public PieceButton(Model model) {
 		this.model = model;
         this.setBorderPainted(false); 
         this.setContentAreaFilled(false); 
