@@ -13,7 +13,7 @@ public class Yutnori {
 
 		for (int i = 0; i < pieceArray.length; i++) {
 			for (int j = 0; j < pieceArray[0].length; j++) {
-				this.pieceArray[i][j] = new Piece(i * 10 + j, i);
+				this.pieceArray[i][j] = new Piece(j, i);
 			}
 		}
 

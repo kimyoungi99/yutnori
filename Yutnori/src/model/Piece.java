@@ -29,19 +29,4 @@ public class Piece {
 	public void setIsStartFalse() {
 		isStart = false;
 	}
-	
-	
-	/*
-	public Piece getNextPiece() {
-		return this.nextPiece;
-	}
-	
-	public void stackPiece(Piece piece) {
-		this.nextPiece = piece;
-	}
-	
-	public void detachPiece() {
-		this.nextPiece = null;
-	}
-	*/
 }

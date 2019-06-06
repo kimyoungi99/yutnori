@@ -3,7 +3,6 @@ package model;
 import java.util.Random;
 
 public class Yut {
-
 	private boolean isBackDoYut;
 	private boolean isFront; // 앞면이 평평한 부분
 

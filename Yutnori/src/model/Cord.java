@@ -17,7 +17,6 @@ public class Cord {
 		return y;
 	}
 	
-	//실제로 움직일 때 도착했는지 계산해도 될듯? (return을 void로)
 	public boolean transform(int delta, boolean start) {
 		boolean is_done = false;
 		
