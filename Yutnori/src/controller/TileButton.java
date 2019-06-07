@@ -28,8 +28,8 @@ public class TileButton extends PieceButton{
 		Cord cord = new Cord();
 		Tile selectTile = new Tile(0, 0);
 		Tile targetTile = new Tile(0, 0);
-		gameBoard = model.getTurnPlayer().yutnori.getBoard().getGameBoard();
-		restPieceBoard = model.getTurnPlayer().yutnori.getBoard().getWaitingPieceBoard();
+		gameBoard = model.getTurnPlayer().getYutnori().getBoard().getGameBoard();
+		restPieceBoard = model.getTurnPlayer().getYutnori().getBoard().getWaitingPieceBoard();
 		ArrayList<Piece> pieceList = new ArrayList<Piece>();
 		pieceList = gameBoard[x][y].getPieceList();
 		
