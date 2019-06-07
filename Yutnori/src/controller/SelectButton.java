@@ -88,11 +88,6 @@ public class SelectButton extends JButton implements ActionListener{
 			startFrame.getController().dispose();
 			startFrame.getController().getModel().getPlayer()[0].getYutnori().reset();
 			startFrame.startGame();
-			/*
-			startFrame.dispose();
-			StartFrame newStartFrame = new StartFrame();
-			newStartFrame.setVisible(true);
-			*/
 		}
 		else if(this.type == 5) {
 			System.exit(0);
