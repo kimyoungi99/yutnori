@@ -7,7 +7,7 @@ public class Model{
 	
 	public Model() {
 		for(int i = 0; i < player.length; i++) {
-			player[i] = new Player(i);
+			player[i] = new Player(i, this);
 		}
 	}
 	

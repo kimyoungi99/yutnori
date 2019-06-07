@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Vector;
 
+import controller.FinalFrame;
+import controller.SelectPopUpFrame;
 import view.Observer;
 
 public class Player implements Observable {
-
+	private Model model;
 	private static Yutnori yutnori = new Yutnori();
 	private int playerID;
 	private int numOfThrowChance = 0;
@@ -18,8 +20,9 @@ public class Player implements Observable {
 	private Vector<Cord> canGoCordVector = new Vector<Cord>();
 	private ArrayList<Observer> observers = new ArrayList<Observer>();
 
-	public Player(int playerID) {
+	public Player(int playerID, Model model) {
 		this.playerID = playerID;
+		this.model = model;
 	}
 
 	@Override
@@ -159,39 +162,109 @@ public class Player implements Observable {
 		}
 	}
 
-	public void movePiece(Tile selectTile, Tile targetTile) {
+	public boolean movePiece(int x, int y, int type) {
+		Tile[][] gameBoard = new Tile[6][5];
+		Tile[][] restPieceBoard = new Tile[CONSTANT.PLAYERNUM][CONSTANT.PIECENUM];
+		gameBoard = yutnori.getBoard().getGameBoard();
+		restPieceBoard = yutnori.getBoard().getWaitingPieceBoard();
+		Iterator<Cord> cordIterator = canGoCordVector.iterator();
+		Cord cord = new Cord();
+		Tile selectTile = new Tile(0, 0);
+		Tile targetTile = new Tile(0, 0);
 		int catchedTeam = -1;
 		int numOfCatchedPiece = 0;
+		int size = 0;
+		boolean isMove = false;
 		ArrayList<Piece> pieceList = new ArrayList<Piece>();
 
-		if (!targetTile.getPieceList().isEmpty() && !selectTile.getPieceList().isEmpty()) {
-			if (targetTile.getPieceList().get(0).getTeam() != selectTile.getPieceList().get(0).getTeam()) {
-				catchedTeam = targetTile.getPieceList().get(0).getTeam();
+		if (type == 0) {
+			targetTile = gameBoard[x][y];
+			if (clickData.getStatus() == 2)
+				selectTile = restPieceBoard[clickData.getSelectedX()][clickData.getSelectedY()];
+			else if (clickData.getStatus() == 3)
+				selectTile = gameBoard[clickData.getSelectedX()][clickData.getSelectedY()];
+		} else if (type == 1) {
+			selectTile = gameBoard[clickData.getSelectedX()][clickData.getSelectedY()];
+			targetTile = new Tile(999, 999);
+		}
 
-				for (int i = 0; i < CONSTANT.PIECENUM; i++) {
-					if (yutnori.getBoard().getWaitingPieceBoard()[catchedTeam][i].getPieceList().isEmpty()) {
-						if (numOfCatchedPiece < targetTile.getPieceList().size()) {
-							targetTile.getPieceList().get(numOfCatchedPiece).setIsStartFalse();
-							pieceList.add(targetTile.getPieceList().get(numOfCatchedPiece));
-							yutnori.getBoard().getWaitingPieceBoard()[catchedTeam][i].putPiece(pieceList);
-							pieceList.clear();
-							numOfCatchedPiece++;
-						}
-					}
+		while (cordIterator.hasNext()) {
+			cord = cordIterator.next();
+			if (type == 0) {
+				if (cord.getX() == x && cord.getY() == y) {
+					isMove = true;
 				}
-				targetTile.removePiece();
-				this.numOfThrowChance++;
-				notifyThrowChanceObserver(numOfThrowChance);
+			} else if (type == 1) {
+				if (cord.getX() == 999 && cord.getY() == 999) {
+					isMove = true;
+					size = selectTile.getPieceList().size();
+					break;
+				}
 			}
 		}
+		
+		if (isMove) {
+			if (!targetTile.getPieceList().isEmpty() && !selectTile.getPieceList().isEmpty()) {
+				if (targetTile.getPieceList().get(0).getTeam() != selectTile.getPieceList().get(0).getTeam()) {
+					catchedTeam = targetTile.getPieceList().get(0).getTeam();
 
-		targetTile.putPiece(selectTile.getPieceList());
+					for (int i = 0; i < CONSTANT.PIECENUM; i++) {
+						if (yutnori.getBoard().getWaitingPieceBoard()[catchedTeam][i].getPieceList().isEmpty()) {
+							if (numOfCatchedPiece < targetTile.getPieceList().size()) {
+								targetTile.getPieceList().get(numOfCatchedPiece).setIsStartFalse();
+								pieceList.add(targetTile.getPieceList().get(numOfCatchedPiece));
+								yutnori.getBoard().getWaitingPieceBoard()[catchedTeam][i].putPiece(pieceList);
+								pieceList.clear();
+								numOfCatchedPiece++;
+							}
+						}
+					}
+					targetTile.removePiece();
+					this.numOfThrowChance++;
+					notifyThrowChanceObserver(numOfThrowChance);
+				}
+			}
 
-		for (int i = 0; i < selectTile.getPieceList().size(); i++) {
-			selectTile.getPieceList().get(i).setIsStartTrue();
+			targetTile.putPiece(selectTile.getPieceList());
+
+			for (int i = 0; i < selectTile.getPieceList().size(); i++) {
+				selectTile.getPieceList().get(i).setIsStartTrue();
+			}
+			selectTile.removePiece();
+			notifyBoardObserver(this.yutnori.getBoard());
+			
+
+			if(type == 0) {
+				deleteDistance(selectTile, targetTile);
+				model.turnCheck();
+			}
+			else if(type == 1) {
+				numOfPassPiece += size;
+				canGoCordVector.clear();
+				/*
+				SelectPopUpFrame selectPopUpFrame = new SelectPopUpFrame(clickData.getSelectedX(), clickData.getSelectedX(), model);
+				if (numOfPassPiece == CONSTANT.PIECENUM) {
+					FinalFrame finalFrame = new FinalFrame(model.getTurn(), sf);
+					finalFrame.setVisible(true);
+					System.out.println("Player" + model.getTurn() + " Win");
+				} else {
+					selectPopUpFrame.setVisible(true);
+				}
+				*/
+			}
+			clickData.setStatus(1);
 		}
-		selectTile.removePiece();
-		notifyBoardObserver(this.yutnori.getBoard());
+		else if(gameBoard[x][y].getPieceList().isEmpty() || gameBoard[x][y].getPieceList().get(0).getTeam() != playerID) {
+			if(type == 0) {
+				clickData.setStatus(1);
+				cancelHighlight();
+			}
+		}
+		else {
+			if(type == 0)
+				this.getCanGoTile(x, y, 1);
+		}
+		return isMove;
 	}
 
 	public void getCanGoTile(int x, int y, int type) {
