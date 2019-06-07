@@ -23,7 +23,27 @@ public class SelectButton extends JButton implements ActionListener{
 	}
 	
 	public SelectButton(int data, int type) {
-		this.setText(Integer.toString(data + 1));
+		if(type == 2) {
+			switch(data) {
+			case 1:
+				this.setText("도");
+				break;
+			case 2:
+				this.setText("개");
+				break;
+			case 3:
+				this.setText("걸");
+				break;
+			case 4:
+				this.setText("윷");
+				break;
+			case 5:
+				this.setText("모");
+				break;
+			}
+		}
+		else
+			this.setText(Integer.toString(data + 1));
 		this.type = type;
 		this.data = data;
 		this.addActionListener(this);

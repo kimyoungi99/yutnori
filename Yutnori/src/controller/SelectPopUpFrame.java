@@ -28,7 +28,6 @@ public class SelectPopUpFrame extends JFrame{
 			if(i + 1 >= minDis && model.getTurnPlayer().isDistance(i + 1)) {
 				select[i] = new SelectButton(i + 1, 2);
 				select[i].setButton(this, model);
-				select[i].setText(Integer.toString(i + 1));
 				this.add(select[i]);
 			}
 		}

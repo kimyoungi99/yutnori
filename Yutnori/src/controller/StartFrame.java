@@ -22,7 +22,9 @@ public class StartFrame extends JFrame {
 		this.setBounds(150, 100, 300, 150);
 		this.setLayout(new GridLayout(3, 0));
 		playerSelectionPanel.setBounds(0, 0, 250, 50);
+		playerSelectionPanel.setLayout(new GridLayout(0, 3));
 		pieceSelectionPanel.setBounds(50, 0, 250, 50);
+		pieceSelectionPanel.setLayout(new GridLayout(0, 4));
 		startPanel.setBounds(100, 0, 250, 50);
 		this.add(playerSelectionPanel);
 		this.add(pieceSelectionPanel);
