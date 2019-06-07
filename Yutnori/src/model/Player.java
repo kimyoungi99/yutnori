@@ -57,7 +57,7 @@ public class Player implements Observable {
 			observer.updateBoard(board);
 		}
 	}
-	
+
 	@Override
 	public void notifyThrowChanceObserver(int chance) {
 		for (int i = 0; i < observers.size(); i++) {
@@ -65,7 +65,7 @@ public class Player implements Observable {
 			observer.updateThrowChanceLabel(chance);
 		}
 	}
-	
+
 	@Override
 	public void notifyTurnObserver(int turn) {
 		for (int i = 0; i < observers.size(); i++) {
@@ -85,7 +85,7 @@ public class Player implements Observable {
 	public int getPlayerId() {
 		return playerID;
 	}
-	
+
 	public int getNumOfPassPiece() {
 		return this.numOfPassPiece;
 	}
@@ -93,17 +93,17 @@ public class Player implements Observable {
 	public Vector<Integer> getthrowYutResultVector() {
 		return throwYutResultVector;
 	}
-	
+
 	public Vector<Cord> getCanGoCordVector() {
 		return canGoCordVector;
 	}
-	
+
 	public Yutnori getYutnori() {
 		return yutnori;
 	}
-	
+
 	public void addNumOfThrowChance() {
-		numOfThrowChance ++;
+		numOfThrowChance++;
 		notifyTurnObserver(playerID);
 	}
 
@@ -112,41 +112,46 @@ public class Player implements Observable {
 	}
 
 	public void throwYut(int type) {
-		int numOfFront = 0;
-		if (type == 0) {
-			boolean[] throwResult = new boolean[CONSTANT.YUTNUM];
-			numOfFront = 0;
-			for (int i = 0; i < yutnori.getYutSet().length; i++) {
-				if (throwResult[i] = yutnori.getYutSet()[i].getIsFront()) {
-					numOfFront++;
+		if (numOfThrowChance > 0) {
+			int numOfFront = 0;
+			if (type == 0) {
+				boolean[] throwResult = new boolean[CONSTANT.YUTNUM];
+				numOfFront = 0;
+				for (int i = 0; i < yutnori.getYutSet().length; i++) {
+					if (throwResult[i] = yutnori.getYutSet()[i].getIsFront()) {
+						numOfFront++;
+					}
 				}
-			}
-			// 백도
-			if (numOfFront == 1 && throwResult[CONSTANT.YUTNUM - 1])
-				numOfFront = -1;
-			if (numOfFront == 0)
-				numOfFront = 5;
+				// 백도
+				if (numOfFront == 1 && throwResult[CONSTANT.YUTNUM - 1])
+					numOfFront = -1;
+				if (numOfFront == 0)
+					numOfFront = 5;
 
+			}
+			if (type == 1) // 도 개 걸 윷 모 백도 순
+				numOfFront = 1;
+			if (type == 2)
+				numOfFront = 2;
+			if (type == 3)
+				numOfFront = 3;
+			if (type == 4)
+				numOfFront = 4;
+			if (type == 5)
+				numOfFront = 5;
+			if (type == 6)
+				numOfFront = -1;
+			throwYutResultVector.add(numOfFront);
+
+			if (numOfFront == 4 || numOfFront == 5)
+				numOfThrowChance++;
+			numOfThrowChance--;
+			notifyThrowChanceObserver(numOfThrowChance);
+			notifyYutResultObserver(numOfFront);
 		}
-		if (type == 1) // 도 개 걸 윷 모 백도 순
-			numOfFront = 1;
-		if (type == 2)
-			numOfFront = 2;
-		if (type == 3)
-			numOfFront = 3;
-		if (type == 4)
-			numOfFront = 4;
-		if (type == 5)
-			numOfFront = 5;
-		if (type == 6)
-			numOfFront = -1;
-		throwYutResultVector.add(numOfFront);
-		
-		if(numOfFront == 4 || numOfFront == 5)
-			numOfThrowChance++;
-		numOfThrowChance--;
-		notifyThrowChanceObserver(numOfThrowChance);
-		notifyYutResultObserver(numOfFront);
+		else {
+			System.out.println("더 이상 던질 수 없습니다.");
+		}
 	}
 
 	public void movePiece(Tile selectTile, Tile targetTile) {
@@ -158,9 +163,9 @@ public class Player implements Observable {
 			if (targetTile.getPieceList().get(0).getTeam() != selectTile.getPieceList().get(0).getTeam()) {
 				catchedTeam = targetTile.getPieceList().get(0).getTeam();
 
-				for (int i=0; i<CONSTANT.PIECENUM; i++) {
+				for (int i = 0; i < CONSTANT.PIECENUM; i++) {
 					if (yutnori.getBoard().getWaitingPieceBoard()[catchedTeam][i].getPieceList().isEmpty()) {
-						if(numOfCatchedPiece < targetTile.getPieceList().size()) {
+						if (numOfCatchedPiece < targetTile.getPieceList().size()) {
 							targetTile.getPieceList().get(numOfCatchedPiece).setIsStartFalse();
 							pieceList.add(targetTile.getPieceList().get(numOfCatchedPiece));
 							yutnori.getBoard().getWaitingPieceBoard()[catchedTeam][i].putPiece(pieceList);
@@ -176,8 +181,8 @@ public class Player implements Observable {
 		}
 
 		targetTile.putPiece(selectTile.getPieceList());
-		
-		for(int i=0; i<selectTile.getPieceList().size(); i++) {
+
+		for (int i = 0; i < selectTile.getPieceList().size(); i++) {
 			selectTile.getPieceList().get(i).setIsStartTrue();
 		}
 		selectTile.removePiece();
@@ -191,12 +196,12 @@ public class Player implements Observable {
 		Cord canGoCord;
 		boolean isStart;
 
-		while(distanceIterator.hasNext()) {
+		while (distanceIterator.hasNext()) {
 			canGoCord = new Cord();
 			isStart = selectTile.getPieceList().get(0).getIsStart();
 			distance = distanceIterator.next();
 
-			if(!selectTile.getPieceList().isEmpty() && selectTile.getPieceList().get(0).getTeam() == playerID) {
+			if (!selectTile.getPieceList().isEmpty() && selectTile.getPieceList().get(0).getTeam() == playerID) {
 				currentCord.setCord(selectTile.getX(), selectTile.getY());
 				currentCord.transform(distance, isStart);
 				canGoCord.setCord(currentCord.getX(), currentCord.getY());
@@ -206,12 +211,12 @@ public class Player implements Observable {
 
 		notifyHighlightObserver(canGoCordVector);
 	}
-	
+
 	public void cancelHighlight() {
 		canGoCordVector.clear();
 		notifyBoardObserver(this.yutnori.getBoard());
 	}
-	
+
 	public void deleteDistance(Tile selectTile, Tile targetTile) {
 		int distance;
 		Cord beforeCord = new Cord();
@@ -231,7 +236,7 @@ public class Player implements Observable {
 		}
 		canGoCordVector.clear();
 	}
-	
+
 	public void deleteDistance(int distance) {
 		int result = 0;
 		Iterator<Integer> distanceIterator = throwYutResultVector.iterator();
@@ -244,10 +249,10 @@ public class Player implements Observable {
 		}
 		canGoCordVector.clear();
 	}
-	
+
 	public boolean isDistance(int dis) {
-		for(int i = 0; i < this.throwYutResultVector.size(); i++)
-			if(dis == this.throwYutResultVector.get(i)) {
+		for (int i = 0; i < this.throwYutResultVector.size(); i++)
+			if (dis == this.throwYutResultVector.get(i)) {
 				return true;
 			}
 		return false;
