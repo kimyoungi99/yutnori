@@ -20,11 +20,10 @@ public class ExitButton extends PieceButton {
 		boolean isMove = false;
 		isMove = model.getTurnPlayer().movePiece(0, 0, 1);
 		if (isMove) {
-			SelectPopUpFrame selectPopUpFrame = new SelectPopUpFrame(model.getTurnPlayer().getClickData().getSelectedX(), model.getTurnPlayer().getClickData().getSelectedX(), model);
+			SelectPopUpFrame selectPopUpFrame = new SelectPopUpFrame(model.getTurnPlayer().getClickData().getSelectedX(), model.getTurnPlayer().getClickData().getSelectedY(), model);
 			if (model.getTurnPlayer().getNumOfPassPiece() == CONSTANT.PIECENUM) {
 				FinalFrame finalFrame = new FinalFrame(model.getTurn(), sf);
 				finalFrame.setVisible(true);
-				System.out.println("Player" + model.getTurn() + " Win");
 			} else {
 				selectPopUpFrame.setVisible(true);
 			}
