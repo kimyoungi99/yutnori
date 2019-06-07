@@ -5,8 +5,7 @@ import javax.swing.JPanel;
 import model.Model;
 
 public class GameBoardPanel extends JPanel{
-	
-	private Model model = new Model();
+	private Model model;
 	private TileButton[][] tileButton = new TileButton[6][5];
 	private ExitButton exitButton;
 	private static final int TILESIZE = 54;

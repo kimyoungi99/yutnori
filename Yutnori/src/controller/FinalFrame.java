@@ -46,15 +46,11 @@ public class FinalFrame extends JFrame{
 		
 		restartButton.setFinalFrame(this);
 		restartButton.setStartFrame(startFrame);
-		//startButton.setStartFrame(this);
+
 		selectionPanel.add(restartButton);
 		selectionPanel.add(exitButton);
 	}
-	
-	public void restartGame() {
 
-	}
-	
 	public void exitGame() {
 		System.exit(0);
 	}

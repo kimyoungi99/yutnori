@@ -9,7 +9,6 @@ public class StartFrame extends JFrame {
 	private SelectButton[] playerSelectButton = new SelectButton[3];
 	private SelectButton[] pieceSelectButton = new SelectButton[4];
 	private SelectButton startButton = new SelectButton(3);
-	//private Controller controller;
 	private int numOfPlayer = 4;
 	private int numOfPiece = 4;
 	private Controller controller;
@@ -47,8 +46,6 @@ public class StartFrame extends JFrame {
 	public static void main(String[] args) {
 		StartFrame start = new StartFrame();
 		start.setVisible(true);
-		//FinalFrame finalframe = new FinalFrame(0);
-		//finalframe.setVisible(true);
 	}
 	
 	public void setNumOfPlayer(int numOfPlayer) {
@@ -58,12 +55,6 @@ public class StartFrame extends JFrame {
 	public void setNumOfPiece(int numOfPiece) {
 		this.numOfPiece = numOfPiece;
 	}
-	
-	/*
-	public Controller getController() {
-		return controller;
-	}
-	*/
 	
 	public void startGame() {
 		controller = new Controller(numOfPlayer, numOfPiece, this);
