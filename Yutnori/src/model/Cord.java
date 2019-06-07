@@ -31,7 +31,7 @@ public class Cord {
 				this.x= 2;
 			else if(this.x == 0) {
 				this.x = 3;
-				this.y = 5;
+				this.y = 4;
 			}
 		}
 		else {
