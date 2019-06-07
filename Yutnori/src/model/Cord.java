@@ -17,8 +17,8 @@ public class Cord {
 		return y;
 	}
 	
-	public boolean transform(int delta, boolean start) {
-		boolean is_done = false;
+	public void transform(int delta, boolean start) {
+		//boolean is_done = false;
 		
 		if(delta == -1 && this.y == 0) {
 			if(this.x == 1 || this.x == 2 || this.x == 3) {
@@ -44,7 +44,7 @@ public class Cord {
 			else if(this.y == 0 && this.x == 0) {
 				this.x = 999;
 				this.y = 999;
-				is_done = true;
+				//is_done = true;
 			}
 			else if(this.y == 0 && (this.x == 1 || this.x == 2)) {
 				this.x += 3;
@@ -69,15 +69,13 @@ public class Cord {
 					else {
 						this.x = 999;
 						this.y = 999;
-						is_done = true;
+						//is_done = true;
 					}
 				}
 			}
 		}
 		if(this.x == 4 && this.y == 2)
 			this.x = 5;
-		
-		return is_done;
 	}
 	
 	public int distance(Cord target) {
