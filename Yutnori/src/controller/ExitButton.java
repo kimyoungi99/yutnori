@@ -24,7 +24,7 @@ public class ExitButton extends PieceButton {
 		int size = 0;
 		Iterator<Cord> cordIterator = model.getTurnPlayer().getCanGoCordVector().iterator();
 		Cord cord = new Cord();
-		gameBoard = model.getTurnPlayer().yutnori.getBoard().getGameBoard();
+		gameBoard = model.getTurnPlayer().getYutnori().getBoard().getGameBoard();
 		if (model.getClickData().getStatus() == 3) {
 			while (cordIterator.hasNext()) {
 				cord = cordIterator.next();

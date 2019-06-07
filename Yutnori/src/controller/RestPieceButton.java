@@ -26,7 +26,7 @@ public class RestPieceButton extends PieceButton {
 	public void actionPerformed(ActionEvent e) {
 		Tile[][] restPieceBoard = new Tile[CONSTANT.PLAYERNUM][CONSTANT.PIECENUM];
 		ArrayList<Piece> pieceList = new ArrayList<Piece>();
-		restPieceBoard = model.getTurnPlayer().yutnori.getBoard().getWaitingPieceBoard();
+		restPieceBoard = model.getTurnPlayer().getYutnori().getBoard().getWaitingPieceBoard();
 		pieceList = restPieceBoard[x][y].getPieceList();
 		if (model.getClickData().getStatus() != 0) {
 			if (pieceList.isEmpty() || pieceList.get(0).getTeam() != model.getTurn()) {

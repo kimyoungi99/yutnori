@@ -8,7 +8,7 @@ import view.Observer;
 
 public class Player implements Observable {
 
-	public static Yutnori yutnori = new Yutnori();
+	private static Yutnori yutnori = new Yutnori();
 	private int playerID;
 	private int numOfThrowChance = 0;
 	private int numOfRestPiece = CONSTANT.PIECENUM;
@@ -98,6 +98,9 @@ public class Player implements Observable {
 		return canGoCordVector;
 	}
 	
+	public Yutnori getYutnori() {
+		return yutnori;
+	}
 	
 	public void addNumOfThrowChance() {
 		numOfThrowChance ++;
