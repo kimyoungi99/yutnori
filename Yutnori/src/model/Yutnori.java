@@ -31,4 +31,17 @@ public class Yutnori {
 	public Piece[][] getPieceArray() {
 		return pieceArray;
 	}
+	
+	public void reset() {
+		for (int i = 0; i < yutSet.length; i++) {
+			this.yutSet[i] = new Yut(i); // if i == 3 then BACKDO
+		}
+
+		for (int i = 0; i < pieceArray.length; i++) {
+			for (int j = 0; j < pieceArray[0].length; j++) {
+				this.pieceArray[i][j] = new Piece(j, i);
+			}
+		}
+		board = new Board(pieceArray);
+	}
 }
