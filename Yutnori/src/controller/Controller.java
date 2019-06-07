@@ -4,15 +4,12 @@ import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.CONSTANT;
 import model.Model;
-import model.Player;
-import model.Tile;
 import view.View;
 
 public class Controller extends JFrame {

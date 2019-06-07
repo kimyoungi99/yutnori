@@ -1,18 +1,8 @@
 package controller;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Vector;
 
-import javax.swing.JButton;
-
-import model.CONSTANT;
-import model.Cord;
 import model.Model;
-import model.Piece;
-import model.Tile;
 
 public class RestPieceButton extends PieceButton {
 	private int x, y;

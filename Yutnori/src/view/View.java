@@ -9,8 +9,6 @@ import controller.Controller;
 import model.Board;
 import model.CONSTANT;
 import model.Cord;
-import model.Model;
-import model.Player;
 import model.Tile;
 
 public class View implements Observer {

@@ -4,8 +4,6 @@ import java.util.Vector;
 
 import model.Board;
 import model.Cord;
-import model.Model;
-import model.Player;
 
 public interface Observer {
 	public void updateYutResultPanel(int result);

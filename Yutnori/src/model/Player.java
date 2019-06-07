@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Vector;
 
-import controller.FinalFrame;
-import controller.SelectPopUpFrame;
 import view.Observer;
 
 public class Player implements Observable {

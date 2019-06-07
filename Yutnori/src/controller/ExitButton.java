@@ -1,12 +1,9 @@
 package controller;
 
 import java.awt.event.ActionEvent;
-import java.util.Iterator;
 
 import model.CONSTANT;
-import model.Cord;
 import model.Model;
-import model.Tile;
 
 public class ExitButton extends PieceButton {
 	private StartFrame sf;
