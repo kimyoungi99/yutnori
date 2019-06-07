@@ -13,6 +13,7 @@ public class Player implements Observable {
 	private int numOfThrowChance = 0;
 	private int numOfRestPiece = CONSTANT.PIECENUM;
 	private int numOfPassPiece = 0;
+	private ClickData clickData = new ClickData();
 	private Vector<Integer> throwYutResultVector = new Vector<Integer>();
 	private Vector<Cord> canGoCordVector = new Vector<Cord>();
 	private ArrayList<Observer> observers = new ArrayList<Observer>();
@@ -102,6 +103,10 @@ public class Player implements Observable {
 		return yutnori;
 	}
 
+	public ClickData getClickData() {
+		return clickData;
+	}
+
 	public void addNumOfThrowChance() {
 		numOfThrowChance++;
 		notifyTurnObserver(playerID);
@@ -146,10 +151,10 @@ public class Player implements Observable {
 			if (numOfFront == 4 || numOfFront == 5)
 				numOfThrowChance++;
 			numOfThrowChance--;
+			clickData.setStatus(1);
 			notifyThrowChanceObserver(numOfThrowChance);
 			notifyYutResultObserver(numOfFront);
-		}
-		else {
+		} else {
 			System.out.println("더 이상 던질 수 없습니다.");
 		}
 	}
@@ -189,27 +194,53 @@ public class Player implements Observable {
 		notifyBoardObserver(this.yutnori.getBoard());
 	}
 
-	public void getCanGoTile(Tile selectTile) {
-		int distance;
+	public void getCanGoTile(int x, int y, int type) {
+		Tile[][] gameBoard = new Tile[6][5];
+		Tile[][] restPieceBoard = new Tile[CONSTANT.PLAYERNUM][CONSTANT.PIECENUM];
+		Tile selectTile = new Tile(0, 0);
+		gameBoard = yutnori.getBoard().getGameBoard();
+		restPieceBoard = yutnori.getBoard().getWaitingPieceBoard();
 		Iterator<Integer> distanceIterator = throwYutResultVector.iterator();
 		Cord currentCord = new Cord();
 		Cord canGoCord;
 		boolean isStart;
+		int distance;
 
-		while (distanceIterator.hasNext()) {
-			canGoCord = new Cord();
-			isStart = selectTile.getPieceList().get(0).getIsStart();
-			distance = distanceIterator.next();
+		if (type == 0) {
+			selectTile = restPieceBoard[x][y];
+		} else if (type == 1) {
+			selectTile = gameBoard[x][y];
+		}
 
-			if (!selectTile.getPieceList().isEmpty() && selectTile.getPieceList().get(0).getTeam() == playerID) {
-				currentCord.setCord(selectTile.getX(), selectTile.getY());
-				currentCord.transform(distance, isStart);
-				canGoCord.setCord(currentCord.getX(), currentCord.getY());
-				canGoCordVector.addElement(canGoCord);
+		if (clickData.getStatus() != 0) {
+			if (selectTile.getPieceList().isEmpty() || selectTile.getPieceList().get(0).getTeam() != playerID) {
+				cancelHighlight();
+				clickData.setStatus(1);
+			} else {
+				if (type == 0) {
+					clickData.setClickData(2, x, y);
+				} else if (type == 1) {
+					clickData.setClickData(3, x, y);
+				}
+				cancelHighlight();
+				while (distanceIterator.hasNext()) {
+					canGoCord = new Cord();
+					isStart = selectTile.getPieceList().get(0).getIsStart();
+					distance = distanceIterator.next();
+
+					if (!selectTile.getPieceList().isEmpty()
+							&& selectTile.getPieceList().get(0).getTeam() == playerID) {
+						currentCord.setCord(selectTile.getX(), selectTile.getY());
+						currentCord.transform(distance, isStart);
+						canGoCord.setCord(currentCord.getX(), currentCord.getY());
+						canGoCordVector.addElement(canGoCord);
+					}
+				}
+
+				notifyHighlightObserver(canGoCordVector);
 			}
 		}
 
-		notifyHighlightObserver(canGoCordVector);
 	}
 
 	public void cancelHighlight() {

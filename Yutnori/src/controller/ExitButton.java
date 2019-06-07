@@ -25,12 +25,12 @@ public class ExitButton extends PieceButton {
 		Iterator<Cord> cordIterator = model.getTurnPlayer().getCanGoCordVector().iterator();
 		Cord cord = new Cord();
 		gameBoard = model.getTurnPlayer().getYutnori().getBoard().getGameBoard();
-		if (model.getClickData().getStatus() == 3) {
+		if (model.getTurnPlayer().getClickData().getStatus() == 3) {
 			while (cordIterator.hasNext()) {
 				cord = cordIterator.next();
 				if (cord.getX() == 999 && cord.getY() == 999) {
 					isMove = true;
-					selectTile = gameBoard[model.getClickData().getSelectedX()][model.getClickData().getSelectedY()];
+					selectTile = gameBoard[model.getTurnPlayer().getClickData().getSelectedX()][model.getTurnPlayer().getClickData().getSelectedY()];
 					size = selectTile.getPieceList().size();
 					model.getTurnPlayer().movePiece(selectTile, finish);
 					break;
@@ -38,9 +38,9 @@ public class ExitButton extends PieceButton {
 			}
 		}
 		if (isMove) {
-			SelectPopUpFrame selectPopUpFrame = new SelectPopUpFrame(model.getClickData().getSelectedX(), model.getClickData().getSelectedX(), model);
-			boolean isClicked = false;
-			model.getClickData().setStatus(1);
+			SelectPopUpFrame selectPopUpFrame = new SelectPopUpFrame(model.getTurnPlayer().getClickData().getSelectedX(), model.getTurnPlayer().getClickData().getSelectedX(), model);
+			//boolean isClicked = false;
+			model.getTurnPlayer().getClickData().setStatus(1);
 			model.getTurnPlayer().setNumOfPassPiece(size);
 			model.getTurnPlayer().getCanGoCordVector().clear();
 

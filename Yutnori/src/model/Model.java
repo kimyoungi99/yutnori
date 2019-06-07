@@ -4,7 +4,6 @@ public class Model{
 	private boolean gameEnd = false;
 	private int turn = 0;
 	private Player[] player = new Player[CONSTANT.PLAYERNUM];
-	private ClickData clickData = new ClickData();
 	
 	public Model() {
 		for(int i = 0; i < player.length; i++) {
@@ -22,12 +21,11 @@ public class Model{
 	
 	public void nextTurn() {
 		player[turn].getthrowYutResultVector().clear();
+		player[turn].getClickData().setStatus(0);
 		turn++;
 		if(turn == CONSTANT.PLAYERNUM)
 			turn = 0;
 		this.getTurnPlayer().addNumOfThrowChance();
-		System.out.println("Turn" + turn);
-		clickData.setStatus(0);
 	}
 	
 	public void turnCheck() {
@@ -38,10 +36,6 @@ public class Model{
 
 	public Player getTurnPlayer() {
 		return this.player[turn % CONSTANT.PLAYERNUM];
-	}
-	
-	public ClickData getClickData() {
-		return clickData;
 	}
 	
 	public boolean getGameEnd() {

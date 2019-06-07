@@ -33,40 +33,49 @@ public class TileButton extends PieceButton{
 		ArrayList<Piece> pieceList = new ArrayList<Piece>();
 		pieceList = gameBoard[x][y].getPieceList();
 		
-		if (model.getClickData().getStatus() == 1) {
+		
+		if (model.getTurnPlayer().getClickData().getStatus() == 1) {
+			/*
 			if (pieceList.isEmpty()) {
 
 			} else if (pieceList.get(0).getTeam() != model.getTurn()) {
 
 			} else {
-				model.getClickData().setClickData(3, x, y);
-				model.getTurnPlayer().getCanGoTile(gameBoard[x][y]);
-			}
-		} else if (model.getClickData().getStatus() == 2 || model.getClickData().getStatus() == 3) {
+				model.getTurnPlayer().getClickData().setClickData(3, x, y);
+				*/
+				
+				model.getTurnPlayer().getCanGoTile(x, y, 1);
+			//}
+		} else if (model.getTurnPlayer().getClickData().getStatus() > 1) {
 			while (cordIterator.hasNext()) {
 				cord = cordIterator.next();
 				if (cord.getX() == x && cord.getY() == y) {
 					isMove = true;
 					targetTile = gameBoard[x][y];
-					if (model.getClickData().getStatus() == 2)
-						selectTile = restPieceBoard[model.getClickData().getSelectedX()][model.getClickData().getSelectedY()];
-					if (model.getClickData().getStatus() == 3)
-						selectTile = gameBoard[model.getClickData().getSelectedX()][model.getClickData().getSelectedY()];
+					if (model.getTurnPlayer().getClickData().getStatus() == 2)
+						selectTile = restPieceBoard[model.getTurnPlayer().getClickData().getSelectedX()][model.getTurnPlayer().getClickData().getSelectedY()];
+					if (model.getTurnPlayer().getClickData().getStatus() == 3)
+						selectTile = gameBoard[model.getTurnPlayer().getClickData().getSelectedX()][model.getTurnPlayer().getClickData().getSelectedY()];
 					model.getTurnPlayer().movePiece(selectTile, targetTile);
 				}
 			}
 			if (isMove) {
 				model.getTurnPlayer().deleteDistance(selectTile, targetTile);
-				model.getClickData().setStatus(1);
+				model.getTurnPlayer().getClickData().setStatus(1);
 				model.turnCheck();
-			} else if (!pieceList.isEmpty() && pieceList.get(0).getTeam() == model.getTurn()) {
-				model.getClickData().setClickData(3, x, y);
+				
+			} /*else if (!pieceList.isEmpty() && pieceList.get(0).getTeam() == model.getTurn()) {
+				model.getTurnPlayer().getClickData().setClickData(3, x, y);
 				model.getTurnPlayer().cancelHighlight();
 				model.getTurnPlayer().getCanGoTile(gameBoard[x][y]);
 			} 
+			*/
 			else if (pieceList.isEmpty() || pieceList.get(0).getTeam() != model.getTurn()) {
-				model.getClickData().setStatus(1);
+				model.getTurnPlayer().getClickData().setStatus(1);
 				model.getTurnPlayer().cancelHighlight();
+			}
+			else {
+				model.getTurnPlayer().getCanGoTile(x, y, 1);
 			}
 		}
 	}

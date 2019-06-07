@@ -24,18 +24,6 @@ public class RestPieceButton extends PieceButton {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		Tile[][] restPieceBoard = new Tile[CONSTANT.PLAYERNUM][CONSTANT.PIECENUM];
-		ArrayList<Piece> pieceList = new ArrayList<Piece>();
-		restPieceBoard = model.getTurnPlayer().getYutnori().getBoard().getWaitingPieceBoard();
-		pieceList = restPieceBoard[x][y].getPieceList();
-		if (model.getClickData().getStatus() != 0) {
-			if (pieceList.isEmpty() || pieceList.get(0).getTeam() != model.getTurn()) {
-				model.getTurnPlayer().cancelHighlight();
-			} else {
-				model.getClickData().setClickData(2, x, y);
-				model.getTurnPlayer().cancelHighlight();
-				model.getTurnPlayer().getCanGoTile(restPieceBoard[x][y]);
-			}
-		} 
+		model.getTurnPlayer().getCanGoTile(x, y, 0);
 	}
 }
