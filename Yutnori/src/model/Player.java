@@ -8,7 +8,7 @@ import view.Observer;
 
 public class Player implements Observable {
 
-	private static Yutnori yutnori = new Yutnori();
+	private Yutnori yutnori = new Yutnori();
 	private int playerID;
 	private int numOfThrowChance = 0;
 	private int numOfRestPiece = CONSTANT.PIECENUM;
