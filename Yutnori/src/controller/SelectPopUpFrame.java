@@ -21,9 +21,11 @@ public class SelectPopUpFrame extends JFrame{
 		temp.setCord(x, y);
 		//temptemp.setCord(temp.getX(), temp.getY());
 		while(temp.getX() != 999) {
+			System.out.println(temp.getY());
 			minDis++;
 			temp.transform(1, true);
 		}
+		System.out.println(minDis);
 		for(int i = 0; i < 5; i++) {
 			if(i + 1 >= minDis && model.getTurnPlayer().isDistance(i + 1)) {
 				select[i] = new SelectButton(i + 1, 2);

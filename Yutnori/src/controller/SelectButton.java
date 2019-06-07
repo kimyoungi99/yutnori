@@ -44,6 +44,9 @@ public class SelectButton extends JButton implements ActionListener{
 		}
 		else
 			this.setText(Integer.toString(data + 1));
+		if(data == 2 && type == 2) {
+			System.out.println("adfasdf");
+		}
 		this.type = type;
 		this.data = data;
 		this.addActionListener(this);

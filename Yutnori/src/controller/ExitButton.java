@@ -38,7 +38,7 @@ public class ExitButton extends PieceButton {
 			}
 		}
 		if (isMove) {
-			SelectPopUpFrame selectPopUpFrame = new SelectPopUpFrame(model.getClickData().getSelectedX(), model.getClickData().getSelectedX(), model);
+			SelectPopUpFrame selectPopUpFrame = new SelectPopUpFrame(model.getClickData().getSelectedX(), model.getClickData().getSelectedY(), model);
 			boolean isClicked = false;
 			model.getClickData().setStatus(1);
 			model.getTurnPlayer().setNumOfPassPiece(size);
