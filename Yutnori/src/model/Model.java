@@ -46,4 +46,13 @@ public class Model{
 	public void setGameEnd() {
 		gameEnd = true;
 	}
+	
+	public void reset() {
+		turn = 0;
+		for(int i = 0; i < player.length; i++) {
+			player[i] = new Player(i, this);
+		}
+		player[0].addNumOfThrowChance();
+		this.getPlayer()[0].getYutnori().reset();
+	}
 }

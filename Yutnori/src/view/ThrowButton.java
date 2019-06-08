@@ -27,9 +27,4 @@ public class ThrowButton extends JButton {
 	public void addThrowListener(ActionListener e) {
 		this.addActionListener(e);
 	}
-
-	/*
-	 * public void actionPerformed(ActionEvent e) {
-	 * model.getTurnPlayer().throwYut(this.throwButtonID); }
-	 */
 }

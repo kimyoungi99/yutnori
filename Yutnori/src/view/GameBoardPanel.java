@@ -2,8 +2,6 @@ package view;
 
 import javax.swing.JPanel;
 
-import model.Model;
-
 public class GameBoardPanel extends JPanel{
 	private TileButton[][] tileButton = new TileButton[6][5];
 	private ExitButton exitButton;

@@ -13,10 +13,12 @@ public class ExitListener implements ActionListener{
 	Model model;
 	StartFrame startFrame;
 	
+	
 	public ExitListener(Model model, StartFrame startFrame) {
 		this.model = model;
 		this.startFrame = startFrame;
 	}
+	
 	
 	public ExitListener(Model model) {
 		this.model = model;
@@ -28,7 +30,6 @@ public class ExitListener implements ActionListener{
 		if (isMove) {
 			SelectPopUpFrame selectPopUpFrame = new SelectPopUpFrame(model.getTurnPlayer().getClickData().getSelectedX(), model.getTurnPlayer().getClickData().getSelectedY(), model);
 			if (model.getTurnPlayer().getNumOfPassPiece() == CONSTANT.PIECENUM) {
-				//FinalFrame finalFrame = new FinalFrame(model.getTurn(), sf);
 				FinalFrame finalFrame = new FinalFrame(model.getTurn(), startFrame);
 				finalFrame.setVisible(true);
 			} else {

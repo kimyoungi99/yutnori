@@ -32,16 +32,7 @@ public class MainFrame extends JFrame {
 		this.setBounds(300, 30, 990, 750);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);
-		// this.setVisible(true);
-		/*
-		view = new ConcreteObserver();
-		view.setMainFrame(this);
-		*/
-		/*
-		for (int i = 0; i < CONSTANT.PLAYERNUM; i++) {
-			model.getPlayer()[i].addObserver(view);	
-		}
-		*/
+
 		for(int i=0; i<defaultImage.length; i++) {
 			String address = "src/view/img/";
 			address = address + Integer.toString(i+1) + "-1.png";
@@ -50,7 +41,6 @@ public class MainFrame extends JFrame {
 	}
 
 	public void init() {
-		//model.getTurnPlayer().addNumOfThrowChance();
 		gameBoardPanel.setBackground(Color.WHITE);
 		gameBoardPanel.setBounds(25, 75, 610, 610);
 		
@@ -87,8 +77,6 @@ public class MainFrame extends JFrame {
 		this.add(restPiecePanel);
 		this.add(throwResultPanel);
 		this.add(throwButtonPanel);
-		
-		//view.updateBoard(model.getPlayer()[0].getYutnori().getBoard());
 	}
 	
 	public JLabel getThrowResultLabel() {

@@ -24,8 +24,7 @@ public class ListenerController {
 			}
 		}
 		
-		//mainFrame.getGameBoardPanel().getExitButton().addExitListener(new ExitListener(model), mainFrame.getStartFrame());
-		mainFrame.getGameBoardPanel().getExitButton().addExitListener(new ExitListener(model));
+		mainFrame.getGameBoardPanel().getExitButton().addExitListener(new ExitListener(model, mainFrame.getStartFrame()));
 	}
 
 }
