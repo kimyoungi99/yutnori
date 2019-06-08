@@ -260,12 +260,12 @@ public class Player implements Observable {
 		}
 		else {
 			if(type == 0)
-				this.getCanGoTile(x, y, 1);
+				this.calculateCanGoTile(x, y, 1);
 		}
 		return isMove;
 	}
 
-	public void getCanGoTile(int x, int y, int type) {
+	public void calculateCanGoTile(int x, int y, int type) {
 		Tile[][] gameBoard = new Tile[6][5];
 		Tile[][] restPieceBoard = new Tile[CONSTANT.PLAYERNUM][CONSTANT.PIECENUM];
 		Tile selectTile = new Tile(0, 0);

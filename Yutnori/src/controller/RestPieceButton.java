@@ -14,6 +14,6 @@ public class RestPieceButton extends PieceButton {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		model.getTurnPlayer().getCanGoTile(x, y, 0);
+		model.getTurnPlayer().calculateCanGoTile(x, y, 0);
 	}
 }
