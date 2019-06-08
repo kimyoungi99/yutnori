@@ -5,14 +5,12 @@ import java.util.Vector;
 
 import javax.swing.ImageIcon;
 
-import controller.Controller;
 import model.Board;
 import model.CONSTANT;
 import model.Cord;
 import model.Tile;
 
-public class View implements Observer {
-
+public class ConcreteObserver implements Observer {
 	private ImageIcon DaoImage = new ImageIcon("src/view/img/Dao.png");
 	private ImageIcon GaeImage = new ImageIcon("src/view/img/Gae.png");
 	private ImageIcon GurlImage = new ImageIcon("src/view/img/Gurl.png");
@@ -24,9 +22,9 @@ public class View implements Observer {
 	private ImageIcon exitButtonImage = new ImageIcon("src/view/img/End.png");
 	private ImageIcon exitButtonHighlightImage = new ImageIcon("src/view/img/End_highlight.png");
 	private ImageIcon pieceImage[][] = new ImageIcon[4][5];
-	private Controller controller;
+	private MainFrame mainFrame;
 	
-	public View() {
+	public ConcreteObserver() {
 		for(int i=0; i<pieceImage.length; i++) {
 			for(int j=0; j<pieceImage[0].length; j++) {
 				String address = "src/view/img/";
@@ -41,22 +39,22 @@ public class View implements Observer {
 		int throwRes = result;
 		switch(throwRes) {
 		case -1:
-			this.controller.getThrowResultLabel().setIcon(this.BackDaoImage);
+			mainFrame.getThrowResultLabel().setIcon(this.BackDaoImage);
 			break;
 		case 5:
-			this.controller.getThrowResultLabel().setIcon(this.MoeImage);
+			mainFrame.getThrowResultLabel().setIcon(this.MoeImage);
 			break;
 		case 1:
-			this.controller.getThrowResultLabel().setIcon(this.DaoImage);
+			mainFrame.getThrowResultLabel().setIcon(this.DaoImage);
 			break;
 		case 2:
-			this.controller.getThrowResultLabel().setIcon(this.GaeImage);
+			mainFrame.getThrowResultLabel().setIcon(this.GaeImage);
 			break;
 		case 3:
-			this.controller.getThrowResultLabel().setIcon(this.GurlImage);
+			mainFrame.getThrowResultLabel().setIcon(this.GurlImage);
 			break;
 		case 4:
-			this.controller.getThrowResultLabel().setIcon(this.YutImage);
+			mainFrame.getThrowResultLabel().setIcon(this.YutImage);
 			
 		}
 	}
@@ -68,9 +66,9 @@ public class View implements Observer {
 		while(cordIterator.hasNext()) {
 			cord = cordIterator.next();
 			if(cord.getX() == 999)
-				controller.getGameBoardPanel().getExitButton().setIcon(this.exitButtonHighlightImage);
+				mainFrame.getGameBoardPanel().getExitButton().setIcon(this.exitButtonHighlightImage);
 			else
-				controller.getGameBoardPanel().getTileButton()[cord.getX()][cord.getY()].setIcon(highlightImage);
+				mainFrame.getGameBoardPanel().getTileButton()[cord.getX()][cord.getY()].setIcon(highlightImage);
 		}
 	}
 	
@@ -82,10 +80,10 @@ public class View implements Observer {
 			for(int j=0; j<gameBoard[0].length; j++) {
 				gameBoard[i][j] = board.getGameBoard()[i][j];
 				if(gameBoard[i][j].getPieceList().isEmpty()) {
-					controller.getGameBoardPanel().getTileButton()[i][j].setIcon(noneImage);
+					mainFrame.getGameBoardPanel().getTileButton()[i][j].setIcon(noneImage);
 				}
 				else{
-					controller.getGameBoardPanel().getTileButton()[i][j].setIcon(pieceImage[gameBoard[i][j].getPieceList().get(0).getTeam()][gameBoard[i][j].getPieceList().size() - 1]);
+					mainFrame.getGameBoardPanel().getTileButton()[i][j].setIcon(pieceImage[gameBoard[i][j].getPieceList().get(0).getTeam()][gameBoard[i][j].getPieceList().size() - 1]);
 				}
 			}
 		}
@@ -93,28 +91,28 @@ public class View implements Observer {
 			for(int j=0; j<restPieceBoard[0].length; j++) {
 				restPieceBoard[i][j] = board.getWaitingPieceBoard()[i][j];
 				if(restPieceBoard[i][j].getPieceList().isEmpty()) {
-					controller.getRestPieceButton()[i][j].setIcon(noneImage);
+					mainFrame.getRestPieceButton()[i][j].setIcon(noneImage);
 				}
 				else{
-					controller.getRestPieceButton()[i][j].setIcon(pieceImage[restPieceBoard[i][j].getPieceList().get(0).getTeam()][0]);
+					mainFrame.getRestPieceButton()[i][j].setIcon(pieceImage[restPieceBoard[i][j].getPieceList().get(0).getTeam()][0]);
 				}
 			}
 		}
-		controller.getGameBoardPanel().getExitButton().setIcon(this.exitButtonImage);
+		mainFrame.getGameBoardPanel().getExitButton().setIcon(this.exitButtonImage);
 	}
 	
 	@Override
 	public void updateThrowChanceLabel(int chance) {
-		controller.getGameInfoPanel().getThrowChanceLabel().setText(Integer.toString(chance));
+		mainFrame.getGameInfoPanel().getThrowChanceLabel().setText(Integer.toString(chance));
 	}
 	
 	@Override
 	public void updateTurnLabel(int turn) {
-		controller.getGameInfoPanel().getThrowChanceLabel().setText("1");
-		controller.getGameInfoPanel().getTurnLabel().setIcon(pieceImage[turn][0]);
+		mainFrame.getGameInfoPanel().getThrowChanceLabel().setText("1");
+		mainFrame.getGameInfoPanel().getTurnLabel().setIcon(pieceImage[turn][0]);
 	}
 	
-	public void setController(Controller controller) {
-		this.controller = controller;
+	public void setMainFrame(MainFrame mainFrame) {
+		this.mainFrame = mainFrame;
 	}
 }

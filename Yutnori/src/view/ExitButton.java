@@ -1,17 +1,16 @@
-package controller;
+package view;
 
-import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import model.CONSTANT;
-import model.Model;
+import javax.swing.JButton;
 
-public class ExitButton extends PieceButton {
+public class ExitButton extends JButton{
 	private StartFrame sf;
-	public ExitButton(Model model, StartFrame sf) {
-		super(model);
+	public ExitButton(StartFrame sf) {
 		this.sf = sf;
 	}
 
+	/*
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		boolean isMove = false;
@@ -26,4 +25,10 @@ public class ExitButton extends PieceButton {
 			}
 		}
 	}
+	*/
+	
+	public void addExitListener(ActionListener e) {
+		this.addActionListener(e);
+	}
+
 }

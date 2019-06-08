@@ -1,17 +1,22 @@
-package controller;
+package view;
 
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import controller.ListenerController;
+import model.CONSTANT;
+import model.Model;
+
 public class StartFrame extends JFrame {
+	Model model = new Model();
 	private SelectButton[] playerSelectButton = new SelectButton[3];
 	private SelectButton[] pieceSelectButton = new SelectButton[4];
 	private SelectButton startButton = new SelectButton(3);
 	private int numOfPlayer = 4;
 	private int numOfPiece = 4;
-	private Controller controller;
+	private MainFrame mainFrame;
 	
 	public StartFrame() {
 		JPanel playerSelectionPanel = new JPanel();
@@ -56,13 +61,22 @@ public class StartFrame extends JFrame {
 		this.numOfPiece = numOfPiece;
 	}
 	
-	public void startGame() {
-		controller = new Controller(numOfPlayer, numOfPiece, this);
-		controller.init();
-		controller.setVisible(true);
+	public Model getModel() {
+		return model;
 	}
 	
-	public Controller getController() {
-		return this.controller;
+	public void startGame() {
+		ConcreteObserver concreteObserver = new ConcreteObserver();
+		MainFrame mainFrame = new MainFrame(numOfPlayer, numOfPiece, this);
+		mainFrame.setStartFrame(this);
+		mainFrame.init();
+		concreteObserver.setMainFrame(mainFrame);
+		for (int i = 0; i < CONSTANT.PLAYERNUM; i++) {
+			model.getPlayer()[i].addObserver(concreteObserver);	
+		}
+		concreteObserver.updateBoard(model.getPlayer()[0].getYutnori().getBoard());
+		ListenerController listenerController = new ListenerController(model, mainFrame);
+		mainFrame.setVisible(true);
 	}
+		
 }

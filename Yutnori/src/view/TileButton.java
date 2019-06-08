@@ -1,18 +1,16 @@
-package controller;
+package view;
 
-import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import model.Model;
 
 public class TileButton extends PieceButton{
-	int x, y;
 
-	public TileButton(Model model, int x, int y) {
-		super(model);
-		this.x = x;
-		this.y = y;
+	public TileButton(int x, int y) {
+		super(x, y);
 	}
 
+	/*
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (model.getTurnPlayer().getClickData().getStatus() == 1) {
@@ -22,5 +20,10 @@ public class TileButton extends PieceButton{
 			//if (!isMove)
 				//model.getTurnPlayer().getCanGoTile(x, y, 1);
 		}
+	}
+	*/
+	
+	public void addTileListener(ActionListener e) {
+		this.addActionListener(e);
 	}
 }

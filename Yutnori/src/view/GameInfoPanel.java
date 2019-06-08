@@ -1,4 +1,4 @@
-package controller;
+package view;
 
 import java.awt.Font;
 
@@ -14,7 +14,7 @@ public class GameInfoPanel extends JPanel{
 	private JLabel textLabel = new JLabel();
 	private ImageIcon defaultImage[] = new ImageIcon[4];
 	
-	public GameInfoPanel(Model model) {
+	public GameInfoPanel() {
 		int startPixel = 140;
 		this.setLayout(null);
 		for(int i=0; i<defaultImage.length; i++) {

@@ -10,8 +10,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="2" language="java" name="view.View" project="Yutnori" file="/Yutnori/src/view/View.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="view.ConcreteObserver" project="Yutnori" 
+    file="/Yutnori/src/view/ConcreteObserver.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="407" width="274" x="291" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

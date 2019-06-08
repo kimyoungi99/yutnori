@@ -1,4 +1,4 @@
-package controller;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -70,6 +70,7 @@ public class SelectButton extends JButton implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(this.type == 0) {
 			startFrame.setNumOfPlayer(this.data + 1);
+			
 		}
 		else if(this.type == 1){
 			startFrame.setNumOfPiece(this.data + 1);
@@ -85,8 +86,8 @@ public class SelectButton extends JButton implements ActionListener{
 		}
 		else if(this.type == 4) {
 			finalFrame.dispose();
-			startFrame.getController().dispose();
-			startFrame.getController().getModel().getPlayer()[0].getYutnori().reset();
+			//startFrame.getMainFrame().dispose();
+			startFrame.getModel().getPlayer()[0].getYutnori().reset();
 			startFrame.startGame();
 		}
 		else if(this.type == 5) {

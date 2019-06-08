@@ -1,4 +1,4 @@
-package controller;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,10 +8,11 @@ import javax.swing.JButton;
 import model.Model;
 
 public class PieceButton extends JButton implements ActionListener {
-	protected Model model;
+	private int x, y;
 	
-	public PieceButton(Model model) {
-		this.model = model;
+	public PieceButton(int x, int y) {
+		this.x = x;
+		this.y = y;
         this.setBorderPainted(false); 
         this.setContentAreaFilled(false); 
         this.setFocusPainted(false); 

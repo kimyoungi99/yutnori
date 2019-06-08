@@ -1,22 +1,20 @@
-package controller;
+package view;
 
 import javax.swing.JPanel;
 
 import model.Model;
 
 public class GameBoardPanel extends JPanel{
-	private Model model;
 	private TileButton[][] tileButton = new TileButton[6][5];
 	private ExitButton exitButton;
 	private static final int TILESIZE = 54;
 
-	public GameBoardPanel(Model model, StartFrame sf) {
+	public GameBoardPanel(StartFrame sf) {
 		this.setLayout(null);
-		this.model = model;
-		exitButton = new ExitButton(model, sf);
+		exitButton = new ExitButton(sf);
 		for(int i=0; i<tileButton.length; i++) {
 			for(int j=0; j<tileButton[0].length; j++) {
-				tileButton[i][j] = new TileButton(model, i, j);
+				tileButton[i][j] = new TileButton(i, j);
 				this.add(tileButton[i][j]);
 			}
 		}

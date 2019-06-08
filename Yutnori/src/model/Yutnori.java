@@ -37,8 +37,8 @@ public class Yutnori {
 			this.yutSet[i] = new Yut(i); // if i == 3 then BACKDO
 		}
 
-		for (int i = 0; i < pieceArray.length; i++) {
-			for (int j = 0; j < pieceArray[0].length; j++) {
+		for (int i = 0; i < CONSTANT.PLAYERNUM; i++) {
+			for (int j = 0; j < CONSTANT.PIECENUM; j++) {
 				this.pieceArray[i][j] = new Piece(j, i);
 			}
 		}

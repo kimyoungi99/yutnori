@@ -9,4 +9,12 @@ public class CONSTANT {
 		  this.PIECENUM = pieceNum;
 		  this.PLAYERNUM = playerNum;
 	  }
+	  
+	  public void setPIECENUM(int pieceNum) {
+		  PIECENUM = pieceNum;
+	  }
+	  
+	  public void setPLAYERNUM(int playerNum) {
+		  PLAYERNUM = playerNum;
+	  }
 }

@@ -1,4 +1,4 @@
-package controller;
+package view;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -9,14 +9,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.CONSTANT;
-import model.Model;
-import view.View;
 
-public class Controller extends JFrame {
-	private Model model = new Model();
-	private View view;
+public class MainFrame extends JFrame {
+	//private ConcreteObserver view;
+	private StartFrame startFrame;
 	private GameBoardPanel gameBoardPanel;
-	private GameInfoPanel gameInfoPanel = new GameInfoPanel(model);
+	private GameInfoPanel gameInfoPanel;
 	private JPanel throwButtonPanel = new JPanel();
 	private JPanel restPiecePanel = new JPanel();
 	private JPanel throwResultPanel = new JPanel();
@@ -26,19 +24,24 @@ public class Controller extends JFrame {
 	private ImageIcon moeImage = new ImageIcon("src/view/img/First.png");
 	private ImageIcon defaultImage[] = new ImageIcon[4];
 
-	public Controller(int playerNum, int PieceNum, StartFrame sf) {
+	public MainFrame(int playerNum, int PieceNum, StartFrame sf) {
 		CONSTANT c = new CONSTANT(playerNum, PieceNum);
-		gameBoardPanel = new GameBoardPanel(model, sf);
+		gameBoardPanel = new GameBoardPanel(sf);
+		gameInfoPanel = new GameInfoPanel();
 		this.setTitle("Yut No Ri");
 		this.setBounds(300, 30, 990, 750);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);
 		// this.setVisible(true);
-		view = new View();
-		view.setController(this);
+		/*
+		view = new ConcreteObserver();
+		view.setMainFrame(this);
+		*/
+		/*
 		for (int i = 0; i < CONSTANT.PLAYERNUM; i++) {
 			model.getPlayer()[i].addObserver(view);	
 		}
+		*/
 		for(int i=0; i<defaultImage.length; i++) {
 			String address = "src/view/img/";
 			address = address + Integer.toString(i+1) + "-1.png";
@@ -47,7 +50,7 @@ public class Controller extends JFrame {
 	}
 
 	public void init() {
-		model.getTurnPlayer().addNumOfThrowChance();
+		//model.getTurnPlayer().addNumOfThrowChance();
 		gameBoardPanel.setBackground(Color.WHITE);
 		gameBoardPanel.setBounds(25, 75, 610, 610);
 		
@@ -55,9 +58,10 @@ public class Controller extends JFrame {
 
 		GridLayout restPiecePanelLayout = new GridLayout(CONSTANT.PLAYERNUM, CONSTANT.PIECENUM);
 		restPiecePanel.setLayout(restPiecePanelLayout);
+		System.out.println(CONSTANT.PIECENUM);
 		for (int i = 0; i < CONSTANT.PLAYERNUM; i++) {
 			for (int j = 0; j < CONSTANT.PIECENUM; j++) {
-				restPieceButton[i][j] = new RestPieceButton(i, j, model);
+				restPieceButton[i][j] = new RestPieceButton(i, j);
 				restPieceButton[i][j].setIcon(defaultImage[i]);
 				restPiecePanel.add(restPieceButton[i][j]);
 			}
@@ -72,7 +76,7 @@ public class Controller extends JFrame {
 		GridLayout throwYutButtonPanelLayout = new GridLayout(2, 4);
 		throwButtonPanel.setLayout(throwYutButtonPanelLayout);
 		for (int i = 0; i < throwButton.length; i++) {
-			throwButton[i] = new ThrowButton(i, model);
+			throwButton[i] = new ThrowButton(i);
 			throwButton[i].setSize(20, 20);
 			throwButtonPanel.add(throwButton[i]);
 		}
@@ -84,15 +88,15 @@ public class Controller extends JFrame {
 		this.add(throwResultPanel);
 		this.add(throwButtonPanel);
 		
-		view.updateBoard(model.getPlayer()[0].getYutnori().getBoard());
-	}
-
-	public Model getModel() {
-		return model;
+		//view.updateBoard(model.getPlayer()[0].getYutnori().getBoard());
 	}
 	
 	public JLabel getThrowResultLabel() {
 		return throwResultLabel;
+	}
+	
+	public ThrowButton[] getThrowButton() {
+		return throwButton;
 	}
 	
 	public GameBoardPanel getGameBoardPanel() {
@@ -105,5 +109,13 @@ public class Controller extends JFrame {
 	
 	public GameInfoPanel getGameInfoPanel() {
 		return gameInfoPanel;
+	}
+	
+	public void setStartFrame(StartFrame startFrame) {
+		this.startFrame = startFrame;
+	}
+	
+	public StartFrame getStartFrame() {
+		return startFrame;
 	}
 }

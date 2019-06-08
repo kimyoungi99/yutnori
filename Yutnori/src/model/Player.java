@@ -110,6 +110,7 @@ public class Player implements Observable {
 
 	public void addNumOfThrowChance() {
 		numOfThrowChance++;
+		//System.out.println(numOfThrowChance);
 		notifyTurnObserver(playerID);
 	}
 
@@ -118,6 +119,7 @@ public class Player implements Observable {
 	}
 
 	public void throwYut(int type) {
+		System.out.println(numOfThrowChance);
 		if (numOfThrowChance > 0) {
 			int numOfFront = 0;
 			if (type == 0) {
