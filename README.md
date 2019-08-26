@@ -1,10 +1,12 @@
-yutnori
-=======
-자바 GUI 윷놀이 게임
+# Yutnori
+중앙대학교 휴먼ICT 소프트웨어공학 제출 과제
 
-# How to Play
+## 언어(Language)
+* JAVA
 
-1. 게임을 시작하면 선택화면이 뜬다 위 버튼이 플레이어의 수, 아래 버튼이 말의 개수이다.
-2. 윷을 가지고 있는 기회만큼 던진다.
-3. 말을 움직인다.
-4. 자신의 턴을 기다린다.
+## 적용 패턴(Applied Pattern)
+* MVC Pattern
+* Observer Pattern
+
+## 프로젝트 보고서(Project Document)
+* [프로젝트 보고서](./Project_Document.pdf)
